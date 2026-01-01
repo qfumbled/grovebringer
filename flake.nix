@@ -15,6 +15,9 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, pre-commit-hooks, ... }@inputs:
@@ -36,6 +39,9 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
+              sharedModules = [
+                inputs.nixcord.homeModules.nixcord
+              ];
               users.xekuri = {
                 home.stateVersion = "25.11";
                 imports = [

@@ -1,7 +1,8 @@
 {
+  inputs,
+  lib,
   config,
   pkgs,
-  lib,
   ...
 }: {
   programs.waybar = {

@@ -16,6 +16,7 @@ with lib;
     ./programs/waybar
     ./programs/mako
     ./programs/fuzzel
+    ./programs/discord
   ];
 
   home = {

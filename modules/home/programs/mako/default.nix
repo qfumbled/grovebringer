@@ -1,4 +1,9 @@
-{config, lib, ...}: {
+{
+  inputs,
+  lib,
+  config,
+  ...
+}: {
   services.mako = with config.lib.stylix.colors.withHashtag; {
     enable = true;
     settings = lib.mkForce {
