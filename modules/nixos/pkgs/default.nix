@@ -1,0 +1,25 @@
+{ pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    xdg-utils
+    wirelesstools
+    wget
+    yq
+    brightnessctl
+    firefox
+    git
+    unzip
+    zip
+    swaybg
+    mako
+    waybar
+    polkit_gnome
+    wlsunset
+    wayshot
+    slurp
+    wl-clipboard
+    libnotify
+    swappy
+    fuzzel
+    fastfetch
+  ];
+}
