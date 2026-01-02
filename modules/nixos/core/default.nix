@@ -21,7 +21,6 @@
     ./xdg
     ./security
     ./stylix
-    ./home-bridge
     ./hyprland
   ];
 }
