@@ -21,3 +21,4 @@
 - [] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
 - [] Make Spotify WORK FOR ONCE GOD DAMN
 - [] Copy Elythh's imports for inputs (should be easy)
+- [] drop labwc (oh wow that quick)

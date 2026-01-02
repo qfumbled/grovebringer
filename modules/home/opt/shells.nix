@@ -12,6 +12,5 @@
   ];
 
   config = lib.mkIf config.grovebringer.home.shells.enable {
-    # Shell configurations here
   };
 }
