@@ -13,8 +13,8 @@
   networking.hostName = "aureliteiron";
   
   # Desktop-specific configuration
-  grovebringer.system.hostType = "desktop";
-  grovebringer.system.impermanence.enable = false;  # Enable when ready
+  # grovebringer.system.hostType = "desktop";  # TODO: Define this option
+  # grovebringer.system.impermanence.enable = false;  # TODO: Define this option
 
   services.flatpak.enable = true;
 }
