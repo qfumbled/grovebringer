@@ -12,7 +12,6 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
   };
 
-  # Add Spotify and required multimedia libraries
   environment.systemPackages = with pkgs; [
     spotify
     spotify-player  # Terminal alternative
@@ -28,7 +27,6 @@
     libpulseaudio
     # Codecs
     ffmpeg
-    # X11 libraries for compatibility
     xorg.libX11
     xorg.libXext
     xorg.libXrandr
@@ -36,6 +34,5 @@
     xorg.libXScrnSaver
   ];
 
-  # Enable required services
   services.dbus.enable = true;
 }
