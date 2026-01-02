@@ -29,6 +29,7 @@
             { nixpkgs.hostPlatform = system; }
             systemConfig
             home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
             ./modules/nixos
             inputs.stylix.nixosModules.stylix
             {
