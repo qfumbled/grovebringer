@@ -18,5 +18,11 @@
   grovebringer.nixos.ly.enable = true;  # Desktop display manager
   grovebringer.nixos.impermanence.enable = false;  # Enable when ready
 
+  # Enable optional home-manager modules for desktop
+  grovebringer.home.programs.enable = true;
+  grovebringer.home.shells.enable = true;
+  grovebringer.home.terminals.enable = true;
+  grovebringer.home.wm.enable = true;
+
   services.flatpak.enable = true;
 }

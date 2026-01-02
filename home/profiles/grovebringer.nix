@@ -6,12 +6,6 @@
   ...
 }:
 {
-  # Enable optional home-manager modules
-  grovebringer.home.programs.enable = true;
-  grovebringer.home.shells.enable = true;
-  grovebringer.home.terminals.enable = true;
-  grovebringer.home.wm.enable = true;
-
   home.packages = with pkgs; [
     foot
     app2unit
