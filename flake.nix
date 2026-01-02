@@ -1,5 +1,5 @@
 {
-  description = "Grovebringer NixOS Configuration";
+  description = "spilling my guts right now";
 
   outputs =
     {

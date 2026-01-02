@@ -7,9 +7,5 @@
 }:
 
 {
-  imports = [
-    ./core
-    ./opt
-    ./options
-  ];
+  imports = lib.funkouna.readSubdirs ./.;
 }

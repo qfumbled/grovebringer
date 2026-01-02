@@ -13,22 +13,27 @@
 
   networking.hostName = "grovebringer";
 
-  grovebringer = {
-    nixos = {
-      audio.enable = true;
+  funkouna = {
+    services = {
       bluetooth.enable = true;
-      ly.enable = true;  
-      impermanence.enable = true;  
-      hyprland.enable = true;  
+      audio.enable = true;
+      ly.enable = true;
     };
-
-    home = {
-      programs.enable = true;
-      shells.enable = true;
-      terminals.enable = true;
-      wm.enable = true;
+    programs = {
+      wayland.enable = true;
+      steam.enable = false;
+      spotify.enable = false;
+    };
+    impermanence.enable = false;
+    
+    system = {
+      locale.enable = true;
+      networking.enable = true;
+      security.enable = true;
+      users.enable = true;
+      stylix.enable = false;
+      nix.enable = true;
+      xdg.enable = false; 
     };
   };
-
-  services.flatpak.enable = true;
 }

@@ -10,7 +10,7 @@
     ./labwc
   ];
 
-  config = lib.mkIf config.grovebringer.home.wm.enable {
+  config = lib.mkIf config.funkouna.home.wm.enable {
     # Window manager configurations here
   };
 }

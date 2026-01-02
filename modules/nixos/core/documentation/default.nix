@@ -1,3 +1,12 @@
 {
-  documentation.man.enable = false;
+  lib,
+  ...
+}:
+
+{
+  documentation = {
+    man = {
+      enable = false;
+    };
+  };
 }

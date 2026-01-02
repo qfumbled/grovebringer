@@ -4,40 +4,8 @@
 }:
 {
   options = {
-    grovebringer = {
-      system = {
-        username = lib.mkOption {
-          type = lib.types.str;
-          default = "xekuri";
-          description = "Primary username for the system";
-        };
-
-        impermanence = {
-          enable = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Enable state persistence";
-          };
-
-          persistentPath = lib.mkOption {
-            type = lib.types.str;
-            default = "/persistent";
-            description = "Path to persistent storage";
-          };
-        };
-
-        hostType = lib.mkOption {
-          type = lib.types.enum [
-            "laptop"
-            "desktop"
-            "server"
-          ];
-          default = "laptop";
-          description = "Type of host for configuration tuning";
-        };
-      };
-
-      nixos = {
+    funkouna = {
+      services = {
         audio = {
           enable = lib.mkOption {
             type = lib.types.bool;
@@ -62,53 +30,111 @@
           };
         };
 
-        impermanence = {
+        virtualisation = {
           enable = lib.mkOption {
             type = lib.types.bool;
             default = false;
-            description = "Enable state persistence";
-          };
-        };
-
-        hyprland = {
-          enable = lib.mkOption {
-            type = lib.types.bool;
-            default = false;
-            description = "Enable Hyprland compositor";
+            description = "Enable virtualisation services";
           };
         };
       };
 
-      home = {
-        programs = {
+      programs = {
+        wayland = {
           enable = lib.mkOption {
             type = lib.types.bool;
-            default = true;
-            description = "Enable optional programs";
+            default = false;
+            description = "Enable Wayland support";
           };
         };
 
-        shells = {
+        steam = {
           enable = lib.mkOption {
             type = lib.types.bool;
-            default = true;
-            description = "Enable optional shells";
+            default = false;
+            description = "Enable Steam support";
           };
         };
 
-        terminals = {
+        spotify = {
           enable = lib.mkOption {
             type = lib.types.bool;
-            default = true;
-            description = "Enable optional terminals";
+            default = false;
+            description = "Enable Spotify support";
+          };
+        };
+      };
+
+      impermanence = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Enable state persistence";
+        };
+      };
+
+      system = {
+        locale = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable system localization";
           };
         };
 
-        wm = {
+        networking = {
           enable = lib.mkOption {
             type = lib.types.bool;
-            default = true;
-            description = "Enable optional window managers";
+            default = false;
+            description = "Enable network configuration";
+          };
+        };
+
+        security = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable system security";
+          };
+        };
+
+        users = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable user management";
+          };
+        };
+
+        stylix = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable Stylix theming";
+          };
+        };
+
+        pkgs = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable package management";
+          };
+        };
+
+        nix = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable Nix configuration";
+          };
+        };
+
+        xdg = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable XDG specifications";
           };
         };
       };

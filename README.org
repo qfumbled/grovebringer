@@ -1,5 +1,4 @@
-* currently spilling my guts rn
-
+*  unavoidable flake or is it?  (vsauce moment)
 ** Images
 - [[./assets/check]]
 - [[./assets/grovebringer.png]]

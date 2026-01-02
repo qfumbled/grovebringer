@@ -6,7 +6,7 @@
 }:
 
 {
-  config = lib.mkIf config.grovebringer.nixos.hyprland.enable {
+  config = lib.mkIf config.funkouna.programs.wayland.enable {
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;

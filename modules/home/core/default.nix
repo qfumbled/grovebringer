@@ -7,5 +7,5 @@
 }:
 
 {
-  imports = lib.grovebringer.readSubdirs ./.;
+  imports = lib.funkouna.readSubdirs ./.;
 }

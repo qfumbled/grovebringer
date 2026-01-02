@@ -11,6 +11,6 @@
     ./starship
   ];
 
-  config = lib.mkIf config.grovebringer.home.shells.enable {
+  config = lib.mkIf config.funkouna.home.shells.enable {
   };
 }

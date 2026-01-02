@@ -1,6 +1,6 @@
 lib: pkgs: {
-  grovebringer = rec {
-    inherit (lib.modules) mkIf mkMerge;
+  funkouna = rec {
+    inherit (lib.modules) mkIf mkMerge mkDefault;
     inherit (lib.lists)
       all
       unique

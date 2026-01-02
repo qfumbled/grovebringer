@@ -10,7 +10,7 @@
     ./foot
   ];
 
-  config = lib.mkIf config.grovebringer.home.terminals.enable {
+  config = lib.mkIf config.funkouna.home.terminals.enable {
     # Terminal configurations here
   };
 }

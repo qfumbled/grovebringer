@@ -1,10 +1,15 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
 }:
+let
+  inherit (lib) mkIf mkEnableOption;
+  cfg = config.funkouna.services.ly;
+in
 {
-  services.displayManager.ly.enable = true;
+  config = mkIf cfg.enable {
+    services.displayManager.ly.enable = true;
+  };
 }

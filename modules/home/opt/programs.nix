@@ -14,7 +14,7 @@
     ./waybar
   ];
 
-  config = lib.mkIf config.grovebringer.home.programs.enable {
+  config = lib.mkIf config.funkouna.home.programs.enable {
     # Programs configurations here
     # Individual modules will handle their own conditional logic
   };

@@ -7,6 +7,6 @@
 
 {
   home-manager.users.xekuri = {
-    grovebringer.home = config.grovebringer.home or {};
+    funkona.home = config.funkouna.home or {};
   };
 }
