@@ -1,8 +1,12 @@
-# My unavoidable flake or is it? 
+* My unavoidable flake or is it?
 
-Hosts:
+** Hosts
 - grovebringer (laptop)
 - TODO: add PC (desktop) which is going to be named "aureliteiron" cool right in the feature i will get a PC kinda just broke right now?
 
-Images:
-- [[./assets/grovebringer.jpg]]
+** Images
+[[./assets/grovebringer.jpg]]
+
+** Big Thank YOU !!!
+- [[https://github.com/kewin-y][kewin-y]] (labwc configuration and the mako and waybar)
+- [[https://github.com/elythh][elythh]] (her sturcture i based on also kinda her syntax and parts of her configuration)

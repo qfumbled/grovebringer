@@ -1,85 +1,110 @@
 {
-  description = "Your NixOS configuration";
+  description = " goodbringer's legacy NixOS configuration ";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pre-commit-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-    };
-  };
-
-  outputs = { self, nixpkgs, home-manager, pre-commit-hooks, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib.extend (final: prev: (import ./lib final nixpkgs) // prev);
-    in
+  outputs =
     {
-      nixosConfigurations.grovebringer = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/grovebringer
-          ./modules/nixos
-          home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = { inherit inputs; };
-              sharedModules = [
+      self,
+      nixpkgs,
+      home-manager,
+      pre-commit-hooks,
+      ...
+    }@inputs:
+    let
+      outputs = self;
+      mkLib = pkgs: pkgs.lib.extend (final: prev: (import ./lib final pkgs) // home-manager.lib);
+      packages = nixpkgs.legacyPackages;
+
+      mkSystem =
+        {
+          system ? "x86_64-linux",
+          systemConfig,
+          userConfigs,
+          lib ? mkLib packages.${system},
+        }:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs lib;
+          };
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            systemConfig
+            home-manager.nixosModules.home-manager
+            ./modules/nixos
+            inputs.stylix.nixosModules.stylix
+            {
+              home-manager.sharedModules = [
+                ./modules/home
                 inputs.nixcord.homeModules.nixcord
               ];
-              users.xekuri = {
-                home.stateVersion = "25.11";
-                imports = [
-                  ./modules/home
-                  ./home/profiles/grovebringer.nix
-                ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs outputs lib;
               };
+              home-manager.users.xekuri = {
+                home.stateVersion = "25.11";
+                imports = [ userConfigs ];
+              };
+            }
+          ];
+        };
+
+      supportedSystems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    in
+    {
+      nixosConfigurations = {
+        grovebringer = mkSystem {
+          systemConfig = ./hosts/grovebringer;
+          userConfigs = ./home/profiles/grovebringer.nix;
+        };
+      };
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+
+      checks = forAllSystems (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            deadnix = {
+              enable = true;
+              settings.noLambdaArg = true;
             };
-          }
-        ];
-      };
+            nixfmt-rfc-style.enable = true;
+            statix.enable = true;
+          };
+        };
+      });
 
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-
-      checks.${system} = {
-        # pre-commit-check = pre-commit-hooks.lib.${system}.run {
-        #   src = ./.;
-        #   hooks = {
-        #     deadnix.enable = true;
-        #     nixfmt.enable = true;
-        #     statix.enable = true;
-        #   };
-        # };
-      };
-
-      devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
-        # inherit (self.checks.${system}.pre-commit-check) shellHook;
-        # buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-        buildInputs = with nixpkgs.legacyPackages.${system}; [
-          nixfmt-rfc-style
-          deadnix
-          statix
-        ];
-        shellHook = ''
-          echo "Nix development environment ready"
-        '';
-      };
+      devShells = forAllSystems (system: {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        };
+      });
     };
+
+  inputs = {
+    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
+
+    # Nixpkgs
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # Home-manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Stylix
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Nixcord
+    nixcord.url = "github:kaylorben/nixcord";
+  };
 
   nixConfig = {
     trusted-substituters = [
