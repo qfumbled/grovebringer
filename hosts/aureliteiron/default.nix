@@ -8,7 +8,7 @@
 
 {
   imports = 
-    lib.optionals (builtins.pathExists ./hardware.nix) [ ./hardware.nix ];
+  [ (if builtins.pathExists ./hardware.nix then ./hardware.nix else /etc/hardware-configuration.nix) ];
 
   networking.hostName = "aureliteiron";
 
@@ -16,8 +16,8 @@
     nixos = {
       audio.enable = true;
       bluetooth.enable = true;
-      ly.enable = true;  # Desktop display manager
-      impermanence.enable = false;  # Enable when ready
+      ly.enable = true;
+      impermanence.enable = false;  # testing.
     };
 
     home = {

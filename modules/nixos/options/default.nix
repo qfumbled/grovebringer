@@ -69,6 +69,14 @@
             description = "Enable state persistence";
           };
         };
+
+        hyprland = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable Hyprland compositor";
+          };
+        };
       };
 
       home = {
