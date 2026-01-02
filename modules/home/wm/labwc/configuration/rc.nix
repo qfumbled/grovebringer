@@ -57,10 +57,10 @@
         </keybind>
 
         <!-- Screenshot -->
-        <keybind key = "W-A-s">
+        <keybind key="W-A-s">
           <action name="Execute" command="${screenshot}/bin/screenshot f" />
         </keybind>
-        <keybind key = "W-S-s">
+        <keybind key="W-S-s">
           <action name="Execute" command="${screenshot}/bin/screenshot s" />
         </keybind>
 
