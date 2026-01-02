@@ -12,9 +12,11 @@
 
   networking.hostName = "aureliteiron";
   
-  # Desktop-specific configuration
-  # grovebringer.system.hostType = "desktop";  # TODO: Define this option
-  # grovebringer.system.impermanence.enable = false;  # TODO: Define this option
+  # Desktop-specific configuration - enable all optional modules
+  grovebringer.nixos.audio.enable = true;
+  grovebringer.nixos.bluetooth.enable = true;
+  grovebringer.nixos.ly.enable = true;  # Desktop display manager
+  grovebringer.nixos.impermanence.enable = false;  # Enable when ready
 
   services.flatpak.enable = true;
 }
