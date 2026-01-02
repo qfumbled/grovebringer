@@ -21,5 +21,5 @@
   };
 
   programs.fish.enable = true;
-  users.groups.xekuri = {};
+  users.groups.xekuri = { };
 }
