@@ -23,7 +23,7 @@
   outputs = { self, nixpkgs, home-manager, pre-commit-hooks, ... }@inputs:
     let
       system = "x86_64-linux";
-      lib = nixpkgs.lib;
+      lib = nixpkgs.lib.extend (final: prev: (import ./lib final nixpkgs) // prev);
     in
     {
       nixosConfigurations.grovebringer = nixpkgs.lib.nixosSystem {

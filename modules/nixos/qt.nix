@@ -1,4 +1,10 @@
-{ config, lib, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   qt = {

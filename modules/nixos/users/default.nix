@@ -17,7 +17,9 @@
       "adbusers"
       "plugdev"
     ];
+    shell = pkgs.fish;
   };
 
+  programs.fish.enable = true;
   users.groups.xekuri = {};
 }

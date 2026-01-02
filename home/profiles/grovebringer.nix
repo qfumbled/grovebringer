@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 {
   home.packages = with pkgs; [
-    spotify
     foot
     app2unit
     asciinema_3

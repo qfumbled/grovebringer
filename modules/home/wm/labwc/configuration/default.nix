@@ -1,4 +1,10 @@
 {
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./rc.nix
     ./themerc.nix

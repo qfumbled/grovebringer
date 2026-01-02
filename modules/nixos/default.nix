@@ -1,4 +1,10 @@
-{ config, pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -7,6 +13,7 @@
     ./users
     ./pkgs
     ./audio
+    ./spotify
     ./ly
     ./bluetooth
     ./bootloader

@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   home.file.".config/labwc/rc.xml".text = let
     screenshot = import ../scripts/screenshot.nix pkgs;
   in ''

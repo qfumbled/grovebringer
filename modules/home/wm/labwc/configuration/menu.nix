@@ -1,4 +1,10 @@
-{...}: {
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   home.file.".config/labwc/menu.xml".text = ''
     <?xml version="1.0" encoding="UTF-8"?>
     <openbox_menu>

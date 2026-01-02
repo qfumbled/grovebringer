@@ -1,6 +1,7 @@
 {
-  config,
+  inputs,
   lib,
+  config,
   ...
 }: {
   programs.foot = {

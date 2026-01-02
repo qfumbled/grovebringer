@@ -1,27 +1,27 @@
 {
-  config,
-  lib,
-  pkgs,
   inputs,
+  lib,
+  config,
+  pkgs,
   ...
 }:
 
-with lib;
-
 {
   imports = [
-    ./core/git
+    ./core
     ./wm/labwc
     ./terminals/foot
     ./programs/waybar
     ./programs/mako
     ./programs/fuzzel
     ./programs/discord
+    ./shells/fish
+    ./shells/starship
   ];
 
   home = {
     username = "xekuri";
-    homeDirectory = mkDefault "/home/xekuri";
+    homeDirectory = lib.mkDefault "/home/${config.home.username}";
     stateVersion = "25.11";
   };
 

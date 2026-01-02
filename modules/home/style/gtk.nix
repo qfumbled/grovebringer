@@ -1,10 +1,16 @@
-{ config, lib, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   gtk = {
     enable = true;
     
-    extraCss = ''
+    gtk4.extraCss = ''
       @define-color accent_color #66858f;
       @define-color accent_bg_color #66858f;
 
@@ -14,12 +20,12 @@
     '';
 
     iconTheme = {
-      name = "Adwaita";
+      name = lib.mkForce "Adwaita";
       package = config.gtk.iconTheme.package;
     };
 
     theme = {
-      name = "Adwaita";
+      name = lib.mkForce "Adwaita";
       package = config.gtk.theme.package;
     };
   };

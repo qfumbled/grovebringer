@@ -1,4 +1,6 @@
-# TODO
+# Labwc theme override using Stylix colors
+# This file provides custom theming for labwc window manager
+# Colors are automatically pulled from your Stylix color scheme
 
 {
   config,
