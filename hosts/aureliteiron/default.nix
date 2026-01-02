@@ -11,18 +11,22 @@
     lib.optionals (builtins.pathExists ./hardware.nix) [ ./hardware.nix ];
 
   networking.hostName = "aureliteiron";
-  
-  # Desktop-specific configuration - enable all optional modules
-  grovebringer.nixos.audio.enable = true;
-  grovebringer.nixos.bluetooth.enable = true;
-  grovebringer.nixos.ly.enable = true;  # Desktop display manager
-  grovebringer.nixos.impermanence.enable = false;  # Enable when ready
 
-  # Enable optional home-manager modules for desktop
-  grovebringer.home.programs.enable = true;
-  grovebringer.home.shells.enable = true;
-  grovebringer.home.terminals.enable = true;
-  grovebringer.home.wm.enable = true;
+  grovebringer = {
+    nixos = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      ly.enable = true;  # Desktop display manager
+      impermanence.enable = false;  # Enable when ready
+    };
+
+    home = {
+      programs.enable = true;
+      shells.enable = true;
+      terminals.enable = true;
+      wm.enable = true;
+    };
+  };
 
   services.flatpak.enable = true;
 }

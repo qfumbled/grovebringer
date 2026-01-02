@@ -13,17 +13,21 @@
 
   networking.hostName = "grovebringer";
 
-  # Enable optional NixOS modules
-  grovebringer.nixos.audio.enable = true;
-  grovebringer.nixos.bluetooth.enable = true;
-  grovebringer.nixos.ly.enable = false;  # Use different display manager
-  grovebringer.nixos.impermanence.enable = false;  # Enable when ready
+  grovebringer = {
+    nixos = {
+      audio.enable = true;
+      bluetooth.enable = true;
+      ly.enable = false;  # Use different display manager
+      impermanence.enable = false;  # Enable when ready
+    };
 
-  # Enable optional home-manager modules
-  grovebringer.home.programs.enable = true;
-  grovebringer.home.shells.enable = true;
-  grovebringer.home.terminals.enable = true;
-  grovebringer.home.wm.enable = true;
+    home = {
+      programs.enable = true;
+      shells.enable = true;
+      terminals.enable = true;
+      wm.enable = true;
+    };
+  };
 
   services.flatpak.enable = true;
 }
