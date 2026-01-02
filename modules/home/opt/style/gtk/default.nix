@@ -18,13 +18,13 @@
     '';
 
     iconTheme = {
-      name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      name = lib.mkDefault "Adwaita";
+      package = lib.mkDefault pkgs.gnome.adwaita-icon-theme;
     };
 
     theme = {
-      name = "Adwaita";
-      package = pkgs.gnome.gnome-themes-extra;
+      name = lib.mkDefault "Adwaita";
+      package = lib.mkDefault pkgs.gnome.gnome-themes-extra;
     };
   };
 
