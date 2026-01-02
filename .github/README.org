@@ -1,0 +1,24 @@
+* Unavoidable flake… or is it? 
+
+#+begin_quote
+ This configuration is a *wannabe elythh* setup.
+#+end_quote
+
+* Preview
+- [[./assets/grovebringer.png]]
+- [[./assets/grovebringer2.png]]
+
+* Hosts
+- *grovebringer* — laptop
+- *aureliteiron* — desktop PC
+
+* Credits / Thanks
+- [[https://github.com/kewin-y][kewin-y]] — labwc configuration and ideas
+- [[https://github.com/elythh][elythh]] — overall structure and inspiration
+- [[https://github.com/alexpkgs][alexpkgs]] — my older configuration
+
+* TODO
+- [ ] Borrow more ideas from elythh
+- [ ] Switch to Hyprland
+- [x] Add optional / toggleable modules
+- [x] Add Non-hardcoded usernames (makes it easier)
