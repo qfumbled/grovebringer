@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.mako = with config.lib.stylix.colors.withHashtag; {
     enable = true;
     settings = {

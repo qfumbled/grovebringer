@@ -10,7 +10,7 @@
     recursive = true;
   };
 
-    home.packages = with pkgs; [ figlet ];
+  home.packages = with pkgs; [ figlet ];
 
   programs.fish = {
     enable = true;
@@ -118,15 +118,15 @@
       }
     ];
     shellInitLast = ''
-      export PATH="$STRUKTUR_PATH/bin:$PATH"
-      export EDITOR=nvim
-      status is-interactive; and begin
-         # Set QEMU=1 if we're in QEMU
-         if command -q systemd-detect-virt; and [ $(systemd-detect-virt) = "qemu" ]
-           set -x QEMU 1
+        export PATH="$STRUKTUR_PATH/bin:$PATH"
+        export EDITOR=nvim
+        status is-interactive; and begin
+           # Set QEMU=1 if we're in QEMU
+           if command -q systemd-detect-virt; and [ $(systemd-detect-virt) = "qemu" ]
+             set -x QEMU 1
+           end
          end
-       end
-    fish_config theme choose "Tomorrow Night"
-  '';
+      fish_config theme choose "Tomorrow Night"
+    '';
   };
 }

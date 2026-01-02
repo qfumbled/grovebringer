@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -14,7 +15,7 @@
 
   environment.systemPackages = with pkgs; [
     spotify
-    spotify-player  # Terminal alternative
+    spotify-player # Terminal alternative
     # Essential multimedia libraries
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-base

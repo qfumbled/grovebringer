@@ -9,7 +9,7 @@
 {
   gtk = {
     enable = true;
-    
+
     gtk4.extraCss = ''
       @define-color accent_color #66858f;
       @define-color accent_bg_color #66858f;
