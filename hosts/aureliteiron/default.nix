@@ -16,11 +16,7 @@
     nixos = {
       audio.enable = true;
       bluetooth.enable = true;
-<<<<<<< HEAD
-      ly.enable = true;
-=======
       ly.enable = true; 
->>>>>>> origin/main
       impermanence.enable = false;  # testing.
     };
 
