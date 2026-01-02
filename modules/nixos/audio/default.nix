@@ -4,7 +4,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # Enable sound with pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;

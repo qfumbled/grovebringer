@@ -1,6 +1,6 @@
 {
   boot.kernel.sysctl."net.isoc" = true;
-  
+
   boot.loader = {
     systemd-boot = {
       enable = true;
@@ -11,6 +11,6 @@
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-    grub.enable = false; 
+    grub.enable = false;
   };
 }

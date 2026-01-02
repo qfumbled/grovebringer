@@ -4,8 +4,9 @@
   config,
   pkgs,
   ...
-}: {
-  imports = [./configuration];
+}:
+{
+  imports = [ ./configuration ];
   home.packages = [
     pkgs.labwc
     pkgs.swaybg

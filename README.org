@@ -1,1 +1,8 @@
 # My unavoidable flake or is it? 
+
+Hosts:
+- grovebringer (laptop)
+- TODO: add PC (desktop) which is going to be named "aureliteiron" cool right in the feature i will get a PC kinda just broke right now?
+
+Images:
+- [[./assets/grovebringer.jpg]]
