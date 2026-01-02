@@ -2,12 +2,13 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 
 {
   imports = [
-    ./git
+    ../shared
   ];
 
   home = {
@@ -19,4 +20,7 @@
   programs.home-manager = {
     enable = true;
   };
+
+  # Desktop-specific home-manager settings
+  grovebringer.home.desktop.enable = true;
 }

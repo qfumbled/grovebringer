@@ -8,24 +8,8 @@
 
 {
   imports = [
-    ./system
-    ./locale
-    ./users
-    ./pkgs
-    ./audio
-    ./spotify
-    ./ly
-    ./bluetooth
-    ./bootloader
-    ./documentation
-    ./graphics
-    ./networking
-    ./virtualisation
-    ./nix
-    ./qt
-    ./xdg
-    ./security
-    ./labwc
-    ./stylix
+    ./core
+    ./opt
+    ./options
   ];
 }
