@@ -20,4 +20,7 @@
 - [KINDA] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
 - [] Copy Elythh's imports for inputs (should be easy)
 - [] drop labwc for hyprland or something like that (oh wow that quick)
+<<<<<<< HEAD
 - [] make this less of a mess
+=======
+>>>>>>> origin/main
