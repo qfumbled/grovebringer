@@ -3,11 +3,13 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }:
 
 {
-  imports = [ ./hardware.nix ];
+  imports = 
+    lib.optionals (builtins.pathExists ./hardware.nix) [ ./hardware.nix ];
 
   networking.hostName = "grovebringer";
 

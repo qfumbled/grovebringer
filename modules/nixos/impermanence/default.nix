@@ -2,17 +2,18 @@
   config,
   lib,
   pkgs,
+  username,
   ...
 }:
 {
-  environment.persistence."/persistent" = {
+  environment.persistence."/persistent" = lib.mkIf (builtins.pathExists "/persistent") {
     directories = [
       "/etc/ssh"
       "/var/lib"
       "/var/log"
-      "/home/xekuri/.cache"
-      "/home/xekuri/.local"
-      "/home/xekuri/.config"
+      "/home/${username}/.cache"
+      "/home/${username}/.local"
+      "/home/${username}/.config"
     ];
     files = [
       "/etc/machine-id"
@@ -21,7 +22,7 @@
       "/etc/ssh/ssh_host_rsa_key"
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
-    users.xekuri = {
+    users.${username} = {
       directories = [
         "Documents"
         "Downloads"
