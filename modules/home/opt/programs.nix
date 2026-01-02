@@ -14,15 +14,8 @@
     ./waybar
   ];
 
-  options.grovebringer.home.programs = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "Enable optional programs";
-    };
-  };
-
   config = lib.mkIf config.grovebringer.home.programs.enable {
-    # Programs configuration here
+    # Programs configurations here
+    # Individual modules will handle their own conditional logic
   };
 }
