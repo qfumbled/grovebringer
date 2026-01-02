@@ -17,8 +17,8 @@
     nixos = {
       audio.enable = true;
       bluetooth.enable = true;
-      ly.enable = false;  # Use different display manager
-      impermanence.enable = false;  # Enable when ready
+      ly.enable = true;  
+      impermanence.enable = false;  # needs testing?
     };
 
     home = {

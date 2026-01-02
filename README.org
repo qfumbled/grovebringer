@@ -2,8 +2,7 @@
 
 ** Hosts
 - grovebringer (laptop)
-- TODO: add PC (desktop) which is going to be named "aureliteiron" cool right in the feature i will get a PC kinda just broke right now?
-
+- aureliteiron (PC)
 ** Images
 [[./assets/grovebringer.png]]
 [[./assets/grovebringer2.png]]
@@ -14,11 +13,10 @@
 
 ** TODO
 - [] Make Everything Optional (welp not everything)
-- [?] Add PC configuration
+- [X] Add PC configuration
 - [] Improve on Structure a bit
-- [WIP] Add Impermanence
+- [X] Add Impermanence
 - [X] Add Nixcord
-- [] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
-- [] Make Spotify WORK FOR ONCE GOD DAMN
+- [KINDA] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
 - [] Copy Elythh's imports for inputs (should be easy)
-- [] drop labwc (oh wow that quick)
+- [] drop labwc for hyprland or something like that (oh wow that quick)
