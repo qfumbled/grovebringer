@@ -1,5 +1,5 @@
 lib: pkgs: {
-  meadow = rec {
+  grovebringer = rec {
     inherit (lib.modules) mkIf mkMerge;
     inherit (lib.lists)
       all

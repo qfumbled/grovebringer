@@ -1,23 +1,41 @@
-* My unavoidable flake or is it?
+* Grovebringer NixOS Configuration
+
+* currently spilling my guts rn
+
+** Images
+images
 
 ** Hosts
 - grovebringer (laptop)
 - aureliteiron (PC)
-** Images
-[[./assets/grovebringer.png]]
-[[./assets/grovebringer2.png]]
 
-** Big Thank YOU !!!
-- [[https://github.com/kewin-y][kewin-y]] (labwc configuration and the mako and waybar)
-- [[https://github.com/elythh][elythh]] (her sturcture i based on also kinda her syntax and parts of her configuration)
+** Thank You
+- kewin-y (labwc config)
+- elythh (structure)
 
-** TODO
-- [] Make Everything Optional (welp not everything)
-- [X] Add PC configuration
-- [] Improve on Structure a bit
-- [X] Add Impermanence
-- [X] Add Nixcord
-- [KINDA] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
-- [] Copy Elythh's imports for inputs (should be easy)
-- [] drop labwc for hyprland or something like that (oh wow that quick)
-- [] make this less of a mess
+** Todo
+- [ ] Copy elythh's stuff
+- [ ] Use hyprland
+- [ ] Add optional options
+
+** Structure
+grovebringer/
+├── flake.nix              # Main flake configuration
+├── lib/                   # Custom library functions
+├── modules/
+│   ├── nixos/            # NixOS modules
+│   └── home/             # Home Manager modules
+├── hosts/                 # Host-specific configurations
+└── home/                  # Home Manager profiles
+
+** Usage
+```bash
+# Rebuild configuration
+sudo nixos-rebuild switch --flake .#grovebringer
+
+# Check flake
+nix flake check
+
+# Format code
+nixfmt .**
+```

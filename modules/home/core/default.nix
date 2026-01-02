@@ -1,22 +1,11 @@
 {
-  config,
+  inputs,
   lib,
+  config,
   pkgs,
   ...
 }:
 
 {
-  imports = [
-    ./git
-  ];
-
-  home = {
-    username = "xekuri";
-    homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = "25.11";
-  };
-
-  programs.home-manager = {
-    enable = true;
-  };
+  imports = lib.grovebringer.readSubdirs ./.;
 }

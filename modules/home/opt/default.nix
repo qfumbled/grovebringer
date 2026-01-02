@@ -1,17 +1,11 @@
 {
-  config,
-  lib,
-  pkgs,
   inputs,
+  lib,
+  config,
+  pkgs,
   ...
 }:
 
 {
-  imports = [
-    ./programs
-    ./shells  
-    ./terminals
-    ./wm
-    ./style
-  ];
+  imports = lib.grovebringer.readSubdirs ./.;
 }

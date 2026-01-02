@@ -1,5 +1,5 @@
 {
-  description = "goodbringer's NixOS configuration";
+  description = "Grovebringer NixOS Configuration";
 
   outputs =
     {
