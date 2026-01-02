@@ -19,7 +19,7 @@
 
     iconTheme = {
       name = lib.mkDefault "Adwaita";
-      package = lib.mkDefault pkgs.gnome.adwaita-icon-theme;
+      package = lib.mkDefault pkgs.adwaita-icon-theme;
     };
 
     theme = {
