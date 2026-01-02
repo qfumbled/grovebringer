@@ -68,10 +68,5 @@ in
     nixpkgs.overlays = [
       inputs.nur.overlays.default
     ];
-
-    programs.nix-ld = {
-      enable = true;
-      package = pkgs.nix-ld-rs;
-    };
   };
 }

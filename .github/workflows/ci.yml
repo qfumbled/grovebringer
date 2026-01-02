@@ -16,6 +16,10 @@ jobs:
             nixosCfgKey: grovebringer
             homeCfgKey: grovebringer
             os-label: ubuntu-latest
+          - hostName: aureliteiron
+            nixosCfgKey: aureliteiron
+            homeCfgKey: aureliteiron
+            os-label: ubuntu-latest
       fail-fast: false
 
     name: Build ${{ matrix.hostName }}

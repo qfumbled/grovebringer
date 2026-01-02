@@ -28,7 +28,7 @@ in
     environment.systemPackages = with pkgs; [
       networkmanagerapplet
       iw
-      wireless_tools
+      wirelesstools
     ];
   };
 }

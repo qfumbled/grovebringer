@@ -19,11 +19,12 @@
           system ? "x86_64-linux",
           systemConfig,
           userConfigs,
+          username ? "xekuri",
           lib ? mkLib packages.${system},
         }:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs lib;
+            inherit inputs outputs lib username;
           };
           modules = [
             { nixpkgs.hostPlatform = system; }
@@ -40,7 +41,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
-                inherit inputs outputs lib;
+                inherit inputs outputs lib username;
               };
               home-manager.users.xekuri = {
                 home.stateVersion = "25.11";
@@ -112,6 +113,12 @@
 
     # Nixcord
     nixcord.url = "github:kaylorben/nixcord";
+
+    # NUR
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
