@@ -21,6 +21,5 @@
     ./xdg
     ./security
     ./stylix
-    ./home-bridge
   ];
 }
