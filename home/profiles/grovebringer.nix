@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     foot
     app2unit
+    statix
     asciinema_3
     bitwarden-desktop
     bore-cli

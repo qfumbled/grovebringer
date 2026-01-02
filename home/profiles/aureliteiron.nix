@@ -8,6 +8,7 @@
 {
   home.packages = with pkgs; [
     foot
+    statix
     app2unit
     asciinema_3
     bitwarden-desktop
