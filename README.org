@@ -1,41 +1,19 @@
-* Grovebringer NixOS Configuration
-
 * currently spilling my guts rn
 
 ** Images
-images
+- [[./assets/check]]
+- [[./assets/grovebringer.png]]
+- [[./assets/grovebringer2.png]]
 
 ** Hosts
 - grovebringer (laptop)
 - aureliteiron (PC)
 
 ** Thank You
-- kewin-y (labwc config)
-- elythh (structure)
+- [[https://github.com/kewin-y][kewin-y]] (labwc config etc)
+- [[https://github.com/elythh][elythh]] (structure and copying her)
 
 ** Todo
 - [ ] Copy elythh's stuff
 - [ ] Use hyprland
 - [ ] Add optional options
-
-** Structure
-grovebringer/
-├── flake.nix              # Main flake configuration
-├── lib/                   # Custom library functions
-├── modules/
-│   ├── nixos/            # NixOS modules
-│   └── home/             # Home Manager modules
-├── hosts/                 # Host-specific configurations
-└── home/                  # Home Manager profiles
-
-** Usage
-```bash
-# Rebuild configuration
-sudo nixos-rebuild switch --flake .#grovebringer
-
-# Check flake
-nix flake check
-
-# Format code
-nixfmt .**
-```
