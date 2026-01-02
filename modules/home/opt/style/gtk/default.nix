@@ -1,8 +1,6 @@
 {
-  inputs,
-  lib,
-  config,
   pkgs,
+  lib,
   ...
 }:
 
@@ -20,13 +18,13 @@
     '';
 
     iconTheme = {
-      name = lib.mkForce "Adwaita";
-      package = config.gtk.iconTheme.package;
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
     };
 
     theme = {
-      name = lib.mkForce "Adwaita";
-      package = config.gtk.theme.package;
+      name = "Adwaita";
+      package = pkgs.gnome.gnome-themes-extra;
     };
   };
 
