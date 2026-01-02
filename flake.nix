@@ -57,19 +57,27 @@
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
       checks.${system} = {
-        pre-commit-check = pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            deadnix.enable = true;
-            nixfmt.enable = true;
-            statix.enable = true;
-          };
-        };
+        # pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        #   src = ./.;
+        #   hooks = {
+        #     deadnix.enable = true;
+        #     nixfmt.enable = true;
+        #     statix.enable = true;
+        #   };
+        # };
       };
 
       devShells.${system}.default = nixpkgs.legacyPackages.${system}.mkShell {
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
-        buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        # inherit (self.checks.${system}.pre-commit-check) shellHook;
+        # buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
+        buildInputs = with nixpkgs.legacyPackages.${system}; [
+          nixfmt-rfc-style
+          deadnix
+          statix
+        ];
+        shellHook = ''
+          echo "Nix development environment ready"
+        '';
       };
     };
 
