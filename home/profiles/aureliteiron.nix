@@ -22,5 +22,5 @@
   };
 
   # Desktop-specific home-manager settings
-  grovebringer.home.desktop.enable = true;
+  # grovebringer.home.desktop.enable = true;  # TODO: Define this option
 }
