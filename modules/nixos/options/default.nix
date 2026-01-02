@@ -36,6 +36,74 @@
           description = "Type of host for configuration tuning";
         };
       };
+
+      nixos = {
+        audio = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable audio support";
+          };
+        };
+
+        bluetooth = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable Bluetooth support";
+          };
+        };
+
+        ly = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable Ly display manager";
+          };
+        };
+
+        impermanence = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = false;
+            description = "Enable state persistence";
+          };
+        };
+      };
+
+      home = {
+        programs = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Enable optional programs";
+          };
+        };
+
+        shells = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Enable optional shells";
+          };
+        };
+
+        terminals = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Enable optional terminals";
+          };
+        };
+
+        wm = {
+          enable = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Enable optional window managers";
+          };
+        };
+      };
     };
   };
 }
