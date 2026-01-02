@@ -45,8 +45,6 @@
               home-manager.users.xekuri = {
                 home.stateVersion = "25.11";
                 imports = [ userConfigs ];
-                # Pass NixOS-level grovebringer.home.* options to home-manager
-                grovebringer.home = config.grovebringer.home or {};
               };
             }
           ];
