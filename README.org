@@ -5,8 +5,19 @@
 - TODO: add PC (desktop) which is going to be named "aureliteiron" cool right in the feature i will get a PC kinda just broke right now?
 
 ** Images
-[[./assets/grovebringer.jpg]]
+[[./assets/grovebringer.png]]
+[[./assets/grovebringer2.png]]
 
 ** Big Thank YOU !!!
 - [[https://github.com/kewin-y][kewin-y]] (labwc configuration and the mako and waybar)
 - [[https://github.com/elythh][elythh]] (her sturcture i based on also kinda her syntax and parts of her configuration)
+
+** TODO
+- [] Make Everything Optional (welp not everything)
+- [?] Add PC configuration
+- [] Improve on Structure a bit
+- [WIP] Add Impermanence
+- [X] Add Nixcord
+- [] Make a lib that can actually make things optional (idea taken from elythh's lib/default.nix)
+- [] Make Spotify WORK FOR ONCE GOD DAMN
+- [] Copy Elythh's imports for inputs (should be easy)
