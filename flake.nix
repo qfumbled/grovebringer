@@ -1,5 +1,5 @@
 {
-  description = " goodbringer's legacy NixOS configuration ";
+  description = "goodbringer's NixOS configuration";
 
   outputs =
     {
@@ -62,6 +62,10 @@
         grovebringer = mkSystem {
           systemConfig = ./hosts/grovebringer;
           userConfigs = ./home/profiles/grovebringer.nix;
+        };
+        aureliteiron = mkSystem {
+          systemConfig = ./hosts/aureliteiron;
+          userConfigs = ./home/profiles/aureliteiron.nix;
         };
       };
 
