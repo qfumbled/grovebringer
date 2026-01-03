@@ -17,11 +17,7 @@
   
   sops.secrets.test-secret = {};
   
-  sops.secrets.github-ssh-key = {
-    mode = "600";
-    owner = "xekuri";
-    path = "${config.home.homeDirectory}/.ssh/id_github";
-  };
+  # GitHub SSH key configuration removed - use NixOS module instead
   
   home.packages = with pkgs; [
     foot

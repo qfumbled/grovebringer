@@ -1,131 +1,149 @@
 {
   description = "spilling my guts right now";
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      pre-commit-hooks,
-      ...
-    }@inputs:
-    let
-      outputs = self;
-      mkLib = pkgs: pkgs.lib.extend (final: prev: (import ./lib final pkgs) // home-manager.lib);
-      packages = nixpkgs.legacyPackages;
-
-      mkSystem =
-        {
-          system ? "x86_64-linux",
-          systemConfig,
-          userConfigs,
-          username ? "xekuri",
-          lib ? mkLib packages.${system},
-        }:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs lib username;
-          };
-          modules = [
-            { nixpkgs.hostPlatform = system; }
-            systemConfig
-            home-manager.nixosModules.home-manager
-            inputs.impermanence.nixosModules.impermanence
-            ./modules/nixos
-            inputs.stylix.nixosModules.stylix
-            {
-              home-manager.sharedModules = [
-                ./modules/home
-                inputs.nixcord.homeModules.nixcord
-              ];
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs outputs lib username;
-              };
-              home-manager.users.xekuri = {
-                home.stateVersion = "25.11";
-                imports = [ userConfigs ];
-              };
-            }
-          ];
-        };
-
-      supportedSystems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-    in
-    {
-      nixosConfigurations = {
-        grovebringer = mkSystem {
-          systemConfig = ./hosts/grovebringer;
-          userConfigs = ./home/profiles/grovebringer.nix;
-          username = "xekuri";
-        };
-        aureliteiron = mkSystem {
-          systemConfig = ./hosts/aureliteiron;
-          userConfigs = ./home/profiles/aureliteiron.nix;
-          username = "xekuri";
-        };
-      };
-
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-
-      checks = forAllSystems (system: {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            deadnix = {
-              enable = true;
-              settings.noLambdaArg = true;
-            };
-            nixfmt-rfc-style.enable = true;
-            statix.enable = true;
-          };
-        };
-      });
-
-      devShells = forAllSystems (system: {
-        default = nixpkgs.legacyPackages.${system}.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = self.checks.${system}.pre-commit-check.enabledPackages;
-        };
-      });
+  inputs = {
+    # Core
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    # Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-  inputs = {
-    pre-commit-hooks.url = "github:cachix/git-hooks.nix";
-
-    # Nixpkgs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Home-manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Impermanence
+    # Flake Utilities
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    
+    # Other Dependencies
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence";
-
-    # Stylix
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Nixcord
-    nixcord.url = "github:kaylorben/nixcord";
-
-    # NUR
-    nur = {
-      url = "github:nix-community/NUR";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixcord = {
+      url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-linux"];
+
+      imports = [
+        # maybe
+      ];
+
+      perSystem = {
+        config,
+        self',
+        inputs',
+        pkgs,
+        system,
+        ...
+      }: {
+        # Per-system configurations
+        formatter = pkgs.nixfmt-rfc-style;
+
+        # Dev shell with pre-commit hooks
+        devShells.default = pkgs.mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+          buildInputs = with pkgs; [
+            # Add any development tools here
+          ];
+        };
+
+        # Pre-commit checks
+        checks = {
+          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              deadnix = {
+                enable = true;
+                settings.noLambdaArg = true;
+              };
+              nixfmt-rfc-style.enable = true;
+              statix.enable = true;
+            };
+          };
+        };
+      };
+
+      # Global configurations
+      flake = let
+        mkLib = pkgs: pkgs.lib.extend (final: prev: (import ./lib final pkgs) // inputs.home-manager.lib);
+
+        mkSystem = {
+          system ? "x86_64-linux",
+          systemConfig,
+          userConfigs,
+          username ? "xekuri",
+          lib ? mkLib inputs.nixpkgs.legacyPackages.${system},
+        }:
+          inputs.nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs;
+              outputs = self;
+              inherit lib username;
+            };
+            modules = [
+              {nixpkgs.hostPlatform = system;}
+              systemConfig
+              inputs.home-manager.nixosModules.home-manager
+              inputs.impermanence.nixosModules.impermanence
+              ./modules/nixos
+              inputs.stylix.nixosModules.stylix
+              {
+                home-manager = {
+                  sharedModules = [
+                    ./modules/home
+                    inputs.nixcord.homeModules.nixcord
+                  ];
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    outputs = self;
+                    inherit lib username;
+                  };
+                  users.${username} = {
+                    home.stateVersion = "25.11";
+                    imports = [userConfigs];
+                  };
+                };
+              }
+            ];
+          };
+      in {
+        nixosConfigurations = {
+          grovebringer = mkSystem {
+            systemConfig = ./hosts/grovebringer;
+            userConfigs = ./home/profiles/grovebringer.nix;
+          };
+          aureliteiron = mkSystem {
+            systemConfig = ./hosts/aureliteiron;
+            userConfigs = ./home/profiles/aureliteiron.nix;
+          };
+        };
+      };
+    };
 
   nixConfig = {
     trusted-substituters = [
