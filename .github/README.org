@@ -19,7 +19,7 @@
 
 * TODO
 - [ ] Borrow more ideas from elythh
-- [C] considering using hyprland over labwc
+- [TAR] considering using hyprland over labwc
 - [x] Add optional / toggleable modules
 - [x] Add Non-hardcoded usernames (makes it easier)
 - [] Make nixvim configuration
