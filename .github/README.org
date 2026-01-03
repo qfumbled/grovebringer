@@ -19,6 +19,10 @@
 
 * TODO
 - [ ] Borrow more ideas from elythh
-- [ ] Switch to Hyprland
+- [C] considering using hyprland over labwc
 - [x] Add optional / toggleable modules
 - [x] Add Non-hardcoded usernames (makes it easier)
+- [] Make nixvim configuration
+- [] use nix-sops
+- [] considering wez or foot?
+- [] overlays (not sure why i call them overylays)

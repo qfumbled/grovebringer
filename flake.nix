@@ -63,10 +63,12 @@
         grovebringer = mkSystem {
           systemConfig = ./hosts/grovebringer;
           userConfigs = ./home/profiles/grovebringer.nix;
+          username = "xekuri";
         };
         aureliteiron = mkSystem {
           systemConfig = ./hosts/aureliteiron;
           userConfigs = ./home/profiles/aureliteiron.nix;
+          username = "xekuri";
         };
       };
 

@@ -33,7 +33,7 @@
       users.enable = true;
       stylix.enable = false;
       nix.enable = true;
-      xdg.enable = false; 
+      xdg.enable = false;  # When false, Flatpak will also be disabled
     };
   };
 }

@@ -1,0 +1,19 @@
+*  unavoidable flake or is it?  (vsauce moment)
+** Images
+- [[./assets/check]]
+- [[./assets/grovebringer.png]]
+- [[./assets/grovebringer2.png]]
+
+** Hosts
+- grovebringer (laptop)
+- aureliteiron (PC)
+
+** Thank You
+- [[https://github.com/kewin-y][kewin-y]] (labwc config etc)
+- [[https://github.com/elythh][elythh]] (structure and copying her)
+- [[https://github.com/edolstra][edolstra]] (NixOS)
+
+** Todo
+- [ ] Copy elythh's stuff
+- [ ] Use hyprland
+- [ ] Add optional options
