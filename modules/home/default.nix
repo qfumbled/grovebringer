@@ -9,6 +9,10 @@
 {
   imports = [
     ./core
-    ./opt
+    ./programs
+    ./services
+    ./wm
+    ./style
+    ./scripts
   ];
 }

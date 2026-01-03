@@ -31,7 +31,7 @@
       networking.enable = true;
       security.enable = true;
       users.enable = true;
-      stylix.enable = false;
+      stylix.enable = true;
       nix.enable = true;
       xdg.enable = false;  # When false, Flatpak will also be disabled
     };

@@ -33,7 +33,7 @@
         };
         
         core = {
-          editor = "kate";
+          editor = "nvim";
           excludesfile = "~/.config/git/ignore";
           pager = "${lib.getExe pkgs.diff-so-fancy}";
         };

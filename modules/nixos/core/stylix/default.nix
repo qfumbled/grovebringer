@@ -27,11 +27,11 @@
         };
         monospace = {
           name = "RobotoMono Nerd Font Propo";
-          package = pkgs.nerd-fonts.roboto-mono;
+          package = lib.mkForce pkgs.nerd-fonts.roboto-mono;
         };
         sansSerif = {
-          name = "Rubik";
-          package = pkgs.rubik;
+          name = "Roboto";
+          package = lib.mkForce pkgs.roboto;
         };
       };
 

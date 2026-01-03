@@ -6,6 +6,15 @@
   ...
 }:
 {
+  funkouna = {
+    programs = {
+      hyprland.enable = true;
+      fuzzel.enable = true;
+      mako.enable = true;
+      waybar.enable = true;
+    };
+  };
+  
   home.packages = with pkgs; [
     foot
     statix
@@ -77,11 +86,10 @@
     python312Packages.materialyoucolor
     python312Packages.pillow
     python312Packages.pip
-    python312Packages.pygobject3
+    python312Packages.pyyobject3
     python312Packages.setuptools
     python312Packages.virtualenv
     satty
-    # later in the feature i will add sops
     starship
     stern
     syncthing

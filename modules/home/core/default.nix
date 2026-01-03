@@ -1,11 +1,14 @@
 {
-  inputs,
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
 
 {
-  imports = lib.funkouna.readSubdirs ./.;
+  imports = [
+    ./fish
+    ./starship
+    ./git
+  ];
 }

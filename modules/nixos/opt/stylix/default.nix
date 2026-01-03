@@ -9,21 +9,19 @@ let
   cfg = config.funkouna.system.stylix;
 in
 {
-  config = mkIf cfg.enable {
+  config = mkIf (cfg.enable && false) {  
     stylix = {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night.yaml";
       
-      image = ./assets/wallpaper.png;
-      
       fonts = {
         monospace = {
-          package = pkgs.nerdfonts;
+          package = lib.mkForce pkgs.nerd-fonts.jetbrains-mono;
           name = "JetBrainsMono Nerd Font";
         };
         
         sansSerif = {
-          package = pkgs.dejavu_fonts;
+          package = lib.mkForce pkgs.dejavu_fonts;
           name = "DejaVu Sans";
         };
         
@@ -35,7 +33,7 @@ in
       
       targets = {
         gtk.enable = true;
-        qt.enable = true;
+        console.enable = true;
       };
     };
   };
