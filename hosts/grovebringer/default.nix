@@ -17,7 +17,6 @@
   networking.hostName = "grovebringer";
 
   funkouna = {
-    # Optional services
     services = {
       bluetooth.enable = true;
       audio.enable = true;
@@ -25,20 +24,17 @@
       flatpak.enable = true;
     };
 
-    # Programs
     programs = {
       wayland.enable = true;
       steam.enable = false;
       spotify.enable = false;
     };
 
-    # System theming
     system = {
       stylix.enable = true;
       networking.enable = true;
     };
 
-    # System features
     impermanence.enable = false;
   };
 }

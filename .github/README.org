@@ -8,23 +8,22 @@
 * Preview
 #+begin_center
 [[./assets/grovebringer.png]]
-[[./assets/grovebringer2.png]]
 #+end_center
 
 * Hosts
-- **grovebringer** — laptop
-- **aureliteiron** — desktop PC
+- =grovebringer= — laptop
+- =aureliteiron= — desktop PC
 
 * Credits / Thanks
-- [[https://github.com/kewin-y][kewin-y]] — labwc configuration and ideas
-- [[https://github.com/elythh][elythh]] — overall structure and inspiration
+- [[https://github.com/kewin-y][kewin-y]] — overall configuration and labwc ideas
+- [[https://github.com/elythh][elythh]] — overall configuration and structural inspiration
 - [[https://github.com/alexpkgs][alexpkgs]] — my older configuration
 
 * TODO
 - [X] Borrow more ideas from Elythh
 - [X] Consider using Hyprland over labwc
 - [X] Add optional / toggleable modules
-- [X] Add non-hardcoded usernames (makes it easier)
-- [ ] Firefox theming
-- [ ] Make nixvim configuration
+- [X] Remove hardcoded usernames (Reason: Makes the flake more portable and user-friendly)
+- [ ] Firefox theming (currently having some problems - help needed)
+- [S] Make nixvim configuration (Note: probably in the summer)
 - [X] Use nix-sops

@@ -2,25 +2,31 @@
   description = "spilling my guts right now";
 
   inputs = {
-    # Core
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
-    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Flake Utilities
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
+   
     flake-parts.url = "github:hercules-ci/flake-parts";
     
-    # Other Dependencies
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
+
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";

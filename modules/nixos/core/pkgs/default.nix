@@ -17,7 +17,7 @@
     brightnessctl
     firefox
     git
-    unzip
+    unzip  
     zip
     swaybg
     mako
