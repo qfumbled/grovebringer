@@ -7,6 +7,9 @@
 }:
 {
   environment.systemPackages = with pkgs; [
+    sops
+    age
+    bat
     xdg-utils
     wirelesstools
     wget
@@ -22,11 +25,16 @@
     polkit_gnome
     wlsunset
     wayshot
+    nix-prefetch-git
     slurp
+    blueman
+    loupe
+    celluloid
     wl-clipboard
     libnotify
     swappy
     fuzzel
     fastfetch
+    obs-studio
   ];
 }

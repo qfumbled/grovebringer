@@ -1,48 +1,49 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+# modules/home/style/gtk/default.nix
+{ pkgs, lib, config, ... }:
 
 {
+  # GTK Configuration
   gtk = {
     enable = true;
 
-    # Configure GTK CSS through Stylix when available
-    gtk4.extraCss = lib.mkIf (config.stylix.enable or false) ''
-      @define-color accent_color #66858f;
-      @define-color accent_bg_color #66858f;
-
-      * {
-        border-radius: 0;
-      }
-    '';
-
+    # Icon theme
     iconTheme = {
-      name = lib.mkDefault "Adwaita";
-      package = lib.mkDefault pkgs.adwaita-icon-theme;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
 
+    # GTK theme
     theme = {
-      name = lib.mkDefault "Adwaita";
-      package = lib.mkDefault pkgs.gnome.gnome-themes-extra;
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+
+    # GTK3 Settings
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-decoration-layout = "menu:";
+    };
+
+    # GTK4 Settings
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 
-  gtk.gtk3.extraConfig = {
-    gtk-application-prefer-dark-theme = 1;
-  };
-
-  # Use Stylix home-manager module when Stylix is enabled
-  stylix.targets.gtk = lib.mkIf config.stylix.enable {
-    extraCss = ''
-      @define-color accent_color #66858f;
-      @define-color accent_bg_color #66858f;
-
+  # Stylix Configuration
+  stylix = {
+    enable = true;
+    targets.gtk.enable = true;
+    targets.gtk.extraCss = ''
       * {
         border-radius: 0;
       }
     '';
   };
+
+  # Ensure the theme is available
+  home.packages = with pkgs; [
+    adw-gtk3
+    papirus-icon-theme
+  ];
 }

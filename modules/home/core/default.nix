@@ -11,5 +11,6 @@
     ./starship
     ./git
     ./sops/default.nix
+    ./xdg
   ];
 }

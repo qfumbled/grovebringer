@@ -13,11 +13,11 @@ in
   options.funkouna.services = {
     tpm.enable = mkEnableOption "TPM2 support";
   };
-  
+
   config = mkIf cfg.enable {
     # Use latest kernel
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    
+
     security = {
       tpm2 = {
         enable = true;
@@ -25,7 +25,9 @@ in
         tctiEnvironment.enable = true; # TPM2TOOLS_TCTI and TPM2_PKCS11_TCTI env variables
       };
     };
-    
-    users.users.${username}.extraGroups = [ "tss" ]; # tss group has access to TPM devices
+
+    users.users.${username}.extraGroups = [
+      "tss" # tss group has access to TPM devices
+    ];
   };
 }

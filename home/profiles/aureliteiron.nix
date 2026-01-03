@@ -86,7 +86,7 @@
     python312Packages.materialyoucolor
     python312Packages.pillow
     python312Packages.pip
-    python312Packages.pyyobject3
+    python312Packages.pygobject3
     python312Packages.setuptools
     python312Packages.virtualenv
     satty

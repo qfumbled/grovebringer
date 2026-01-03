@@ -126,7 +126,7 @@ in
         volumectl
         lightctl
 
-        foot  
+        foot  # Base foot package
       ];
 
       sessionVariables = {

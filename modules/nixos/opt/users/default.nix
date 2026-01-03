@@ -15,13 +15,16 @@ in
       users.${username} = {
         isNormalUser = true;
         description = username;
-        extraGroups = [ "wheel" "networkmanager" ];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
         group = username;
       };
-      
-      groups.${username} = {};
+
+      groups.${username} = { };
     };
-    
+
     home-manager = {
       users.${username} = {
         home = {

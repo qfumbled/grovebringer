@@ -21,7 +21,6 @@
   
   home.packages = with pkgs; [
     foot
-    sops
     app2unit
     statix
     asciinema_3
