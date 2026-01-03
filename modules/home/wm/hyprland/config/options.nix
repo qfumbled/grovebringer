@@ -93,7 +93,7 @@
 
     misc = {
       enable_swallow = true; # hide windows that spawn other windows
-      swallow_regex = "nemo|foot|waybar"; # windows for which swallow is applied (updated to include foot)
+      swallow_regex = "nemo|foot|waybar";
       disable_autoreload = false;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;

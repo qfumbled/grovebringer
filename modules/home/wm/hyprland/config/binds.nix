@@ -92,9 +92,9 @@ in
           "SUPERALT, down, workspace, m+1"
 
           # Utilities
-          "SUPER, Return, exec, run-as-service foot"
+          "SUPER, Return, exec, foot"
           "SUPERSHIFT, Z, exec, ${getExe zellij-attach}"
-          "SUPER, O, exec, run-as-service wl-ocr"
+          "SUPER, O, exec, wl-ocr"
 
           # Screenshot
           # "SUPERSHIFT, S, exec, ${screenshot}/bin/screenshot a"

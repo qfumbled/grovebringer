@@ -48,6 +48,16 @@
           };
         };
 
+        browser = {
+          firefox = {
+            enable = lib.mkOption {
+              type = lib.types.bool;
+              default = false;
+              description = "Enable Firefox browser";
+            };
+          };
+        };
+
         steam = {
           enable = lib.mkOption {
             type = lib.types.bool;

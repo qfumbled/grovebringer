@@ -8,6 +8,7 @@
 * Preview
 #+begin_center
 [[./assets/grovebringer.png]]
+[[./assets/grovebringer2.png]]
 #+end_center
 
 * Hosts
@@ -26,4 +27,4 @@
 - [X] Add non-hardcoded usernames (makes it easier)
 - [ ] Firefox theming
 - [ ] Make nixvim configuration
-- [ ] Use nix-sops
+- [X] Use nix-sops

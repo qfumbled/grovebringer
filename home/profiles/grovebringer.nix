@@ -15,8 +15,17 @@
     };
   };
   
+  sops.secrets.test-secret = {};
+  
+  sops.secrets.github-ssh-key = {
+    mode = "600";
+    owner = "xekuri";
+    path = "${config.home.homeDirectory}/.ssh/id_github";
+  };
+  
   home.packages = with pkgs; [
     foot
+    sops
     app2unit
     statix
     asciinema_3
