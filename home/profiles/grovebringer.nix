@@ -6,6 +6,15 @@
   ...
 }:
 {
+  funkouna = {
+    programs = {
+      hyprland.enable = true;
+      fuzzel.enable = true;
+      mako.enable = true;
+      waybar.enable = true;
+    };
+  };
+  
   home.packages = with pkgs; [
     foot
     app2unit
@@ -81,7 +90,6 @@
     python312Packages.setuptools
     python312Packages.virtualenv
     satty
-    # later in the feature i will add sops
     starship
     stern
     syncthing

@@ -10,6 +10,7 @@
   imports = [
     ./discord
     ./fuzzel
+    ./hyprland
     ./mako
     ./waybar
   ];
