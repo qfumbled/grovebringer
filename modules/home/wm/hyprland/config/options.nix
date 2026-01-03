@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
+      "swaybg -i ~/grovebringer/home/shared/walls/girl7.jpeg -m fill"
       "clipse -listen"
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type text --watch cliphist store"

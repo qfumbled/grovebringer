@@ -18,7 +18,7 @@
 - [[https://github.com/kewin-y][kewin-y]] — overall configuration and labwc ideas
 - [[https://github.com/elythh][elythh]] — overall configuration and structural inspiration
 - [[https://github.com/alexpkgs][alexpkgs]] — my older configuration
-
+- [[https://github.com/linux-mobile][linuxmobile]] — Wallpaper
 * TODO
 - [X] Borrow more ideas from Elythh
 - [X] Consider using Hyprland over labwc
@@ -27,3 +27,4 @@
 - [X] Firefox theming (currently having some problems - help needed)
 - [S] Make nixvim configuration (Note: probably in the summer)
 - [X] Use nix-sops
+- [] Consider using mksh or fish?

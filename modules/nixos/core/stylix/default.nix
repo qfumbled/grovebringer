@@ -35,12 +35,9 @@
         };
       };
 
-      # Disable wlsunset (blue light filter)
-      targets = {
-        gtk.enable = true;
-        console.enable = true;
-        firefox.profileNames = ["default"]; # Add your Firefox profile name here
-      };
+      # Basic theming targets
+      targets.gtk.enable = true;
+      targets.console.enable = true;
     };
 
     # Disable wlsunset (blue light filter)
