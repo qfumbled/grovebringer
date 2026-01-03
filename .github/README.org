@@ -24,6 +24,6 @@
 - [X] Consider using Hyprland over labwc
 - [X] Add optional / toggleable modules
 - [X] Remove hardcoded usernames (Reason: Makes the flake more portable and user-friendly)
-- [ ] Firefox theming (currently having some problems - help needed)
+- [X] Firefox theming (currently having some problems - help needed)
 - [S] Make nixvim configuration (Note: probably in the summer)
 - [X] Use nix-sops
