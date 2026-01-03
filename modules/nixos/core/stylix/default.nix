@@ -39,6 +39,7 @@
       targets = {
         gtk.enable = true;
         console.enable = true;
+        firefox.profileNames = ["default"]; # Add your Firefox profile name here
       };
     };
 

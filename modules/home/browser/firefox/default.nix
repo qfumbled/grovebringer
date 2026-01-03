@@ -37,7 +37,7 @@ in
 
       settings = {
         "browser.tabs.loadInBackground" = true;
-        "widget.gtk.rounded-bottom-corners.enabled" = true;
+        "widget.gtk.rounded-bottom-corners.enabled" = false;
         "gnomeTheme.hideSingleTab" = true;
         "gnomeTheme.bookmarksToolbarUnderTabs" = true;
         "gnomeTheme.normalWidthTabs" = false;
@@ -141,6 +141,9 @@ in
         "signon.firefoxRelay.feature" = "disabled";
         "signon.generation.enabled" = false;
         "signon.management.page.breach-alerts.enabled" = false;
+         
+        # you don't need to see my weather... is a web browser
+        "browser.urlbar.suggest.weather" = false;
       };
       search = {
         force = true;
