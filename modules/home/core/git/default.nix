@@ -29,7 +29,7 @@
         };
         user = {
           email = "chimeridum@proton.me";
-          name = "chimeri";
+          name = "qfumbled";
         };
         
         core = {

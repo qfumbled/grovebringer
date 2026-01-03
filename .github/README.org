@@ -1,16 +1,19 @@
-* Unavoidable flake… or is it? 
+* Unavoidable flake… or is it?
 
 #+begin_quote
- This configuration is a *wannabe elythh* setup.
+"you'll get there ! running NixOS is a lot of fun, feels like there's always something to improve about your config"
+— *Elythh*
 #+end_quote
 
 * Preview
-- [[./assets/grovebringer.png]]
-- [[./assets/grovebringer2.png]]
+#+begin_center
+[[./assets/grovebringer.png]]
+[[./assets/grovebringer2.png]]
+#+end_center
 
 * Hosts
-- *grovebringer* — laptop
-- *aureliteiron* — desktop PC
+- **grovebringer** — laptop
+- **aureliteiron** — desktop PC
 
 * Credits / Thanks
 - [[https://github.com/kewin-y][kewin-y]] — labwc configuration and ideas
@@ -18,11 +21,10 @@
 - [[https://github.com/alexpkgs][alexpkgs]] — my older configuration
 
 * TODO
-- [ ] Borrow more ideas from elythh
-- [TAR] considering using hyprland over labwc
-- [x] Add optional / toggleable modules
-- [x] Add Non-hardcoded usernames (makes it easier)
-- [] Make nixvim configuration
-- [] use nix-sops
-- [] considering wez or foot?
-- [] overlays (not sure why i call them overylays)
+- [X] Borrow more ideas from Elythh
+- [X] Consider using Hyprland over labwc
+- [X] Add optional / toggleable modules
+- [X] Add non-hardcoded usernames (makes it easier)
+- [ ] Firefox theming
+- [ ] Make nixvim configuration
+- [ ] Use nix-sops
