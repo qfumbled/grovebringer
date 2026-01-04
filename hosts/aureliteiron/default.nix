@@ -19,6 +19,7 @@
       audio.enable = true;
       ly.enable = true;
       printing.enable = false;
+      kde-connect.enable = true;
     };
     programs = {
       wayland.enable = true;

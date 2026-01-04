@@ -23,6 +23,7 @@
       ly.enable = true;
       flatpak.enable = true;
       printing.enable = false;
+      kde-connect.enable = true;
     };
 
     programs = {
