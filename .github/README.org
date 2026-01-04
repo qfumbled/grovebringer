@@ -7,7 +7,9 @@
 
 * Preview
 #+begin_center
-[[./assets/grovebringer.png]]
+[[./assets/1.png]]
+[[./assets/2.png]]
+[[./assets/3.png]]
 #+end_center
 
 * Hosts
@@ -29,5 +31,3 @@
 - [S] Make nixvim configuration (Note: probably in the summer)
 - [X] Use nix-sops
 - [ ] Consider using mksh or fish?
-
-Am I satisfied? By configuration yes, but I'm not satisfied with the looks of my setup yet. I need to find the perfect wallpaper for my setup.

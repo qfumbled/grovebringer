@@ -29,11 +29,11 @@
         };
         user = {
           email = "chimeridum@proton.me";
-          name = "qfumbled";
+          name = "chimeri";
         };
         
         core = {
-          editor = "nvim";
+          editor = "kate";
           excludesfile = "~/.config/git/ignore";
           pager = "${lib.getExe pkgs.diff-so-fancy}";
         };

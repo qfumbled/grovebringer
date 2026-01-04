@@ -58,7 +58,7 @@ let
       "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
       "text/html" = browser;
       "text/plain" = [ "Helix" ];
-      "x-scheme-handler/chrome" = [ "chromium-browser" ];
+      "x-scheme-handler/chrome" = [ "firefox" ];
       "inode/directory" = [ "nemo" ];
     }
     // image

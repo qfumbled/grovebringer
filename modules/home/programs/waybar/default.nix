@@ -26,12 +26,11 @@
             "battery"
             "memory"
             "pulseaudio"
-            "clock"
           ];
 
           "image" = {
             path = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            size = 24;
+            size = 21;
             tooltip = false;
           };
 
