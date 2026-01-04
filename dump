@@ -60,6 +60,7 @@ in {
 
 
 # modules/home/programs/hyprlock.nix (taken from elythh)
+# patch needed: replace meadow with funkouna lib?
 
 {
   config,
