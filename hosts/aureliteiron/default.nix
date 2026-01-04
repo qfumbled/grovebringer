@@ -18,6 +18,7 @@
       bluetooth.enable = true;
       audio.enable = true;
       ly.enable = true;
+      printing.enable = false;
     };
     programs = {
       wayland.enable = true;

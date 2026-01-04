@@ -18,14 +18,14 @@ in
       enable = true;
       settings = {
         main = {
-          font = lib.mkForce "Rubik:size=10";
-          horizontal-pad = 18;
-          vertical-pad = 18;
-          inner-pad = 18;
+          font = lib.mkForce "Rubik:size=12";
+          horizontal-pad = 35;
+          vertical-pad = 35;
+          inner-pad = 28;
           dpi-aware = "no";
           icons-enabled = "no";
-          line-height = 20;
-          lines = 8;
+          line-height = 22;
+          lines = 10;
         };
         border = {
           radius = 0;
@@ -43,7 +43,7 @@ in
             placeholder = "${base03}ff";
             selection-match = "${base0D}ff";
             selection = "${base02}ff";
-            border = "${base01}ff";
+            border = "${base0D}ff";
           }
         );
       };

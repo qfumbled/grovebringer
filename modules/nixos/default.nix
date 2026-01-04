@@ -7,5 +7,6 @@
 }:
 
 {
+  # Top-level imports
   imports = lib.funkouna.readSubdirs ./.;
 }

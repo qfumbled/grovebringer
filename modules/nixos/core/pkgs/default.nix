@@ -12,7 +12,6 @@
     bat
     xdg-utils
     wirelesstools
-    spotify
     wget
     yq
     brightnessctl

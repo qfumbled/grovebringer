@@ -1,6 +1,6 @@
 {
   time.hardwareClockInLocalTime = true;
-  time.timeZone = "America/New_York";
+  time.timeZone = "US/Eastern";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {

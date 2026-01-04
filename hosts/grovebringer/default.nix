@@ -22,12 +22,13 @@
       audio.enable = true;
       ly.enable = true;
       flatpak.enable = true;
+      printing.enable = false;
     };
 
     programs = {
       wayland.enable = true;
       steam.enable = false;
-      spotify.enable = false;
+      spotify.enable = true;
     };
 
     system = {
