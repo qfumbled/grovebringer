@@ -26,6 +26,7 @@
             "battery"
             "memory"
             "pulseaudio"
+            "clock"
           ];
 
           "image" = {

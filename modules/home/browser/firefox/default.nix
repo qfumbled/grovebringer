@@ -66,7 +66,7 @@ in
         "accessibility.typeaheadfind.enablesound" = false;
         # Why the fuck can my search window make bell sounds
         "general.autoScroll" = true;
-
+        # stop being a asshole..
         # Hardware acceleration
         # See https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
         "gfx.webrender.all" = true;
