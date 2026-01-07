@@ -10,12 +10,16 @@ creation_rules:
       - age:
           - *xekuri
           - *grovebringer
+          - *aureliteiron
+          - *grovesauce
   - path_regex: secrets/xekuri/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *xekuri
+          - *grovesauce
   - path_regex: secrets/aureliteiron/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *xekuri
           - *aureliteiron
+          - *grovesauce

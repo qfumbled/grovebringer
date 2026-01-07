@@ -6,6 +6,8 @@
   ...
 }:
 {
+  programs.home-manager.enable = true;
+
   # Wayland environment variables with X11 fallback
   home.sessionVariables = {
     XDG_CURRENT_DESKTOP = "KDE";
@@ -25,14 +27,8 @@
   funkouna = {
     programs = {
       hyprland.enable = false;
-      fuzzel.enable = false;
-      mako.enable = false;
-      waybar.enable = false;
     };
   };
-
-  # Enable nixvim only
-  programs.nixvim.enable = true;
   
   home.packages = with pkgs; [
     foot

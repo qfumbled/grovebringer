@@ -135,7 +135,6 @@
                   sharedModules = [
                     ./modules/home
                     inputs.nixcord.homeModules.nixcord
-                    inputs.nixvim.homeManagerModules.nixvim
                   ];
                   useGlobalPkgs = true;
                   useUserPackages = true;
@@ -169,11 +168,9 @@
   nixConfig = {
     trusted-substituters = [
       "https://cache.nixos.org"
-      "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gNzQuKAQz4U5U32"
-      "nix-community.cachix.org-1:mN9zC7OnBTAuHPKOgvQcSL+gyGRJGT8="
     ];
   };
 }
