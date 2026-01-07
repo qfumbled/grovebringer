@@ -48,7 +48,7 @@
       {
         opacity = "opaque";
         location = "bottom";
-        height = 34
+        height = 34;
         floating = false;
         widgets = [
           "org.kde.plasma.kickoff"
