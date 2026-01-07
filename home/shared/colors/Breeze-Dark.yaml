@@ -1,0 +1,19 @@
+scheme: "Breeze-Dark"
+author: "KDE (imported by 75grovebringer)"
+
+base00: "141618"  # Background normal (View)
+base01: "1d1f22"  # Background alternate (View)
+base02: "202224"  # Selection background normal
+base03: "a1a9b1"  # Foreground inactive
+base04: "3daae9"  # Decoration focus / hover
+base05: "fcfcfc"  # Foreground normal
+base06: "3daae9"  # Foreground active
+base07: "ffffff"  # Foreground active bright (selection)
+base08: "da4440"  # Foreground negative
+base09: "f67400"  # Foreground neutral
+base0A: "f6f674"  # Foreground link / highlight
+base0B: "27ae60"  # Foreground positive
+base0C: "7d9ea7"  # Foreground info / complementary
+base0D: "3daae9"  # Foreground primary / focus
+base0E: "9a61cc"  # Foreground visited / accent
+base0F: "3daae9"  # Decoration hover / extra
