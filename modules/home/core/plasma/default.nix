@@ -4,7 +4,7 @@
 
     workspace = {
       iconTheme = "Papirus-Light";
-      wallpaper = "${../../../../../home/shared/walls/test.png}";
+#fix      wallpaper = "${../../../../../home/shared/walls/test.png}";
       lookAndFeel = "org.kde.breeze.desktop";
     };
 
