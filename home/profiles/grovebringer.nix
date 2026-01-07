@@ -23,7 +23,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  # Remove X11/Wayland-specific configurations
   funkouna = {
     programs = {
       hyprland.enable = false;
