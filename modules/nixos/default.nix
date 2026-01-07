@@ -5,8 +5,8 @@
   pkgs,
   ...
 }:
-
 {
-  # Top-level imports
-  imports = lib.funkouna.readSubdirs ./.;
+  imports = [
+    # Nothing to see here !
+  ] ++ lib.funkouna.readSubdirs ./.;
 }

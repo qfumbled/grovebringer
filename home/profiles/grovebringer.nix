@@ -6,18 +6,33 @@
   ...
 }:
 {
+  # Wayland environment variables with X11 fallback
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "KDE";
+    XDG_SESSION_DESKTOP = "plasma";
+    XDG_SESSION_TYPE = "wayland";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    GDK_BACKEND = "wayland,x11";  # Fallback to X11 for compatibility
+    SDL_VIDEODRIVER = "wayland";
+    CLUTTER_BACKEND = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    NIXOS_OZONE_WL = "1";
+  };
+
+  # Remove X11/Wayland-specific configurations
   funkouna = {
     programs = {
-      hyprland.enable = true;
-      fuzzel.enable = true;
-      mako.enable = true;
-      waybar.enable = true;
+      hyprland.enable = false;
+      fuzzel.enable = false;
+      mako.enable = false;
+      waybar.enable = false;
     };
   };
-  
-  sops.secrets.test-secret = {};
-  
-  # GitHub SSH key configuration removed - use NixOS module instead
+
+  # Enable nixvim only
+  programs.nixvim.enable = true;
   
   home.packages = with pkgs; [
     foot
@@ -102,6 +117,12 @@
     vlc
     wireplumber
     xdotool
-    xwayland
+    xwayland  # Need for X11 compatibility on Wayland
+    
+    # KDE applications
+    kdePackages.kate
+    kdePackages.konsole
+    kdePackages.okular
+    kdePackages.dolphin
   ];
 }

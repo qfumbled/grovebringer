@@ -5,9 +5,9 @@
 }:
 
 {
-  users.users.xekuri = {
+  users.users.grovesauce = {
     isNormalUser = true;
-    group = "xekuri";
+    group = "grovesauce";
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -21,5 +21,5 @@
   };
 
   programs.fish.enable = true;
-  users.groups.xekuri = { };
+  users.groups.grovesauce = { };
 }

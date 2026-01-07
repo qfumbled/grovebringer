@@ -46,6 +46,17 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -103,7 +114,7 @@
           system ? "x86_64-linux",
           systemConfig,
           userConfigs,
-          username ? "xekuri",
+          username ? "grovesauce",
           lib ? mkLib inputs.nixpkgs.legacyPackages.${system},
         }:
           inputs.nixpkgs.lib.nixosSystem {
@@ -124,6 +135,7 @@
                   sharedModules = [
                     ./modules/home
                     inputs.nixcord.homeModules.nixcord
+                    inputs.nixvim.homeManagerModules.nixvim
                   ];
                   useGlobalPkgs = true;
                   useUserPackages = true;
@@ -157,9 +169,11 @@
   nixConfig = {
     trusted-substituters = [
       "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
     ];
     trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "cache.nixos.org-1:6NCHdD59X431o0gNzQuKAQz4U5U32"
+      "nix-community.cachix.org-1:mN9zC7OnBTAuHPKOgvQcSL+gyGRJGT8="
     ];
   };
 }
