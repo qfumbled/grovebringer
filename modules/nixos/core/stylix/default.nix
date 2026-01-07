@@ -10,7 +10,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/Breeze-Dark.yaml;
+      base16Scheme = ../../../../home/shared/colors/plasma-dark.yaml;
 
       # Cursor settings
       cursor = {
