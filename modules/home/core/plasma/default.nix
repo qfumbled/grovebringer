@@ -4,7 +4,7 @@
 
     workspace = {
       iconTheme = "Papirus-Light";
-     # wallpaper = "${../../assets/wallpapers/wallpaper.png}";
+      wallpaper = "${../../../../../home/shared/walls/test.png}";
       lookAndFeel = "org.kde.breeze.desktop";
     };
 
@@ -66,7 +66,6 @@
           }
           "org.kde.plasma.panelspacer"
           "org.kde.plasma.systemtray"
-          "org.kde.plasma.digitalclock"
         ];
       }
     ];
