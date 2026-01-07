@@ -130,6 +130,7 @@
                   sharedModules = [
                     ./modules/home
                     inputs.nixcord.homeModules.nixcord
+                    inputs.plasma-manager.homeManagerModules.plasma-manager
                   ];
                   useGlobalPkgs = true;
                   useUserPackages = true;
@@ -163,9 +164,6 @@
   nixConfig = {
     trusted-substituters = [
       "https://cache.nixos.org"
-    ];
-    trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gNzQuKAQz4U5U32"
     ];
   };
 }

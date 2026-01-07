@@ -113,11 +113,5 @@
     wireplumber
     xdotool
     xwayland  # Need for X11 compatibility on Wayland
-    
-    # KDE applications
-    kdePackages.kate
-    kdePackages.konsole
-    kdePackages.okular
-    kdePackages.dolphin
   ];
 }

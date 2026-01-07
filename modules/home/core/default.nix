@@ -11,5 +11,6 @@
     ./starship
     ./git
     ./xdg
+    ./plasma
   ];
 }
