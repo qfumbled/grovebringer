@@ -11,6 +11,6 @@
     ./starship
     ./git
     ./xdg
-    ./plasma
+    ./rnnoise
   ];
 }

@@ -6,18 +6,18 @@
     settings = {
       format = "$directory$nix_shell$fill$git_branch$azure$kubernetes$git_status$cmd_duration$line_break$character";
       add_newline = false;
-      c.disabled = true;
-      cmake.disabled = true;
+      c.disabled = false;
+      cmake.disabled = false;
       haskell.disabled = true;
-      python.disabled = true;
+      python.disabled = false;
       ruby.disabled = true;
-      rust.disabled = true;
+      rust.disabled = false;
       perl.disabled = true;
       package.disabled = true;
       lua.disabled = true;
-      nodejs.disabled = true;
-      java.disabled = true;
-      golang.disabled = true;
+      nodejs.disabled = false;
+      java.disabled = false;
+      golang.disabled = false;
 
       fill = {
         symbol = " ";

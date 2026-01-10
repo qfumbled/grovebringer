@@ -1,21 +1,22 @@
 { config, pkgs, ... }:
-
 {
   programs.plasma = {
     enable = true;
 
     workspace = {
       lookAndFeel = "org.kde.breeze.desktop";
-      colorScheme = "BreezeDark";
-      iconTheme = "breeze-dark";
-      cursorTheme = "breeze";
+      colorScheme = "Breeze";
+      iconTheme = "breeze";
+      cursor = {
+        theme = "breeze";
+      };
     };
 
     panels = [
       {
         location = "bottom";
         height = 34;
-        floating = true;
+        floating = false;
         opacity = "translucent";
         alignment = "center";
 

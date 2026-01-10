@@ -1,8 +1,8 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
+  username,
   ...
 }:
 

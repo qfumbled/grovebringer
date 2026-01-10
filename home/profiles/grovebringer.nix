@@ -23,12 +23,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  funkouna = {
-    programs = {
-      hyprland.enable = false;
-    };
-  };
-  
   home.packages = with pkgs; [
     foot
     app2unit
@@ -58,7 +52,6 @@
     gping
     grimblast
     gum
-    helmfile
     httpie
     imagemagick
     inotify-tools
@@ -112,6 +105,6 @@
     vlc
     wireplumber
     xdotool
-    xwayland  # Need for X11 compatibility on Wayland
+    xwayland
   ];
 }

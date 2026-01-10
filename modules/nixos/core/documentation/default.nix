@@ -6,7 +6,7 @@
 {
   documentation = {
     man = {
-      enable = false;
+      enable = false;  # Man pages should die as requested
     };
   };
 }

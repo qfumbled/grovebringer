@@ -73,8 +73,7 @@ in
         "media.ffmpeg.vaapi.enabled" = true;
         "media.rdd-ffmpeg.enabled" = true;
         "widget.dmabuf.force-enabled" = true;
-        "media.av1.enabled" = false; # XXX: change once I've upgraded my GPU
-        # XXX: what is this?
+        "media.av1.enabled" = false; # Disabled until GPU upgrade
         "media.ffvpx.enabled" = false;
         "media.rdd-vpx.enabled" = false;
 
@@ -333,8 +332,7 @@ in
         "media.ffmpeg.vaapi.enabled" = true;
         "media.rdd-ffmpeg.enabled" = true;
         "widget.dmabuf.force-enabled" = true;
-        "media.av1.enabled" = false; # XXX: change once I've upgraded my GPU
-        # XXX: what is this?
+        "media.av1.enabled" = false; # Disabled until GPU upgrade
         "media.ffvpx.enabled" = false;
         "media.rdd-vpx.enabled" = false;
 

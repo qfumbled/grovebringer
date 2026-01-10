@@ -10,7 +10,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/plasma-dark.yaml;
+      base16Scheme = ../../../../home/shared/colors/test.yaml;
 
       # Cursor settings
       cursor = {
@@ -38,6 +38,10 @@
       # Basic theming targets
       targets.gtk.enable = true;
       targets.console.enable = true;
+      targets.qt = {
+        enable = true;
+        platform = "qtct";
+      };
     };
 
     # Disable wlsunset (blue light filter)

@@ -47,22 +47,24 @@
     shellAliases = with pkgs; {
       v = "nvim";
       ":q" = "exit";
-      cat = "${bat}/bin/bat";
+      cat = "${bat}/bin/bat --paging=never";
+      cleanram = "sudo sh -c 'sync; echo 3 > /proc/sys/vm/drop_caches'";
+      cleanup = "sudo nix-collect-garbage --delete-older-than 1d";
       du = "${dust}/bin/dust";
       g = "${git}/bin/git";
       la = "ll -a";
       ll = "ls -l --time-style long-iso --icons";
       ls = "${eza}/bin/eza";
       tb = "toggle-background";
+      tree = "${eza}/bin/eza --tree --icons --tree";
 
+      # Terraform/Terragrunt aliases
       tg = "TERRAGRUNT_PROVIDER_CACHE=1 TERRAGRUNT_PROVIDER_CACHE_DIR=~/.terraform.d/plugin-cache/ TERRAGRUNT_TFPATH=terraform terragrunt";
       tginfo = "TERRAGRUNT_PROVIDER_CACHE=1 TERRAGRUNT_PROVIDER_CACHE_DIR=~/.terraform.d/plugin-cache/ TERRAGRUNT_TFPATH=terraform terragrunt --terragrunt-debug";
       tgdebug = "TERRAGRUNT_PROVIDER_CACHE=1 TERRAGRUNT_PROVIDER_CACHE_DIR=~/.terraform.d/plugin-cache/ TERRAGRUNT_TFPATH=terraform TF_LOG=DEBUG terragrunt --terragrunt-debug";
       w = "wanda";
 
-      k9s = "k9s --readonly";
-      kns = "kubens";
-      kcx = "kubectx";
+      # Kubernetes aliases (cleaned up)
       kubectl = "kubecolor";
       k = "kubectl";
       kg = "kubectl get";
@@ -70,12 +72,10 @@
       kgp = "kubectl get pods";
       kgns = "kubectl get namespaces";
       kgi = "kubectl get ingress";
-      kgall = "kubectl get ingress,service,deployment,pod,statefulset";
-      kuc = "kubectl config use-context";
-      kgc = "kubectl config get-contexts";
       kex = "kubectl exec -it";
       kl = "kubectl logs";
-      kwatch = "kubectl get pods -w --all-namespaces";
+      kuc = "kubectl config use-context";
+      kgc = "kubectl config get-contexts";
     };
     shellAbbrs = {
       "!!" = {

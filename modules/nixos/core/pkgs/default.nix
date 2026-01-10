@@ -20,7 +20,6 @@
     unzip  
     zip
     swaybg
-    mako
     waybar
     polkit_gnome
     wlsunset

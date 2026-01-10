@@ -8,8 +8,11 @@
 }:
 
 {
-  imports = 
-  [ (if builtins.pathExists ./hardware.nix then ./hardware.nix else /etc/hardware-configuration.nix) ];
+  imports = [
+    (if builtins.pathExists ./hardware.nix 
+     then ./hardware.nix 
+     else /etc/hardware-configuration.nix)
+  ];
 
   networking.hostName = "aureliteiron";
 
@@ -23,16 +26,10 @@
     };
     programs = {
       wayland.enable = true;
-      steam.enable = false;
-      spotify.enable = false;
+      fuzzel.enable = true;
+      waybar.enable = true;
     };
-    impermanence.enable = false;
-    
     system = {
-      locale.enable = true;
-      networking.enable = true;
-      security.enable = true;
-      users.enable = true;
       stylix.enable = false;
       nix.enable = true;
       xdg.enable = false;

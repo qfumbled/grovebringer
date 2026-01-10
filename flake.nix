@@ -130,7 +130,7 @@
                   sharedModules = [
                     ./modules/home
                     inputs.nixcord.homeModules.nixcord
-                    inputs.plasma-manager.homeManagerModules.plasma-manager
+                    inputs.plasma-manager.homeModules.plasma-manager
                   ];
                   useGlobalPkgs = true;
                   useUserPackages = true;

@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     qt = {
       enable = true;
-      platformTheme = "qt5ct";
+      platformTheme = lib.mkDefault "kde";
     };
   };
 }
