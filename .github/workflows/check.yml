@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   push:
     paths:
-    - '**.nix'
-    - '**.lock'
-    - '.github/workflows/check.yml'
+      - "**/*.nix"
+      - "flake.lock"
+      - ".github/workflows/check.yml"
 
 jobs:
   check-flake:
@@ -15,14 +15,12 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        fetch-depth: 1
 
-    - name: Install Nix
-      uses: DeterminateSystems/nix-installer-action@main
+    - name: Install Nix with experimental features
+      uses: cachix/install-nix-action@v20
       with:
-        logger: pretty
+        extra_nix_config: |
+          experimental-features = nix-command flakes
 
     - name: Check Flake
-      run: nix flake check --accept-flake-config --extra-experimental-features pipe-operators
+      run: nix flake check --accept-flake-config
