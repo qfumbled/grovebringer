@@ -1,17 +1,15 @@
-{ config, pkgs, ... }:
-{
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    papirus-icon-theme
+  ];
   programs.plasma = {
     enable = true;
-
     workspace = {
+   #  wallpaper = "${../../assets/wallpapers/wallpaper.jpg}";
+      iconTheme = "Papirus-Dark";
       lookAndFeel = "org.kde.breeze.desktop";
-      colorScheme = "Breeze";
-      iconTheme = "breeze";
-      cursor = {
-        theme = "breeze";
-      };
+      cursor.theme = "breeze";
     };
-
     shortcuts = {
       "kwin" = {
         "Window Fullscreen" = "Meta+F";
@@ -25,12 +23,30 @@
         "Window to Desktop 3" = "Meta+Shift+3";
         "Window to Desktop 4" = "Meta+Shift+4";
       };
+      "plasmashell" = {
+        "activate task manager entry 1" = "none";
+        "activate task manager entry 2" = "none";
+        "activate task manager entry 3" = "none";
+        "activate task manager entry 4" = "none";
+        "activate task manager entry 5" = "none";
+        "activate task manager entry 6" = "none";
+        "activate task manager entry 7" = "none";
+        "activate task manager entry 8" = "none";
+        "activate task manager entry 9" = "none";
+        "manage activities" = "none";
+      };
     };
-
+    hotkeys.commands = {
+      "launch-konsole" = {
+        name = "Launch Konsole";
+        key = "Meta+Return";
+        command = "konsole";
+      };
+    };
     panels = [
       {
         location = "bottom";
-        height = 30;
+        height = 36;
         floating = false;
         hiding = "none";
         alignment = "center";
@@ -39,8 +55,7 @@
           {
             name = "org.kde.plasma.kickoff";
             config.General = {
-              icon = "nix-snowflake";
-              launcherIconSize = 30;
+              icon = "start-here-kde-symbolic";
             };
           }
           "org.kde.plasma.panelspacer"
@@ -52,7 +67,6 @@
               showOnlyCurrentDesktop = true;
               launchers = [
                 "applications:firefox.desktop"
-                "applications:vesktop.desktop"
                 "applications:org.kde.konsole.desktop"
                 "applications:org.kde.dolphin.desktop"
               ];
@@ -70,13 +84,6 @@
                 showDate = false;
                 showSeconds = false;
                 use24hFormat = false;
-              };
-              Font = {
-                family = "Noto Sans";
-                bold = true;
-              };
-              FontSettings = {
-                fontSize = 18;
               };
             };
           }
