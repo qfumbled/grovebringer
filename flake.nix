@@ -161,6 +161,7 @@
       };
     };
 
+  # TODO remove this section
   nixConfig = {
     trusted-substituters = [
       "https://cache.nixos.org"

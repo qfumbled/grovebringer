@@ -1,6 +1,11 @@
 name: Bump Flake Inputs
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "**/*.nix"
+      - "flake.lock"
+      - ".github/workflows/update.yml"
   schedule:
     - cron: '0 0 * * *'  # Daily at midnight UTC
 
@@ -30,6 +35,9 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add flake.lock
-        git diff --quiet && git diff --staged --quiet || \
-        (git commit -m "chore: update flake.lock" && git push)
+        UPDATES=$(git diff --name-only flake.lock | wc -l)
+        if [ $UPDATES -gt 0 ]; then
+          git add flake.lock
+          git commit -m "chore(flake.lock): update ($UPDATES packages)"
+          git push
+        fi
