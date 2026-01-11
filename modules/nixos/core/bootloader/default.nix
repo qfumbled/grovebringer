@@ -34,6 +34,7 @@
         enable = true;
         style.wallpapers = [../../../../home/shared/walls/plant.jpg];
         efiSupport = true;
+        secureBoot.enable = false;
         maxGenerations = 15;
       };
     };
@@ -57,6 +58,7 @@
   # Environment packages
   environment = {
     systemPackages = with pkgs; [
+      sbctl
       config.boot.kernelPackages.cpupower
     ];
   };

@@ -7,28 +7,29 @@
   ...
 }:
 
+let
+  hardware = if builtins.pathExists ./hardware.nix then ./hardware.nix else /etc/hardware-configuration.nix;
+in
 {
-  imports = [
-    (if builtins.pathExists ./hardware.nix 
-     then ./hardware.nix 
-     else /etc/hardware-configuration.nix)
-  ];
+  imports = [ hardware ];
 
-  networking.hostName = "aureliteiron";
+  networking = {
+    hostName = "aureliteiron";
+  };
 
   funkouna = {
     services = {
       bluetooth.enable = true;
       audio.enable = true;
-      ly.enable = true;
       printing.enable = false;
       kde-connect.enable = true;
     };
+
     programs = {
       wayland.enable = true;
-      fuzzel.enable = true;
-      waybar.enable = true;
+      minecraft.enable = true;
     };
+
     system = {
       stylix.enable = false;
       nix.enable = true;

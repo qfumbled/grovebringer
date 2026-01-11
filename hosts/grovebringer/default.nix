@@ -20,7 +20,6 @@
     services = {
       bluetooth.enable = true;
       audio.enable = true;
-      ly.enable = false;  # Disable ly as we're using SDDM
       flatpak.enable = true;
       kde-connect.enable = true;
     };
@@ -29,6 +28,7 @@
       wayland.enable = true;  # Enable Wayland for Plasma Wayland session
       steam.enable = false;
       spotify.enable = true;
+      minecraft.enable = true;
     };
 
     system = {
