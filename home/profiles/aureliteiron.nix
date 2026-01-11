@@ -71,7 +71,7 @@
     nix-output-monitor
     nix-search-tv
     nix-update
-    nixfmt-rfc-style
+    nixfmt
     onefetch
     opencode
     openssl

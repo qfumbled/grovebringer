@@ -75,7 +75,7 @@
         ...
       }: {
         # Per-system configurations
-        formatter = pkgs.nixfmt-rfc-style;
+        formatter = pkgs.nixfmt;
 
         # Dev shell with pre-commit hooks
         devShells.default = pkgs.mkShell {
@@ -94,7 +94,7 @@
                 enable = true;
                 settings.noLambdaArg = true;
               };
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               statix.enable = true;
             };
           };
