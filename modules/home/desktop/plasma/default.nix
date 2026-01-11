@@ -7,7 +7,7 @@
     workspace = {
    #  wallpaper = "${../../assets/wallpapers/wallpaper.jpg}";
       iconTheme = "Papirus-Dark";
-      lookAndFeel = "org.kde.breeze.desktop";
+      lookAndFeel = "Stylix";
       cursor.theme = "breeze";
     };
     shortcuts = {

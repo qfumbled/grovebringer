@@ -18,8 +18,8 @@
 
 | Host | Type |
 |------|------|
-| `grovebringer` | Laptop |
-| `aureliteiron` | Desktop |
+| `grovebringer` <img src="assets/1.png"> | Laptop |
+| `aureliteiron` <img src="assets/1.png"> | Desktop |
 
 <br>
 
