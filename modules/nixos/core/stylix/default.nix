@@ -36,11 +36,13 @@
       };
 
       # Basic theming targets
-      targets.gtk.enable = true;
-      targets.console.enable = true;
-      targets.qt = {
-        enable = true;
-        platform = "qtct";
+      targets = {
+        gtk.enable = true;
+        console.enable = true;
+        qt = {
+          enable = true;
+          platform = lib.mkDefault "qtct";  # Make this the default, but allow override
+        };
       };
     };
 

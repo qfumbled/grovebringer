@@ -12,7 +12,6 @@ in
   config = mkIf cfg.enable {
     qt = {
       enable = true;
-      platformTheme = lib.mkDefault "kde";
     };
   };
 }
