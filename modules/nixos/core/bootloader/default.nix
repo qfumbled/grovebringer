@@ -32,6 +32,7 @@
       };
       limine = {
         enable = true;
+        style.wallpapers = [../../../../home/shared/walls/plant.jpg];
         efiSupport = true;
         maxGenerations = 15;
       };
