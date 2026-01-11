@@ -5,10 +5,10 @@
   programs.plasma = {
     enable = true;
     workspace = {
-   #  wallpaper = "${../../assets/wallpapers/wallpaper.jpg}";
-      iconTheme = "Papirus-Dark";
-      lookAndFeel = "Stylix";
-      cursor.theme = "breeze";
+     wallpaper = "${../../../../../home/shared/anatomy.webp}";
+     iconTheme = "Papirus-Dark";
+     lookAndFeel = "org.kde.breeze.desktop";
+     cursor.theme = "breeze";
     };
     shortcuts = {
       "kwin" = {

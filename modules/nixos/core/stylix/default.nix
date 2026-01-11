@@ -10,7 +10,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/gruvbox.yaml;
+      base16Scheme = ../../../../home/shared/colors/test.yaml;
 
       # Cursor settings
       cursor = {
@@ -41,12 +41,10 @@
         console.enable = true;
         qt = {
           enable = true;
-          platform = lib.mkDefault "qtct";  # Make this the default, but allow override
+          platform = lib.mkDefault "qtct";  
         };
       };
     };
-
-    # Disable wlsunset (blue light filter)
     systemd.user.services.wlsunset.enable = false;
   };
 }
