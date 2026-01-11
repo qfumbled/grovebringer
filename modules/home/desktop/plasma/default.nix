@@ -5,7 +5,7 @@
   programs.plasma = {
     enable = true;
     workspace = {
-     wallpaper = "${../../../../../home/shared/anatomy.webp}";
+    wallpaper = "${../../../../../home/shared/walls/anatomy.webp}"; 
      iconTheme = "Papirus-Dark";
      lookAndFeel = "org.kde.breeze.desktop";
      cursor.theme = "breeze";
