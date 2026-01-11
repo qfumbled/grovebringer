@@ -5,7 +5,7 @@
   programs.plasma = {
     enable = true;
     workspace = {
-      wallpaper = toString (./../../../../home/shared/walls/anatomy.webp);
+      wallpaper = toString (./../../../../home/shared/walls/plant.jpg);
       iconTheme = "Papirus-Dark";
       lookAndFeel = "org.kde.breeze.desktop";
     };
@@ -45,7 +45,7 @@
       {
         opacity = "opaque";
         location = "bottom";
-        height = 30;
+        height = 32;
         floating = false;
         widgets = [
           "org.kde.plasma.kickoff"
