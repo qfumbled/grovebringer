@@ -21,20 +21,13 @@
       bluetooth.enable = true;
       audio.enable = true;
       flatpak.enable = true;
-      kde-connect.enable = true;
+      kdeConnect.enable = true;
     };
 
     programs = {
       wayland.enable = true;  # Enable Wayland for Plasma Wayland session
-      steam.enable = false;
       spotify.enable = true;
       minecraft.enable = true;
-    };
-
-    system = {
-      stylix.enable = true;
-      networking.enable = true;
-      security.enable = true;  # Enable security hardening
     };
 
     impermanence.enable = false;

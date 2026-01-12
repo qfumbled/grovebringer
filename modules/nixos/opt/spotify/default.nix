@@ -4,11 +4,22 @@
   pkgs,
   ...
 }:
+
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.funkouna.programs.spotify;
 in
 {
+  options = {
+    funkouna = {
+      programs = {
+        spotify = {
+          enable = mkEnableOption "Enable Spotify with multimedia libraries and Wayland support";
+        };
+      };
+    };
+  };
+
   config = mkIf cfg.enable {
     environment.sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -19,18 +30,15 @@ in
 
     environment.systemPackages = with pkgs; [
       spotify
-      spotify-player # Terminal alternative
-      # Essential multimedia libraries
+      spotify-player
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-base
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-bad
       gst_all_1.gst-plugins-ugly
       gst_all_1.gst-libav
-      # Audio support (PipeWire compatible)
       alsa-lib
       libpulseaudio
-      # Codecs
       ffmpeg
       xorg.libX11
       xorg.libXext
@@ -38,7 +46,5 @@ in
       xorg.libXtst
       xorg.libXScrnSaver
     ];
-
-    services.dbus.enable = true;
   };
 }

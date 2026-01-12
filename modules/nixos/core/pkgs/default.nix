@@ -1,39 +1,36 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
   ...
 }:
+
 {
-  environment.systemPackages = with pkgs; [
-    sops
-    age
-    bat
-    xdg-utils
-    wirelesstools
-    wget
-    yq
-    brightnessctl
-    firefox
-    git
-    unzip  
-    zip
-    swaybg
-    waybar
-    polkit_gnome
-    wlsunset
-    wayshot
-    nix-prefetch-git
-    slurp
-    blueman
-    loupe
-    celluloid
-    wl-clipboard
-    libnotify
-    swappy
-    fuzzel
-    fastfetch
-    obs-studio
-  ];
+  environment = {
+    systemPackages = [
+      pkgs.sops
+      pkgs.age
+      pkgs.bat
+      pkgs.xdg-utils
+      pkgs.wirelesstools
+      pkgs.wget
+      pkgs.yq
+      pkgs.brightnessctl
+      pkgs.firefox
+      pkgs.git
+      pkgs.unzip
+      pkgs.zip
+      pkgs.polkit_gnome
+      pkgs.nix-prefetch-git
+      pkgs.blueman
+      pkgs.loupe
+      pkgs.celluloid
+      pkgs.wl-clipboard
+      pkgs.libnotify
+      pkgs.swappy
+      pkgs.fuzzel
+      pkgs.fastfetch
+      pkgs.obs-studio
+    ];
+  };
 }

@@ -12,7 +12,6 @@
       enable = true;
       base16Scheme = ../../../../home/shared/colors/test.yaml;
 
-      # Cursor settings
       cursor = {
         name = "phinger-cursors-light";
         package = pkgs.phinger-cursors;
@@ -35,16 +34,15 @@
         };
       };
 
-      # Basic theming targets
       targets = {
         gtk.enable = true;
         console.enable = true;
         qt = {
           enable = true;
-          platform = lib.mkDefault "qtct";  
+          platform = lib.mkDefault "qtct";
         };
       };
     };
-    systemd.user.services.wlsunset.enable = false;
   };
 }
+

@@ -1,6 +1,13 @@
 {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+
+{
   virtualisation = {
-    libvirtd.enable = true;
     docker.enable = true;
+    libvirtd.enable = true; 
   };
 }

@@ -1,34 +1,37 @@
 {
   config,
   pkgs,
+  username,
   ...
 }:
 
 {
-  environment = {
-    shells = [pkgs.fish];
-    pathsToLink = ["/share/fish"];
+  users = {
+    groups = {
+      "${username}" = {};
+    };
+
+    users = {
+      "${username}" = {
+        isNormalUser = true;
+        group = username;
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "video"
+          "audio"
+          "uinput"
+          "adbusers"
+          "plugdev"
+        ];
+        shell = pkgs.fish; 
+      };
+    };
   };
 
   programs = {
-    less.enable = true;
-    fish.enable = true;
+    fish = {
+      enable = true;  
+    };
   };
-
-  users.users.grovesauce = {
-    isNormalUser = true;
-    group = "grovesauce";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "video"
-      "audio"
-      "uinput"
-      "adbusers"
-      "plugdev"
-    ];
-    shell = pkgs.fish;
-  };
-
-  users.groups.grovesauce = { };
 }

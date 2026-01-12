@@ -4,19 +4,26 @@
   pkgs,
   ...
 }:
+
+let
+  inherit (lib) mkIf mkEnableOption;
+  cfg = config.funkouna.programs.minecraft;
+in
 {
-  options.funkouna = {
-    programs = {
-      minecraft = {
-        enable = lib.mkEnableOption "Enable Minecraft with OpenJDK 17";
+  options = {
+    funkouna = {
+      programs = {
+        minecraft = {
+          enable = mkEnableOption "Enable Minecraft with OpenJDK 17";
+        };
       };
     };
   };
 
-  config = lib.mkIf config.funkouna.programs.minecraft.enable {
-    environment.systemPackages = with pkgs; [
-      prismlauncher
-      openjdk17
+  config = mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.prismlauncher
+      pkgs.openjdk17
     ];
 
     environment.variables = {

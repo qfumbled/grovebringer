@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   boot = {
@@ -55,7 +60,6 @@
     };
   };
 
-  # Environment packages
   environment = {
     systemPackages = with pkgs; [
       sbctl

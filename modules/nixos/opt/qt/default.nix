@@ -4,14 +4,23 @@
   pkgs,
   ...
 }:
+
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.funkouna.programs.wayland;
 in
 {
-  config = mkIf cfg.enable {
-    qt = {
-      enable = true;
+  options = {
+    funkouna = {
+      programs = {
+        wayland = {
+          enable = mkEnableOption "Enable Wayland support for Qt applications";
+        };
+      };
     };
+  };
+
+  config = mkIf cfg.enable {
+    qt.enable = true;
   };
 }
