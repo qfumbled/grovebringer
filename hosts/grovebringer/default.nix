@@ -25,7 +25,6 @@
     };
 
     programs = {
-      wayland.enable = true;  # Enable Wayland for Plasma Wayland session
       spotify.enable = true;
       minecraft.enable = true;
     };
