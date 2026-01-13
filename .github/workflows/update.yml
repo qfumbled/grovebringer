@@ -7,7 +7,7 @@ on:
       - "flake.lock"
       - ".github/workflows/update.yml"
   schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC
+    - cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
 
 jobs:
   update-lockfile:
@@ -16,28 +16,30 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Configure Git
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
-    - name: Install Nix with experimental features
-      uses: cachix/install-nix-action@v20
-      with:
-        extra_nix_config: |
-          experimental-features = nix-command flakes
+      - name: Install Nix with experimental features
+        uses: cachix/install-nix-action@v20
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
 
-    - name: Update Flake Inputs
-      run: nix flake update
+      - name: Update Flake Inputs
+        run: nix flake update
 
-    - name: Commit and push changes
-      run: |
-        UPDATES=$(git diff --name-only flake.lock | wc -l)
-        if [ $UPDATES -gt 0 ]; then
-          git add flake.lock
-          git commit -m "chore(flake.lock): update ($UPDATES packages)"
-          git push
-        fi
+      - name: Commit and push changes
+        run: |
+          if ! git diff --quiet flake.lock; then
+            git add flake.lock
+            COUNT=$(git diff --name-only flake.lock | wc -l)
+            git commit -m "chore: [flake.lock] update [#$COUNT]"
+            git push
+          else
+            echo "✅ No changes to commit"
+          fi
