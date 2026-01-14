@@ -10,7 +10,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/test.yaml;
+      base16Scheme = ../../../../home/shared/colors/aesthetic.yaml;
 
       cursor = {
         name = "phinger-cursors-light";

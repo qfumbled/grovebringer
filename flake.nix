@@ -4,12 +4,14 @@
   inputs = {
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
-      inputs = {};
+      inputs = {
+      };
     };
 
     systems = {
       url = "github:nix-systems/default-linux";
-      inputs = {};
+      inputs = {
+      };
     };
 
     flake-utils = {
@@ -49,7 +51,8 @@
 
     impermanence = {
       url = "github:nix-community/impermanence";
-      inputs = {};
+      inputs = {
+      };
     };
 
     stylix = {
@@ -90,115 +93,144 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    flake-parts,
-    ...
-  }:
+  outputs =
+    inputs @ {
+      self,
+      flake-parts,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = import inputs.systems;
 
       imports = [
-        # flake-parts modules (optional)
       ];
 
-      perSystem = {
-        config,
-        self',
-        inputs',
-        pkgs,
-        system,
-        ...
-      }: {
-        formatter = pkgs.nixfmt;
+      perSystem =
+        {
+          config,
+          self',
+          inputs',
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt;
 
-        devShells.default = pkgs.mkShell {
-          inherit (self.checks.${system}.pre-commit-check) shellHook;
-          buildInputs = with pkgs; [
-            agenix.packages.${system}.default
-          ];
-        };
+          devShells = {
+            default = pkgs.mkShell {
+              inherit (self.checks.${system}.pre-commit-check) shellHook;
 
-        checks = {
-          pre-commit-check =
-            inputs.pre-commit-hooks.lib.${system}.run {
-              src = ./.;
-              hooks = {
-                deadnix = {
-                  enable = true;
-                  settings.noLambdaArg = true;
-                };
-                nixfmt.enable = true;
-                statix.enable = true;
-              };
+              buildInputs = with pkgs; [
+                inputs.agenix.packages.${system}.default
+              ];
             };
+          };
+
+          checks = {
+            pre-commit-check =
+              inputs.pre-commit-hooks.lib.${system}.run {
+                src = ./.;
+
+                hooks = {
+                  deadnix = {
+                    enable = true;
+                    settings = {
+                      noLambdaArg = true;
+                    };
+                  };
+
+                  nixfmt = {
+                    enable = true;
+                  };
+
+                  statix = {
+                    enable = true;
+                  };
+                };
+              };
+          };
         };
-      };
 
       flake =
         let
-          mkLib = pkgs:
-            pkgs.lib.extend (_final: _prev:
-              (import ./lib pkgs.lib pkgs)
-              // inputs.home-manager.lib
-            );
+          mkLib =
+            pkgs:
+            pkgs.lib.extend
+              (
+                _final:
+                _prev:
+                (import ./lib pkgs.lib pkgs)
+                // inputs.home-manager.lib
+              );
 
-          mkSystem = {
-            system ? "x86_64-linux",
-            systemConfig,
-            userConfigs,
-            username ? "grovesauce",
-            lib ? mkLib inputs.nixpkgs.legacyPackages.${system},
-          }:
+          mkSystem =
+            {
+              system ? "x86_64-linux",
+              systemConfig,
+              userConfigs,
+              username ? "grovesauce",
+              lib ? mkLib inputs.nixpkgs.legacyPackages.${system},
+            }:
             inputs.nixpkgs.lib.nixosSystem {
               specialArgs = {
-                inherit inputs;
+                inherit inputs lib username;
                 outputs = self;
-                inherit lib username;
               };
 
               modules = [
-                { nixpkgs.hostPlatform = system; }
+                {
+                  nixpkgs = {
+                    hostPlatform = system;
+                  };
+                }
 
                 systemConfig
 
                 inputs.home-manager.nixosModules.home-manager
                 inputs.impermanence.nixosModules.impermanence
                 inputs.agenix.nixosModules.default
+                inputs.stylix.nixosModules.stylix
 
                 ./modules/nixos
-                inputs.stylix.nixosModules.stylix
 
                 {
                   home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+
                     sharedModules = [
                       ./modules/home
                       inputs.nixcord.homeModules.nixcord
                       inputs.plasma-manager.homeModules.plasma-manager
                     ];
 
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-
                     extraSpecialArgs = {
-                      inherit inputs;
+                      inherit inputs lib username;
                       outputs = self;
-                      inherit lib username;
                     };
 
-                    users.${username} = {
-                      home.stateVersion = "25.11";
-                      imports = [ userConfigs ];
+                    users = {
+                      ${username} = {
+                        home = {
+                          stateVersion = "25.11";
+                        };
+
+                        imports = [
+                          userConfigs
+                        ];
+                      };
                     };
                   };
                 }
               ];
             };
-        in {
+        in
+        {
           nixosConfigurations = {
-            grovebringer = mkSystem {
-              systemConfig = ./hosts/grovebringer;
-              userConfigs = ./home/profiles/grovebringer.nix;
+            cherries = mkSystem {
+              systemConfig = ./hosts/cherries;
+              userConfigs = ./home/profiles/cherries.nix;
             };
 
             aureliteiron = mkSystem {

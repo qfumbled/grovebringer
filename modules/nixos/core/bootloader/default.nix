@@ -14,10 +14,14 @@
     };
 
     initrd = {
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+      };
     };
 
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = [
+      "ntfs"
+    ];
 
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -30,16 +34,24 @@
     ];
 
     loader = {
-      systemd-boot.enable = lib.mkForce false;
+      systemd-boot = {
+        enable = lib.mkForce false;
+      };
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
       limine = {
         enable = true;
-        style.wallpapers = [../../../../home/shared/walls/plant.jpg];
+        style = {
+          wallpapers = [
+            ../../../../home/shared/walls/aesthetic.png
+          ];
+        };
         efiSupport = true;
-        secureBoot.enable = false;
+        secureBoot = {
+          enable = false;
+        };
         maxGenerations = 15;
       };
     };
@@ -54,9 +66,13 @@
     };
   };
 
-  systemd.services.nix-daemon = {
-    environment = {
-      TMPDIR = "/var/tmp";
+  systemd = {
+    services = {
+      nix-daemon = {
+        environment = {
+          TMPDIR = "/var/tmp";
+        };
+      };
     };
   };
 

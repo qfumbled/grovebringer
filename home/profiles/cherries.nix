@@ -8,19 +8,10 @@
 }:
 
 {
-  imports = [
-    (if builtins.pathExists ./hardware.nix 
-     then ./hardware.nix 
-     else /etc/hardware-configuration.nix)
-  ];
-  networking.hostName = "aureliteiron";
   funkouna = {
     desktop = {
       plasma = {
         enable = true;
-      };
-      niri = {
-        enable = false;
       };
     };
   };
@@ -49,8 +40,8 @@
 
     packages = with pkgs; [
       foot
-      statix
       app2unit
+      statix
       asciinema_3
       bitwarden-desktop
       bore-cli
@@ -76,7 +67,6 @@
       gping
       grimblast
       gum
-      helmfile
       httpie
       imagemagick
       inotify-tools

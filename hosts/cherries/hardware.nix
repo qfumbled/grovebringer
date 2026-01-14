@@ -21,7 +21,6 @@
         "vmd"
         "ahci"
         "nvme"
-        "usbhid"
         "usb_storage"
         "sd_mod"
       ];
@@ -29,30 +28,30 @@
       ];
     };
     kernelModules = [
-      "kvm-amd"
+      "kvm-intel"
     ];
     extraModulePackages = [
     ];
-    initrd.luks.devices."luks-9226a5b1-b7c4-4fb7-af1c-3cfde55ac4ea".device = "/dev/disk/by-uuid/9226a5b1-b7c4-4fb7-af1c-3cfde55ac4ea";
+    initrd.luks.devices."luks-ebb3f200-58ce-4881-aa06-b1902cf4e768".device = "/dev/disk/by-uuid/ebb3f200-58ce-4881-aa06-b1902cf4e768";
   };
 
   fileSystems = {
     "/" = {
-      device = "/dev/mapper/luks-9226a5b1-b7c4-4fb7-af1c-3cfde55ac4ea";
+      device = "/dev/mapper/luks-ebb3f200-58ce-4881-aa06-b1902cf4e768";
       fsType = "btrfs";
       options = [
         "subvol=@"
       ];
     };
     "/home" = {
-      device = "/dev/mapper/luks-9226a5b1-b7c4-4fb7-af1c-3cfde55ac4ea";
+      device = "/dev/mapper/luks-ebb3f200-58ce-4881-aa06-b1902cf4e768";
       fsType = "btrfs";
       options = [
         "subvol=@home"
       ];
     };
     "/boot" = {
-      device = "/dev/disk/by-uuid/8874-ED17";
+      device = "/dev/disk/by-uuid/D763-93A3";
       fsType = "vfat";
       options = [
         "fmask=0077"
@@ -65,5 +64,5 @@
   ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

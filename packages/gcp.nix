@@ -12,14 +12,14 @@ pkgs.writeShellScriptBin "gcp" ''
   # Stage all changes
   git add --all
 
-  # Commit (allow empty in case nothing changed)
-  git commit --allow-empty -m "$1"
+  # Commit (allow empty)
+  git commit --allow-empty -m "$*"
   if [ $? -ne 0 ]; then
     echo "Nothing to commit"
     exit 0
   fi
 
-  # Try to push
+  # Push safely
   git push --force-with-lease
   if [ $? -ne 0 ]; then
     echo "Push failed, attempting 'git pull --rebase'..."
