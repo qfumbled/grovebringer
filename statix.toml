@@ -1,8 +1,30 @@
 disabled = [
-	"repeated_keys",
-	"useless_parens"
+  "repeated_keys",
+  "useless_parens",
+  "collapsible_let_in",
+  "eta_reduction",
+  "manual_inherit",
+  "manual_inherit_from"
 ]
 
 ignore = [
-	"**/lib/default.nix"
+  "**/default.nix",
+  "lib/default.nix"
+]
+
+enabled = [
+  "bool_comparison",
+  "empty_let_in",
+  "legacy_let_syntax",
+  "empty_pattern",
+  "redundant_pattern_bind",
+  "unquoted_uri",
+  "deprecated_is_null",
+  "empty_inherit",
+  "faster_groupby",
+  "faster_zipattrswith",
+  "deprecated_to_path",
+  "bool_simplification",
+  "useless_has_attr",
+  "empty_list_concat"
 ]
