@@ -11,7 +11,7 @@ lib: pkgs: {
       last
       ;
     inherit (lib.attrsets) zipAttrsWith isAttrs;
-    
+
     mkIfElse =
       p: yes: no:
       mkMerge [

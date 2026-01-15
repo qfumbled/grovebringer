@@ -6,10 +6,9 @@
   username,
   ...
 }:
+
 {
-  imports = [
-    # Nothing to see here!
-  ] ++ lib.funkouna.readSubdirs ./.;
+  imports = lib.funkouna.readSubdirs ./.;
 
   home = {
     username = username;

@@ -1,5 +1,5 @@
 {
-  description = "spilling my guts right now";
+  description = " i'm spilling my guts right now";
 
   inputs = {
     nixpkgs = {

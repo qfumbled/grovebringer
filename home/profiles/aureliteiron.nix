@@ -8,19 +8,10 @@
 }:
 
 {
-  imports = [
-    (if builtins.pathExists ./hardware.nix 
-     then ./hardware.nix 
-     else /etc/hardware-configuration.nix)
-  ];
-  networking.hostName = "aureliteiron";
   funkouna = {
     desktop = {
       plasma = {
         enable = true;
-      };
-      niri = {
-        enable = false;
       };
     };
   };
@@ -31,7 +22,6 @@
     };
   };
 
-  # Plasma environment variables
   home = {
     sessionVariables = {
       XDG_CURRENT_DESKTOP = "KDE";
@@ -39,7 +29,7 @@
       XDG_SESSION_TYPE = "wayland";
       QT_QPA_PLATFORM = "wayland";
       QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      GDK_BACKEND = "wayland,x11";  # Fallback to X11 for compatibility
+      GDK_BACKEND = "wayland,x11";
       SDL_VIDEODRIVER = "wayland";
       CLUTTER_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
@@ -48,8 +38,6 @@
     };
 
     packages = with pkgs; [
-      foot
-      statix
       app2unit
       asciinema_3
       bitwarden-desktop
@@ -63,6 +51,7 @@
       eza
       fd
       feh
+      foot
       fx
       fzf
       gcc
@@ -76,7 +65,6 @@
       gping
       grimblast
       gum
-      helmfile
       httpie
       imagemagick
       inotify-tools
@@ -125,12 +113,14 @@
       starship
       stern
       syncthing
+      statix
       tldr
       up
       vlc
       wireplumber
       xdotool
       xwayland
+      foot
     ];
   };
 }

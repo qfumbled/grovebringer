@@ -35,3 +35,5 @@
 <div align="center">
 <sub>xek/goodbringer</sub>
 </div>
+
+- [ ] switch to swayfx

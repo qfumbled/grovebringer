@@ -1,35 +1,42 @@
 {
-  inputs,
-  lib,
   config,
   pkgs,
-  username,
   ...
 }:
 
+let
+  hardware =
+    if builtins.pathExists ./hardware.nix
+    then ./hardware.nix
+    else /etc/hardware-configuration.nix;
+in
 {
   imports = [
-    (if builtins.pathExists ./hardware.nix 
-     then ./hardware.nix 
-     else /etc/hardware-configuration.nix)
+    hardware
   ];
 
-  networking.hostName = "aureliteiron";
+  networking = {
+    hostName = "aureliteiron";
+  };
 
   funkouna = {
     services = {
       bluetooth = {
         enable = true;
       };
+
       audio = {
         enable = true;
       };
+
       flatpak = {
         enable = true;
       };
+
       kdeConnect = {
         enable = true;
       };
+
       sddm = {
         enable = true;
       };
@@ -39,16 +46,20 @@
       plasma = {
         enable = true;
       };
+
       wayland = {
         enable = true;
       };
+
       spotify = {
         enable = true;
       };
+
       minecraft = {
         enable = true;
       };
     };
+
     impermanence = {
       enable = false;
     };
