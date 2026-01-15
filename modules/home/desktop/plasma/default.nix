@@ -177,7 +177,6 @@ in
           middleClick = "paste";
         };
       };
-      };
     };
   };
 }
