@@ -12,5 +12,6 @@
     ./git
     ./xdg
     ./rnnoise
+    ./sops
   ];
 }

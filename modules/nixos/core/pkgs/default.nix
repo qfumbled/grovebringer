@@ -6,7 +6,7 @@
 }:
 
 let
-  gcp = import ../../../../packages/gcp.nix { inherit pkgs; };
+  gcp = import ../../../../packages/gcp/default.nix { inherit pkgs; };
 in
 {
   environment.systemPackages = [

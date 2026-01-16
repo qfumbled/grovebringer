@@ -36,4 +36,5 @@
 <sub>xek/goodbringer</sub>
 </div>
 
-- [ ] switch to river (cherries aka laptop.)
+- [ ] switch to a wm on cherries
+- [ ] sops (had it before but just removed it for now)

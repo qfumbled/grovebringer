@@ -1,0 +1,13 @@
+---
+keys:
+  - &75cherries age1s9qwejl2km8xjrcw47mndevfhv720pnrzd4a5d7j35rqk0mv65zq624j62
+  - &cherries age1s9qwejl2km8xjrcw47mndevfhv720pnrzd4a5d7j35rqk0mv65zq624j62
+creation_rules:
+  - path_regex: secrets/75cherries/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *75cherries
+  - path_regex: secrets/cherries/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *cherries
