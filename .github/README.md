@@ -27,6 +27,7 @@
 
 - [**kewin-y**](https://github.com/kewin-y) — Overall configuration and labwc ideas
 - [**elythh**](https://github.com/elythh) — Overall configuration and structural inspiration
+- [**astrid**](https://github.com/eepy-goddess/astrid-flake) - River Configuration from the older configuration
 - [**alexpkgs**](https://github.com/alexpkgs) — My older configuration
 - [**linuxmobile**](https://github.com/linuxmobile) — Part of his configuration
 
@@ -36,4 +37,4 @@
 <sub>xek/goodbringer</sub>
 </div>
 
-- [ ] switch to swayfx
+- [ ] switch to river (cherries aka laptop.)
