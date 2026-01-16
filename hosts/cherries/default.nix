@@ -15,6 +15,12 @@ in
     hardware
   ];
 
+  programs = {
+    river-classic = {
+      enable = true;
+    };
+  };
+
   networking = {
     hostName = "cherries";
   };

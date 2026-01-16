@@ -13,6 +13,9 @@
       plasma = {
         enable = true;
       };
+      river = {
+        enable = true;
+      };
     };
   };
 

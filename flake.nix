@@ -201,6 +201,7 @@
 
                     sharedModules = [
                       ./modules/home
+                      ./modules/home/desktop/river
                       inputs.nixcord.homeModules.nixcord
                       inputs.plasma-manager.homeModules.plasma-manager
                     ];
