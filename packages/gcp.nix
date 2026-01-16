@@ -4,15 +4,16 @@ pkgs.writeShellScriptBin "gcp" ''
   #!/usr/bin/env bash
 
   # Check for commit message
-  if [ -z "$1" ]; then
+  if [ $# -eq 0 ]; then
     echo "Usage: gcp \"commit message\""
+    echo "Example: gcp \"fix: updated river configuration\""
     exit 1
   fi
 
   # Stage all changes
   git add --all
 
-  # Commit (allow empty)
+  # Commit with all arguments
   git commit --allow-empty -m "$*"
   if [ $? -ne 0 ]; then
     echo "Nothing to commit"
@@ -36,5 +37,5 @@ pkgs.writeShellScriptBin "gcp" ''
     fi
   fi
 
-  echo "Commit and push successful."
+  echo "✅ Commit and push successful!"
 ''

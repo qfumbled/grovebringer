@@ -10,9 +10,6 @@
 {
   funkouna = {
     desktop = {
-      river = {
-        enable = false;
-      };
       plasma = {
         enable = true;
       };

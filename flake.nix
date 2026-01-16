@@ -117,6 +117,10 @@
         {
           formatter = pkgs.nixfmt;
 
+          packages = {
+            river = pkgs.callPackage ./packages/river { };
+          };
+
           devShells = {
             default = pkgs.mkShell {
               inherit (self.checks.${system}.pre-commit-check) shellHook;

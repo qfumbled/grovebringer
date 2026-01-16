@@ -14,13 +14,7 @@ in
   imports = [
     hardware
   ];
-
-  programs = {
-    river-classic = {
-      enable = true;
-    };
-  };
-
+  
   networking = {
     hostName = "cherries";
   };
