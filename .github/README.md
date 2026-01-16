@@ -1,7 +1,6 @@
 <div align="center">
 
-# unavoidable flake... or is it?
-
+# welcome to my unwacky NixOS flake... or is it 
 
 <img src="assets/NixOS.png" width="200" alt="NixOS Logo">
 
