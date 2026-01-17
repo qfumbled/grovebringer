@@ -159,7 +159,15 @@ in
       bluetooth = {
         enable = true;
       };
+         
+      printing = {
+        enable = false;
+      };
 
+      kanata = {
+        enable = true;
+      };
+       
       audio = {
         enable = true;
       };

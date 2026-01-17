@@ -83,7 +83,7 @@ in
       "vm.mmap_rnd_bits" = 32;
       "vm.mmap_rnd_compat_bits" = 16;
       "dev.tty.ldisc_autoload" = 0;
-      "vm.unprivileged_userfaultfd" = 0;
+      "vm.unprivileged_userfaultfd" = 1;
     };
 
     blacklistedKernelModules = [
@@ -155,6 +155,14 @@ in
 
   funkouna = {
     services = {
+      kanata = {
+        enable = true;
+      };
+
+      printing = {
+        enable = false;
+      };
+
       bluetooth = {
         enable = true;
       };
