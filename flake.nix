@@ -234,15 +234,6 @@
                     };
                   };
                 }
-                {
-                  nixpkgs = {
-                    overlays = [
-                      (final: prev: {
-                        adios = inputs.adios.packages.${system}.default or null;
-                      })
-                    ];
-                  };
-                }
               ];
             };
         in

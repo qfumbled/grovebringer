@@ -8,8 +8,6 @@
 let
   gcpPackage = import ../../../../packages/gcp/default.nix { inherit pkgs lib; };
   gcp = gcpPackage.gcp;
-  
-  # Import Spotify wrapper from packages
   spotifyPackage = import ../../../../packages/spotify/default.nix { inherit pkgs lib; };
   spotify-wayland = spotifyPackage.spotify-wayland;
 in

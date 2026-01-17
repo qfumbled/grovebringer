@@ -1,7 +1,7 @@
 {
   time = {
     hardwareClockInLocalTime = true;
-    timeZone                 = "US/Eastern";
+    timeZone                 = "Europe/Amsterdam";
   };
 
   i18n = {

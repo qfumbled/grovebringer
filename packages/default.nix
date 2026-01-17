@@ -5,7 +5,6 @@
 }:
 
 let
-  # Use passed lib or fallback to empty
   funkounaLib = if lib ? funkouna then lib.funkouna else {};
   readSubdirs = if lib ? funkouna then lib.funkouna.readSubdirs else (dir: []);
   packageDirs = readSubdirs ./.;
@@ -18,7 +17,6 @@ let
   }:
     pkgs.writeShellScriptBin name script;
   
-  # Simple wrapper utility (less strict)
   mkApplicationWrapper = args@{
     name ? "",
     package ? null,
@@ -207,7 +205,6 @@ let
   };
 in
 {
-  # Import all package directories
   imports = packageDirs;
   
   # Export utilities
