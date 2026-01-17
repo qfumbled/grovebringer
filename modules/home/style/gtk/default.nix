@@ -1,4 +1,3 @@
-# modules/home/style/gtk/default.nix
 { pkgs, lib, config, ... }:
 
 {
@@ -16,24 +15,32 @@
       package = lib.mkForce pkgs.adw-gtk3;
     };
 
-    gtk3.extraConfig = lib.mkForce {
-      gtk-application-prefer-dark-theme = 1;
-      gtk-decoration-layout = "menu:";
+    gtk3 = {
+      extraConfig = lib.mkForce {
+        gtk-application-prefer-dark-theme = 1;
+        gtk-decoration-layout = "menu:";
+      };
     };
 
-    gtk4.extraConfig = lib.mkForce {
-      gtk-application-prefer-dark-theme = 1;
+    gtk4 = {
+      extraConfig = lib.mkForce {
+        gtk-application-prefer-dark-theme = 1;
+      };
     };
   };
 
   stylix = {
     enable = true;
-    targets.gtk.enable = true;
-    targets.gtk.extraCss = lib.mkForce ''
-      * {
-        border-radius: 0;
-      }
-    '';
+    targets = {
+      gtk = {
+        enable = true;
+        extraCss = lib.mkForce ''
+          * {
+            border-radius: 0;
+          }
+        '';
+      };
+    };
   };
 
   home.packages = with pkgs; [

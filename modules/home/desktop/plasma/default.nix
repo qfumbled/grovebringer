@@ -31,9 +31,11 @@ in
       plasma = {
         enable = true;
         workspace = {
-          wallpaper = toString (./../../../../home/shared/walls/aesthetic.png);
+          wallpaper = toString (./../../../../home/shared/walls/plant.jpg);
           iconTheme = "Papirus-Dark";
           lookAndFeel = "org.kde.breeze.desktop";
+          theme = "Breeze";
+          colorScheme = "Breeze";
         };
         shortcuts = {
           "kwin" = {
@@ -62,20 +64,54 @@ in
         };
         panels = [
           {
-            opacity = "opaque";
-            location = "bottom";
-            height = 32;
+            location = "top";
+            height = 30;
             floating = false;
             widgets = [
-              "org.kde.plasma.kickoff"
+              {
+                kickoff = {
+                  icon = "system-search";
+                };
+              }
+              {
+                name = "org.dhruv8sh.kara";
+                config = {
+                  general = {
+                    type = 0;
+                  };
+                };
+              }
               "org.kde.plasma.panelspacer"
               {
                 digitalClock = {
-                  date.enable = false;
+                  date = {
+                    enable = false;
+                  };
                 };
               }
               "org.kde.plasma.panelspacer"
               "org.kde.plasma.systemtray"
+            ];
+          }
+
+          {
+            location = "bottom";
+            height = 48;
+            floating = true;
+            hiding = "autohide";
+            lengthMode = "fit";
+            widgets = [
+              {
+                name = "org.kde.plasma.icontasks";
+                config = {
+                  General = {
+                    launchers = [
+                      "applications:firefox.desktop"
+                      "applications:org.kde.dolphin.desktop"
+                    ];
+                  };
+                };
+              }
             ];
           }
         ];

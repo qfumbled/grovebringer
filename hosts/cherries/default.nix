@@ -14,7 +14,7 @@ in
   imports = [
     hardware
   ];
-  
+
   networking = {
     hostName = "cherries";
   };
@@ -57,7 +57,7 @@ in
     };
 
     impermanence = {
-      enable = false;
+      enable = true;
     };
   };
 }

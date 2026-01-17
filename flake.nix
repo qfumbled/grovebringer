@@ -5,12 +5,14 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
       inputs = {
+        # ...
       };
     };
 
     systems = {
       url = "github:nix-systems/default-linux";
       inputs = {
+        # ...
       };
     };
 
@@ -52,6 +54,7 @@
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs = {
+        # ...
       };
     };
 
@@ -110,6 +113,7 @@
       systems = import inputs.systems;
 
       imports = [
+        # ...
       ];
 
       perSystem =
@@ -228,6 +232,15 @@
                         ];
                       };
                     };
+                  };
+                }
+                {
+                  nixpkgs = {
+                    overlays = [
+                      (final: prev: {
+                        adios = inputs.adios.packages.${system}.default or null;
+                      })
+                    ];
                   };
                 }
               ];

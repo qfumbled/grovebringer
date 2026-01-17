@@ -61,7 +61,7 @@ in
     };
 
     impermanence = {
-      enable = false;
+      enable = true;  
     };
   };
 }

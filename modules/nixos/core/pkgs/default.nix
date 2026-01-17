@@ -6,7 +6,12 @@
 }:
 
 let
-  gcp = import ../../../../packages/gcp/default.nix { inherit pkgs; };
+  gcpPackage = import ../../../../packages/gcp/default.nix { inherit pkgs lib; };
+  gcp = gcpPackage.gcp;
+  
+  # Import Spotify wrapper from packages
+  spotifyPackage = import ../../../../packages/spotify/default.nix { inherit pkgs lib; };
+  spotify-wayland = spotifyPackage.spotify-wayland;
 in
 {
   environment.systemPackages = [
@@ -34,5 +39,6 @@ in
     pkgs.fastfetch
     pkgs.obs-studio
     gcp
+    spotify-wayland
   ];
 }
