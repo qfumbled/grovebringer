@@ -1,30 +1,18 @@
-# .github/workflows/ci.yml
-name: Build
+name: "Build"
 on:
   workflow_dispatch:
   push:
     paths:
-      - "**/*.nix"
+      - "**.nix"
       - "flake.lock"
       - ".github/workflows/ci.yml"
-  pull_request:
-    paths:
-      - "**/*.nix"
-      - "flake.lock"
-      - ".github/workflows/ci.yml"
-  schedule:
-    - cron: '0 0 * * *'  # Daily at midnight UTC
 
 jobs:
   build-config:
     strategy:
       matrix:
         include:
-          - hostName: grovebringer
-            nixosCfgKey: grovebringer
-            homeCfgKey: grovebringer
-            os-label: ubuntu-latest
-          - hostName: aureliteiron
+          - hostName: cherries
             nixosCfgKey: aureliteiron
             homeCfgKey: aureliteiron
             os-label: ubuntu-latest
@@ -37,28 +25,38 @@ jobs:
         uses: easimon/maximize-build-space@master
         with:
           build-mount-path: /nix
-          root-reserve-mb: 5120
+          root-reserve-mb: 1024   # leave 1 GB for system
           remove-dotnet: true
           remove-android: true
           remove-haskell: true
 
       - uses: actions/checkout@v4
 
-      - name: Install Nix with experimental features
-        uses: cachix/install-nix-action@v20
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes pipe-operators
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v30
 
       - name: Restore and cache Nix store
-        uses: actions/cache@v3
+        uses: nix-community/cache-nix-action@v6
         with:
-          path: /nix/store
-          key: nix-store-${{ runner.os }}-${{ hashFiles('flake.lock') }}
-          restore-keys: |
-            nix-store-${{ runner.os }}-
-            nix-store-
+          primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock') }}
+          restore-prefixes-first-match: nix-${{ runner.os }}-
+          gc-max-store-size-linux: 2147483648 # 2 GB for GC
+          purge: false
 
       - name: Build NixOS Configuration
         if: ${{ contains(toJSON(matrix), 'nixosCfgKey') && matrix.nixosCfgKey != '' }}
-        run: nix build .#nixosConfigurations.${{ matrix.nixosCfgKey }}.config.system.build.toplevel --extra-experimental-features 'nix-command flakes pipe-operators'
+        run: nix build .#nixosConfigurations.${{ matrix.nixosCfgKey }}.config.system.build.toplevel
+
+  check_flake:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: "experimental-features = nix-command flakes pipe-operators"
+
+      - name: Check Flake
+        run: nix flake check --keep-going
