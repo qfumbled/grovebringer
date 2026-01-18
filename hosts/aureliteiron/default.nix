@@ -159,6 +159,10 @@ in
         enable = true;
       };
 
+      tpm = {
+        enable = true;
+      };
+
       printing = {
         enable = false;
       };
@@ -189,16 +193,16 @@ in
         enable = true;
       };
 
-      wayland = {
-        enable = true;
-      };
-
       spotify = {
         enable = true;
       };
 
       minecraft = {
         enable = true;
+      };
+
+      hyprland = {
+        enable = false;
       };
     };
 

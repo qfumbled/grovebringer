@@ -168,6 +168,10 @@ in
         enable = true;
       };
        
+      tpm = {
+        enable = true;
+      };
+
       audio = {
         enable = true;
       };
@@ -195,6 +199,10 @@ in
       };
 
       minecraft = {
+        enable = true;
+      };
+
+      hyprland = {
         enable = true;
       };
     };
