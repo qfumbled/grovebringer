@@ -39,4 +39,4 @@
 - [linuxmobile](https://github.com/linuxmobile) - Configuration references
 
 ---
-**Budapest HU**
+**Boston, Massachusetts**
