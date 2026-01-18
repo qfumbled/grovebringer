@@ -21,13 +21,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      pkgs.prismlauncher
-      pkgs.openjdk17
-    ];
+    environment = {
+      systemPackages = [
+        pkgs.prismlauncher
+        pkgs.openjdk17
+      ];
 
-    environment.variables = {
-      JAVA_HOME = "${pkgs.openjdk17}";
+      variables = {
+        JAVA_HOME = "${pkgs.openjdk17}";
+      };
     };
   };
 }

@@ -30,9 +30,16 @@ in
   };
 
   boot = {
-    kernelModules = ["i915" "v4l2loopback" "i2c-dev" "efivarfs"];
+    kernelModules = [
+      "i915"
+      "v4l2loopback"
+      "i2c-dev"
+      "efivarfs"
+    ];
     kernelPackages = lib.mkForce pkgs.linuxPackages_hardened;
-    extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
     kernelParams = [
       "intel_pstate=active"
       "intel_iommu=on"
@@ -57,34 +64,36 @@ in
       "init_on_free=1"
     ];
 
-    kernel.sysctl = {
-      "vm.swappiness" = 10;
-      "vm.vfs_cache_pressure" = 50;
-      "vm.dirty_ratio" = 10;
-      "vm.dirty_background_ratio" = 5;
+    kernel = {
+      sysctl = {
+        "vm.swappiness" = 10;
+        "vm.vfs_cache_pressure" = 50;
+        "vm.dirty_ratio" = 10;
+        "vm.dirty_background_ratio" = 5;
 
-      "kernel.nmi_watchdog" = 0;
+        "kernel.nmi_watchdog" = 0;
 
-      "net.core.netdev_budget" = 600;
-      "net.core.netdev_max_backlog" = 16384;
-      "net.ipv4.tcp_no_metrics_save" = 1;
-      "net.ipv4.tcp_moderate_rcvbuf" = 1;
+        "net.core.netdev_budget" = 600;
+        "net.core.netdev_max_backlog" = 16384;
+        "net.ipv4.tcp_no_metrics_save" = 1;
+        "net.ipv4.tcp_moderate_rcvbuf" = 1;
 
-      "kernel.sysrq" = 0;
-      "kernel.kptr_restrict" = 2;
-      "kernel.ftrace_enabled" = false;
-      "kernel.dmesg_restrict" = 1;
-      "fs.protected_fifos" = 2;
-      "fs.protected_regular" = 2;
-      "fs.suid_dumpable" = 0;
-      "net.core.bpf_jit_harden" = 2;
+        "kernel.sysrq" = 0;
+        "kernel.kptr_restrict" = 2;
+        "kernel.ftrace_enabled" = false;
+        "kernel.dmesg_restrict" = 1;
+        "fs.protected_fifos" = 2;
+        "fs.protected_regular" = 2;
+        "fs.suid_dumpable" = 0;
+        "net.core.bpf_jit_harden" = 2;
 
-      "kernel.core_uses_pid" = 1;
-      "kernel.randomize_va_space" = 2;
-      "vm.mmap_rnd_bits" = 32;
-      "vm.mmap_rnd_compat_bits" = 16;
-      "dev.tty.ldisc_autoload" = 0;
-      "vm.unprivileged_userfaultfd" = 0;
+        "kernel.core_uses_pid" = 1;
+        "kernel.randomize_va_space" = 2;
+        "vm.mmap_rnd_bits" = 32;
+        "vm.mmap_rnd_compat_bits" = 16;
+        "dev.tty.ldisc_autoload" = 0;
+        "vm.unprivileged_userfaultfd" = 0;
+      };
     };
 
     blacklistedKernelModules = [
@@ -142,10 +151,12 @@ in
   };
 
   systemd = {
-    coredump.extraConfig = ''
-      Storage=none
-      ProcessSizeMax=0
-    '';
+    coredump = {
+      extraConfig = ''
+        Storage=none
+        ProcessSizeMax=0
+      '';
+    };
   };
 
   services = {
@@ -159,7 +170,7 @@ in
       bluetooth = {
         enable = true;
       };
-         
+
       printing = {
         enable = false;
       };
@@ -167,7 +178,7 @@ in
       kanata = {
         enable = true;
       };
-       
+
       tpm = {
         enable = true;
       };

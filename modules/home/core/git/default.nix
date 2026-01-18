@@ -1,7 +1,5 @@
 {
-  inputs,
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -31,7 +29,7 @@
           email = "chimeridum@proton.me";
           name = "chimeri";
         };
-        
+
         core = {
           editor = "kate";
           excludesfile = "~/.config/git/ignore";
@@ -43,11 +41,11 @@
           reflog = "delta";
           show = "delta";
         };
-        
+
         credential.helper = "store";
         push.autoSetupRemote = true;
         rerere.enable = true;
-        
+
         color = {
           ui = true;
           pager = true;

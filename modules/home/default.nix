@@ -1,8 +1,5 @@
 {
   lib,
-  config,
-  pkgs,
-  inputs,
   username,
   ...
 }:
@@ -15,7 +12,7 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.11";
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "zed-editor";
       BROWSER = "firefox";
       TERMINAL = "foot";
     };

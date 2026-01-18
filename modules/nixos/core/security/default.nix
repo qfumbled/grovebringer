@@ -1,7 +1,4 @@
 {
-  lib,
-  config,
-  pkgs,
   ...
 }:
 
@@ -28,11 +25,11 @@
       allowedUDPPorts = [];
       logRefusedConnections = true;
       logRefusedPackets = true;
-      
+
       extraCommands = ''
         iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m recent --set --name ssh_bruteforce
         iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW -m recent --update --seconds 60 --hitcount 4 --rttl --name ssh_bruteforce -j DROP
-        
+
         iptables -A INPUT -p tcp --dport 23 -j DROP
         iptables -A INPUT -p tcp --dport 135 -j DROP
         iptables -A INPUT -p tcp --dport 139 -j DROP

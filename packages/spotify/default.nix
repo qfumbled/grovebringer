@@ -1,14 +1,14 @@
 {
   lib,
-  pkgs, 
-  ... 
+  pkgs,
+  ...
 }:
-
 let
-  utils = import ../default.nix { inherit lib pkgs; };
+  utils = import ../default.nix {
+    inherit lib pkgs;
+  };
   inherit (utils) mkWrapper;
-  
-  # Create the wrapped spotify
+
   spotify-wrapped = mkWrapper {
     package = pkgs.spotify;
     name = "spotify";
@@ -22,7 +22,7 @@ let
       QT_QPA_PLATFORM = "wayland";
     };
   };
-  
+
   spotify-wayland = pkgs.symlinkJoin {
     name = "spotify-wayland";
     paths = [ spotify-wrapped ];
@@ -33,6 +33,6 @@ let
 in
 {
   name = "spotify";
-  
+
   inherit spotify-wrapped spotify-wayland;
 }

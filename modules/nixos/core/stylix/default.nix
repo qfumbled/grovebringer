@@ -1,7 +1,5 @@
 {
-  inputs,
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -35,8 +33,12 @@
       };
 
       targets = {
-        gtk.enable = true;
-        console.enable = true;
+        gtk = {
+          enable = true;
+        };
+        console = {
+          enable = true;
+        };
         qt = {
           enable = true;
           platform = lib.mkDefault "qtct";
@@ -45,4 +47,3 @@
     };
   };
 }
-

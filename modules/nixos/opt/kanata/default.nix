@@ -5,8 +5,14 @@
 }:
 
 {
-  options.funkouna.services.kanata = {
-    enable = lib.mkEnableOption "kanata";
+  options = {
+    funkouna = {
+      services = {
+        kanata = {
+          enable = lib.mkEnableOption "kanata";
+        };
+      };
+    };
   };
 
   config = {

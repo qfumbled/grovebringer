@@ -1,16 +1,17 @@
 {
-   lib ? {},
-   pkgs, 
-   ... 
+  lib ? { },
+  pkgs,
+  ...
 }:
-
 let
-  utils = import ../default.nix { inherit lib pkgs; };
+  utils = import ../default.nix {
+    inherit lib pkgs;
+  };
   inherit (utils) mkShell;
 in
 {
   name = "gcp";
-  
+
   gcp = mkShell {
     name = "gcp";
     script = ''
@@ -115,7 +116,7 @@ in
 
       check_environment() {
         log_info "Checking environment..."
-        
+
         if ! git rev-parse --git-dir 2>/dev/null; then
           log_error "Not in a git repository"
           exit 1
@@ -145,7 +146,7 @@ in
           log_verbose "Would run: git add --all"
           return 0
         fi
-    
+
         if ! git add --all; then
           log_error "Failed to stage changes"
           exit 1
@@ -156,12 +157,12 @@ in
       git_commit() {
         local message="$*"
         log_info "Creating commit..."
-    
+
         if [ "$DRY_RUN" = true ]; then
           log_verbose "Would run: git commit --allow-empty -m \"$message\""
           return 0
         fi
-    
+
         if ! git commit --allow-empty -m "$message"; then
           log_error "Failed to create commit"
           exit 1
@@ -171,12 +172,12 @@ in
 
       git_push() {
         log_info "Pushing to remote repository..."
-    
+
         if [ "$DRY_RUN" = true ]; then
           log_verbose "Would run: git push --force-with-lease"
           return 0
         fi
-    
+
         if ! git push --force-with-lease; then
           log_warn "Push failed, attempting automatic rebase..."
           if ! git pull --rebase; then
@@ -207,20 +208,20 @@ in
         local current_step=0
 
         check_environment
-    
+
         current_step=$((current_step + 1))
         progress "Git operations" "$current_step" "$total_steps"
         git_add "$@"
-    
+
         current_step=$((current_step + 1))
         progress "Git operations" "$current_step" "$total_steps"
         git_commit "$@"
-    
+
         current_step=$((current_step + 1))
         progress "Git operations" "$current_step" "$total_steps"
         git_push
 
-        echo # New line after progress
+        echo
         if [ "$DRY_RUN" = true ]; then
           log_info "Dry run completed successfully"
         else

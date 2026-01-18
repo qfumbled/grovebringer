@@ -1,10 +1,11 @@
+# cherry dialect statix
+
 disabled = [
-  "repeated_keys",
-  "useless_parens",
   "collapsible_let_in",
   "eta_reduction",
   "manual_inherit",
-  "manual_inherit_from"
+  "manual_inherit_from",
+  "useless_parens"
 ]
 
 ignore = [
@@ -26,5 +27,6 @@ enabled = [
   "deprecated_to_path",
   "bool_simplification",
   "useless_has_attr",
-  "empty_list_concat"
+  "empty_list_concat",
+  "repeated_keys"
 ]

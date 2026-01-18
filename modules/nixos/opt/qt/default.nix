@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }:
 
@@ -21,6 +20,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    qt.enable = true;
+    qt = {
+      enable = true;
+    };
   };
 }

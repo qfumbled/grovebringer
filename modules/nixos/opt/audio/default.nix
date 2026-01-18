@@ -54,41 +54,43 @@ in
           enable = true;
 
           configPackages =
-            mkIf cfg.bluetooth.enable [
-              (pkgs.writeTextDir
-                "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua"
-                ''
-                  bluez_monitor.properties = {
-                    ["bluez5.enable-sbc-xq"] = true,
-                    ["bluez5.enable-msbc"] = true,
-                    ["bluez5.enable-hw-volume"] = true,
-                    ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
-                    ["bluez5.a2dp.ldac.quality"] = "auto",
-                    ["bluez5.a2dp.aac.bitratemode"] = 0,
-                    ["bluez5.default.rate"] = 48000,
-                    ["bluez5.default.channels"] = 2,
-                    ["bluez5.headset-profile"] = "a2dp-only"
-                  }
-                ''
-              )
-            ];
+            mkIf cfg.bluetooth.enable
+              [
+                (pkgs.writeTextDir
+                  "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua"
+                  ''
+                    bluez_monitor.properties = {
+                      ["bluez5.enable-sbc-xq"] = true,
+                      ["bluez5.enable-msbc"] = true,
+                      ["bluez5.enable-hw-volume"] = true,
+                      ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
+                      ["bluez5.a2dp.ldac.quality"] = "auto",
+                      ["bluez5.a2dp.aac.bitratemode"] = 0,
+                      ["bluez5.default.rate"] = 48000,
+                      ["bluez5.default.channels"] = 2,
+                      ["bluez5.headset-profile"] = "a2dp-only"
+                    }
+                  ''
+                )
+              ];
         };
 
         extraConfig =
-          mkIf cfg.lowLatency.enable {
-            pipewire = {
-              "99-custom" = {
-                "context.properties" = {
-                  default.clock = {
-                    rate = 48000;
-                    quantum = 1024;
-                    min-quantum = 32;
-                    max-quantum = 2048;
+          mkIf cfg.lowLatency.enable
+            {
+              pipewire = {
+                "99-custom" = {
+                  "context.properties" = {
+                    default.clock = {
+                      rate = 48000;
+                      quantum = 1024;
+                      min-quantum = 32;
+                      max-quantum = 2048;
+                    };
                   };
                 };
               };
             };
-          };
       };
     };
 

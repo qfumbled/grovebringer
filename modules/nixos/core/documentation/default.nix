@@ -1,12 +1,11 @@
 {
-  lib,
   ...
 }:
 
 {
   documentation = {
     man = {
-      enable = false; 
+      enable = false;
     };
   };
 }

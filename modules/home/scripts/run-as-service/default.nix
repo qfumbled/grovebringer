@@ -28,5 +28,9 @@ let
   '';
 in
 {
-  home.packages = [ run-as-service ];
+  home = {
+    packages = [
+      run-as-service
+    ];
+  };
 }

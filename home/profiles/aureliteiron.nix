@@ -1,14 +1,20 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
-  username,
   ...
 }:
 
 {
   funkouna = {
+    programs = {
+      vicinae = {
+        enable = false;
+      };
+      discord = {
+        enable = true;
+      };
+    };
     desktop = {
       plasma = {
         enable = true;
@@ -99,7 +105,6 @@
       openssl
       opkssh
       pavucontrol
-      pfetch
       pgcli
       pinentry-gnome3
       playerctl

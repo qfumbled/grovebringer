@@ -1,14 +1,20 @@
 {
-  inputs,
   lib,
   config,
   pkgs,
-  username,
   ...
 }:
 
 {
   funkouna = {
+    programs = {
+      vicinae = {
+        enable = true;
+      };
+      discord = {
+        enable = true;
+      };
+    };
     desktop = {
       plasma = {
         enable = true;
@@ -48,6 +54,7 @@
       clipse
       colordiff
       onefetch
+      statix
     ];
   };
 }

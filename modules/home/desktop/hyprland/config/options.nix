@@ -10,6 +10,7 @@
         settings = {
     exec-once = [
       "clipse -listen"
+      "vicinae server"
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"

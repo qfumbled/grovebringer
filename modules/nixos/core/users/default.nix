@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   username,
   ...
@@ -24,14 +23,14 @@
           "adbusers"
           "plugdev"
         ];
-        shell = pkgs.fish; 
+        shell = pkgs.fish;
       };
     };
   };
 
   programs = {
     fish = {
-      enable = true;  
+      enable = true;
     };
   };
 }

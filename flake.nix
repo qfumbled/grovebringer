@@ -1,107 +1,5 @@
 {
-  description = " i'm spilling my guts right now";
-
-  inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-      inputs = {
-        # ...
-      };
-    };
-
-    systems = {
-      url = "github:nix-systems/default-linux";
-      inputs = {
-        # ...
-      };
-    };
-
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs = {
-        systems.follows = "systems";
-      };
-    };
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs = {
-        nixpkgs-lib.follows = "nixpkgs";
-      };
-    };
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    pre-commit-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    impermanence = {
-      url = "github:nix-community/impermanence";
-      inputs = {
-        # ...
-      };
-    };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    nixcord = {
-      url = "github:kaylorben/nixcord";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
-
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home-manager";
-      };
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
-      };
-    };
-  };
+  description = " complex flake by qfumbled ";
 
   outputs =
     inputs @ {
@@ -127,7 +25,7 @@
         }:
         {
           formatter = pkgs.nixfmt;
-        
+
           devShells = {
             default = pkgs.mkShell {
               inherit (self.checks.${system}.pre-commit-check) shellHook;
@@ -251,4 +149,106 @@
           };
         };
     };
+
+  inputs = {
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+      inputs = {
+        # ...
+      };
+    };
+
+    systems = {
+      url = "github:nix-systems/default-linux";
+      inputs = {
+        # ...
+      };
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs = {
+        systems.follows = "systems";
+      };
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs = {
+        nixpkgs-lib.follows = "nixpkgs";
+      };
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        # ...
+      };
+    };
+
+    stylix = {
+      url = "github:danth/stylix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+  };
 }

@@ -4,10 +4,18 @@
   ...
 }:
 let
-  browser = [ "firefox" ];
-  imageViewer = [ "org.gnome.Loupe" ];
-  videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
-  audioPlayer = [ "io.bassi.Amberol" ];
+  browser = [
+    "firefox"
+  ];
+  imageViewer = [
+    "org.gnome.Loupe"
+  ];
+  videoPlayer = [
+    "io.github.celluloid_player.Celluloid"
+  ];
+  audioPlayer = [
+    "io.bassi.Amberol"
+  ];
 
   xdgAssociations =
     type: program: list:
@@ -24,17 +32,20 @@ let
     "jpeg"
     "gif"
   ];
+
   video = xdgAssociations "video" videoPlayer [
     "mp4"
     "avi"
     "mkv"
   ];
+
   audio = xdgAssociations "audio" audioPlayer [
     "mp3"
     "flac"
     "wav"
     "aac"
   ];
+
   browserTypes =
     (xdgAssociations "application" browser [
       "json"
@@ -52,14 +63,21 @@ let
       "unknown"
     ]);
 
-  # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) (
     {
-      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
+      "application/pdf" = [
+        "org.pwmt.zathura-pdf-mupdf"
+      ];
       "text/html" = browser;
-      "text/plain" = [ "Helix" ];
-      "x-scheme-handler/chrome" = [ "firefox" ];
-      "inode/directory" = [ "nemo" ];
+      "text/plain" = [
+        "Helix"
+      ];
+      "x-scheme-handler/chrome" = [
+        "firefox"
+      ];
+      "inode/directory" = [
+        "nemo"
+      ];
     }
     // image
     // video
@@ -71,12 +89,10 @@ in
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
-
     mimeApps = {
       enable = true;
       defaultApplications = associations;
     };
-
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -86,10 +102,11 @@ in
     };
   };
 
-  home.packages = [
-    # used by `gio open` and xdp-gtk
-    (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      foot "$@"
-    '')
-  ];
+  home = {
+    packages = [
+      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
+        foot "$@"
+      '')
+    ];
+  };
 }

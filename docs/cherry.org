@@ -1,0 +1,206 @@
+#+TITLE: Cherry Dialect
+#+AUTHOR: xander
+#+DATE: 2026
+
+Cherry Dialect is a strict, readable style for writing Nix.
+
+** Core Rules
+
+*** Function Header
+
+Recommended form:
+
+#+BEGIN_SRC nix
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+#+END_SRC
+
+You don't need to strictly follow this, but it's the recommended style.
+Use what makes sense for your context.
+
+*** Attribute Sets
+
+Always open sets like this:
+
+#+BEGIN_SRC nix
+name = {
+};
+#+END_SRC
+
+Never:
+
+#+BEGIN_SRC nix
+name = {};
+#+END_SRC
+
+*** Nesting Rules
+
+One block per level. Never collapse nested sets.
+
+#+BEGIN_SRC nix
+users = {
+  ${username} = {
+    isNormalUser = true;
+  };
+};
+#+END_SRC
+
+*** Empty Sets
+
+Empty sets are valid and intentional.
+
+#+BEGIN_SRC nix
+inputs = {
+};
+#+END_SRC
+
+*** Strings
+
+Spacing inside quotes is optional.
+
+#+BEGIN_SRC nix
+"hello"
+" hello "
+#+END_SRC
+
+Both are valid.
+
+*** Lists
+
+Always use vertical formatting for lists:
+
+#+BEGIN_SRC nix
+buildInputs = [
+  pkg1
+  pkg2
+];
+#+END_SRC
+
+Never:
+
+#+BEGIN_SRC nix
+buildInputs = [ pkg1 pkg2 ];
+#+END_SRC
+
+** Examples
+
+*** Basic Module
+
+#+BEGIN_SRC nix
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
+  programs = {
+    git = {
+      enable = true;
+      userName = "user";
+      userEmail = "user@example.com";
+    };
+  };
+}
+#+END_SRC
+
+*** Flake Structure
+
+#+BEGIN_SRC nix
+{
+  description = " My flake ";
+
+  inputs = {
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+      inputs = {
+      };
+    };
+  };
+
+  outputs =
+    {
+      self,
+      nixpkgs,
+      ...
+    }:
+    {
+      nixosConfigurations = {
+        hostname = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./configuration.nix
+          ];
+        };
+      };
+    };
+}
+#+END_SRC
+
+*** Let Bindings
+
+#+BEGIN_SRC nix
+{
+  pkgs,
+  ...
+}:
+let
+  myVar = "value";
+  mySet = {
+    key = "value";
+  };
+in
+{
+  programs = {
+    example = {
+      enable = true;
+    };
+  };
+}
+#+END_SRC
+
+** Best Practices
+
+*** Dead Code
+
+Removing dead code is optional but recommended.
+Keep your config clean when possible.
+
+** Philosophy
+
+- Clarity over shortcuts
+- Consistency over convention
+- Vertical space is free
+- Readability first
+
+Cherry Dialect is opinionated by design.
+
+** Optional Conventions
+
+*** Optional Quoting
+
+#+BEGIN_SRC nix
+description = " spilling my guts right now ";
+#+END_SRC
+
+*** Configuration Organization
+
+Group related settings together:
+
+#+BEGIN_SRC nix
+programs = {
+  git = {
+    enable = true;
+  };
+
+  zsh = {
+    enable = true;
+  };
+};
+#+END_SRC
+
+- Big thanks to @elythh for parts of the style :)

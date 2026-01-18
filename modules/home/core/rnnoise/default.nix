@@ -1,15 +1,15 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 let
   format = pkgs.formats.json { };
 in
 {
-  config = {
-    # Write a PipeWire userspace configuration based on werman's noise-supression-for-voice
-    # for usage instructions, see:
-    # <https://github.com/werman/noise-suppression-for-voice?tab=readme-ov-file#linux>
-    xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf".source =
-      format.generate "99-input-denoising.conf"
-        {
+  xdg = {
+    configFile = {
+      "pipewire/pipewire.conf.d/99-input-denoising.conf" = {
+        source = format.generate "99-input-denoising.conf" {
           "context.modules" = [
             {
               "name" = "libpipewire-module-filter-chain";
@@ -22,7 +22,7 @@ in
                       "type" = "ladspa";
                       "name" = "rnnoise";
                       "plugin" = "${pkgs.rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
-                      "label" = "noise_suppressor_mono"; # or "noise_suppressor_stereo", consumes twice the resources
+                      "label" = "noise_suppressor_mono";
                       "control" = {
                         "VAD Threshold (%)" = 50.0;
                         "VAD Grace Period (ms)" = 200;
@@ -49,5 +49,7 @@ in
             }
           ];
         };
+      };
+    };
   };
 }

@@ -1,7 +1,4 @@
 {
-  config,
-  lib,
-  pkgs,
   ...
 }:
 
@@ -13,5 +10,6 @@
     ./xdg
     ./rnnoise
     ./sops
+    ./zed
   ];
 }

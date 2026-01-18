@@ -45,7 +45,7 @@ in
             "Switch to Desktop 4" = "Meta+4";
             "Window to Desktop 2" = "Meta+Shift+2";
             "Window to Desktop 3" = "Meta+Shift+3";
-            "Window to Desktop 4" = "Meta+Shift+4"; 
+            "Window to Desktop 4" = "Meta+Shift+4";
           };
           "plasmashell" = {
             "activate task manager entry 1" = "none";
@@ -91,7 +91,6 @@ in
               "org.kde.plasma.systemtray"
             ];
           }
-
           {
             location = "bottom";
             height = 48;
