@@ -13,6 +13,9 @@
       plasma = {
         enable = true;
       };
+      hyprland = {
+        enable = false;
+      };
     };
   };
 

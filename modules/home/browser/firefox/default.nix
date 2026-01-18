@@ -29,11 +29,11 @@ in
       id = 0;
       isDefault = true;
 
-      extraConfig = lib.concatStringsSep "\n" [
-        (lib.readFile "${betterfox}/Securefox.js")
-        (lib.readFile "${betterfox}/Fastfox.js")
-        (lib.readFile "${betterfox}/Peskyfox.js")
-      ];
+      extraConfig = ''
+        ${lib.readFile "${betterfox}/Securefox.js"}
+        ${lib.readFile "${betterfox}/Fastfox.js"}
+        ${lib.readFile "${betterfox}/Peskyfox.js"}
+      '';
 
       settings = {
         "browser.tabs.loadInBackground" = true;
@@ -295,11 +295,11 @@ in
       id = 1;
       isDefault = false;
 
-      extraConfig = lib.concatStringsSep "\n" [
-        (lib.readFile "${betterfox}/Securefox.js")
-        (lib.readFile "${betterfox}/Fastfox.js")
-        (lib.readFile "${betterfox}/Peskyfox.js")
-      ];
+      extraConfig = ''
+        ${lib.readFile "${betterfox}/Securefox.js"}
+        ${lib.readFile "${betterfox}/Fastfox.js"}
+        ${lib.readFile "${betterfox}/Peskyfox.js"}
+      '';
 
       settings = {
         # General

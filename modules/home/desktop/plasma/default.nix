@@ -31,11 +31,9 @@ in
       plasma = {
         enable = true;
         workspace = {
-          wallpaper = toString (./../../../../home/shared/walls/plant.jpg);
+          wallpaper = toString (./../../../../home/shared/walls/plant.png);
           iconTheme = "Papirus-Dark";
-          lookAndFeel = "org.kde.breeze.desktop";
-          theme = "Breeze";
-          colorScheme = "Breeze";
+          lookAndFeel = "org.kde.breezedark.desktop";
         };
         shortcuts = {
           "kwin" = {
