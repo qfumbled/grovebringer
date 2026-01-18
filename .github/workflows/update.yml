@@ -3,19 +3,17 @@ name: Bump Flake Inputs
 on:
   workflow_dispatch:
   schedule:
-    # Runs at 12 AM and 6 AM EST (converted to UTC: 05:00, 11:00)
-    - cron: '5 0 * * *'
-    - cron: '11 0 * * *'
+    - cron: '0 11 * * *'
 
 jobs:
   update-lockfile:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
@@ -26,9 +24,23 @@ jobs:
         uses: DeterminateSystems/update-flake-lock@main
         id: update
         with:
-          pr-title: ':package:(flake): update'
-          commit-msg: ':package:(flake): update'
-          auto-approve: true
+          pr-title: 'chore(flake): update inputs'
+          pr-labels: |
+            dependencies
+            automated
+          commit-msg: 'chore(flake): update inputs'
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Merge Changes
-        run: gh pr merge ${{ steps.update.outputs.pull-request-number }} --squash --delete-branch
+      - name: Approve PR
+        if: steps.update.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          gh pr review ${{ steps.update.outputs.pull-request-number }} --approve
+
+      - name: Enable Auto-merge
+        if: steps.update.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge ${{ steps.update.outputs.pull-request-number }} --auto --squash --delete-branch
