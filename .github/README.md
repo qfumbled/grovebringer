@@ -1,40 +1,38 @@
+# my complex heaven nix flake
+
 <div align="center">
-
-# welcome to my unwacky NixOS flake... or is it 
-
 <img src="assets/NixOS.png" width="200" alt="NixOS Logo">
-
----
-
-> *"You'll get there ! Running NixOS is a lot of fun, feels like there's always something to improve about your config."*  
-> — **Elythh**
-
 </div>
-
-<br>
 
 ## Hosts
 
 | Host | Type |
 |------|------|
-| `grovebringer` <img src="assets/1.png"> | Laptop |
-| `aureliteiron` <img src="assets/1.png"> | Desktop |
+| `cherries` | Laptop |
+| `aureliteiron` | Desktop |
 
-<br>
+## Installation 
 
-## Credits & Thanks
+0. Make sure nix-commands flakes and pipe-operators are enabled
+1. Clone the repository
+2. Edit `flake.nix` and change the username
+3. For hardware configuration:
+   - Delete `hardware.nix` to use `/etc/nixos/hardware-configuration.nix`
+   - Or modify the existing file
+   - May need `--impure` flag for detection
 
-- [**kewin-y**](https://github.com/kewin-y) — Overall configuration and labwc ideas
-- [**elythh**](https://github.com/elythh) — Overall configuration and structural inspiration
-- [**astrid**](https://github.com/eepy-goddess/astrid-flake) - River Configuration from the older configuration
-- [**alexpkgs**](https://github.com/alexpkgs) — My older configuration
-- [**linuxmobile**](https://github.com/linuxmobile) — Part of his configuration
+## ... TODO
+
+- [x] Switch to window manager on `cherries`
+- [x] Implement sops-nix for secrets management
+
+## Credits
+
+- [kewin-y](https://github.com/kewin-y) - LabWC configuration
+- [elythh](https://github.com/elythh) - Structural inspiration  
+- [astrid](https://github.com/eepy-goddess/astrid-flake) - River configuration
+- [alexpkgs](https://github.com/alexpkgs) - Previous configuration
+- [linuxmobile](https://github.com/linuxmobile) - Configuration references
 
 ---
-
-<div align="center">
-<sub>xek/goodbringer</sub>
-</div>
-
-- [ ] switch to a wm on cherries
-- [ ] sops (had it before but just removed it for now)
+**Budapest HU**
