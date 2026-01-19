@@ -202,10 +202,6 @@ in
         enable = true;
       };
 
-      nh = {
-        enable = false;
-      };
-
       spotify = {
         enable = true;
       };
