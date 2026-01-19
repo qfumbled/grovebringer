@@ -206,7 +206,7 @@ in
       };
 
       nh = {
-        enable = true;
+        enable = false;
       };
 
       spotify = {
