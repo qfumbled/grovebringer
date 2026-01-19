@@ -50,12 +50,12 @@ in
             };
 
             mods = [
-              "253a3a74-0cc4-47b7-8b82-996a64f030d5" # Floating History
-              "906c6915-5677-48ff-9bfc-096a02a72379" # Floating Status Bar
-              "c8d9e6e6-e702-4e15-8972-3596e57cf398" # Zen Back Forward
-              "f7c71d9a-bce2-420f-ae44-a64bd92975ab" # Better Unloaded Tabs
-              "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
-              "803c7895-b39b-458e-84f8-a521f4d7a064" # Hide Inactive Workspaces
+              "253a3a74-0cc4-47b7-8b82-996a64f030d5"
+              "906c6915-5677-48ff-9bfc-096a02a72379"
+              "c8d9e6e6-e702-4e15-8972-3596e57cf398"
+              "f7c71d9a-bce2-420f-ae44-a64bd92975ab"
+              "a6335949-4465-4b71-926c-4a52d34bc9c0"
+              "803c7895-b39b-458e-84f8-a521f4d7a064"
             ];
 
             search = {
@@ -109,6 +109,9 @@ in
             };
 
             settings = {
+              "ui.systemUsesDarkTheme" = 1;
+              "layout.css.prefers-color-scheme.content-override" = 0;
+
               "browser.aboutConfig.showWarning" = false;
               "browser.tabs.warnOnClose" = false;
               "browser.tabs.hoverPreview.enabled" = true;
@@ -169,7 +172,7 @@ in
             spaces = {
               "Rendezvous" = {
                 id = "572910e1-4468-4832-a869-0b3a93e2f165";
-                icon = "🎭";
+                icon = ":)";
                 position = 1000;
               };
             };

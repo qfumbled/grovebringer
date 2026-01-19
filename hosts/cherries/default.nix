@@ -36,7 +36,7 @@ in
       "i2c-dev"
       "efivarfs"
     ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_hardened;
+    kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];

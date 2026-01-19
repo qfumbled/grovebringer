@@ -11,7 +11,6 @@
       systems = import inputs.systems;
 
       imports = [
-        # ...
       ];
 
       perSystem =
@@ -154,16 +153,10 @@
   inputs = {
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
-      inputs = {
-        # ...
-      };
     };
 
     systems = {
       url = "github:nix-systems/default-linux";
-      inputs = {
-        # ...
-      };
     };
 
     flake-utils = {
@@ -203,9 +196,6 @@
 
     impermanence = {
       url = "github:nix-community/impermanence";
-      inputs = {
-        # ...
-      };
     };
 
     stylix = {
