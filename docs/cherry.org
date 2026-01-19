@@ -1,6 +1,6 @@
 #+TITLE: Cherry Dialect
-#+AUTHOR: xander
-#+DATE: 2026
+#+AUTHOR: xander h.
+#+DATE: Jan 1 2026
 
 Cherry Dialect is a strict, readable style for writing Nix.
 
@@ -204,3 +204,4 @@ programs = {
 #+END_SRC
 
 - Big thanks to @elythh for parts of the style :)
+- ssh been keeping this dialect a secret since decemeber and thought about using this

@@ -128,7 +128,7 @@
       ];
       shellInitLast = ''
           export PATH="$STRUKTUR_PATH/bin:$PATH"
-          export EDITOR=zed-editor
+          export EDITOR=zed
           status is-interactive; and begin
              # Set QEMU=1 if we're in QEMU
              if command -q systemd-detect-virt; and [ $(systemd-detect-virt) = "qemu" ]

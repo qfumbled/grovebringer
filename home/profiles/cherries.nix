@@ -1,12 +1,17 @@
 {
-  lib,
-  config,
   pkgs,
   ...
 }:
-
 {
   funkouna = {
+    browser = {
+      zen = {
+        enable = true;
+      };
+      firefox = {
+        enable = true;
+      };
+    };
     programs = {
       vicinae = {
         enable = true;
@@ -45,16 +50,16 @@
       NIXOS_OZONE_WL = "1";
     };
 
-    packages = with pkgs; [
-      app2unit
-      asciinema_3
-      bitwarden-desktop
-      bore-cli
-      circumflex
-      clipse
-      colordiff
-      onefetch
-      statix
+    packages = [
+      pkgs.app2unit
+      pkgs.asciinema_3
+      pkgs.bitwarden-desktop
+      pkgs.bore-cli
+      pkgs.circumflex
+      pkgs.clipse
+      pkgs.colordiff
+      pkgs.onefetch
+      pkgs.statix
     ];
   };
 }

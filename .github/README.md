@@ -76,6 +76,7 @@ sudo nixos-rebuild test --flake .#<hostname>
 
 - [x] cherries using wm
 - [ ] rename aureliteiron to chimera sounds cool !
+- [ ] disable firefox on all hosts (cherries,chimera) 
 - [x] 75% of the configuration should be using cherry-dialect
 
 ## Screenshots

@@ -19,7 +19,6 @@ in
       wget
       yq
       brightnessctl
-      firefox
       git
       unzip
       zip

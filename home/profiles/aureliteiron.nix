@@ -1,6 +1,4 @@
 {
-  lib,
-  config,
   pkgs,
   ...
 }:
@@ -8,9 +6,18 @@
 {
   funkouna = {
     programs = {
+      browser = {
+        zen = {
+          enable = true;
+        }
+     firefox = {
+          enable = false;
+        };
+      };
       vicinae = {
         enable = false;
       };
+
       discord = {
         enable = true;
       };
@@ -19,6 +26,7 @@
       plasma = {
         enable = true;
       };
+
       hyprland = {
         enable = false;
       };
