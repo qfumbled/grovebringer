@@ -1,14 +1,10 @@
-# flake
+# Mit hjem
 
 > [!WARNING]
 > use or fork at your own risk.
 
 > *"You'll get there ! Running NixOS is a lot of fun, feels like there's always something to improve about your config."*  
 > — **Elythh**
-
-<div align="center">
-<img src="assets/NixOS.png" width="200" alt="NixOS Logo">
-</div>
 
 ## Doc
 
