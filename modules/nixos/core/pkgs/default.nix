@@ -3,39 +3,40 @@
   pkgs,
   ...
 }:
-
 let
-  gcpPackage = import ../../../../packages/gcp/default.nix { inherit pkgs lib; };
-  gcp = gcpPackage.gcp;
-  spotifyPackage = import ../../../../packages/spotify/default.nix { inherit pkgs lib; };
-  spotify-wayland = spotifyPackage.spotify-wayland;
+  gcp = (import ../../../../packages/gcp/default.nix { inherit pkgs lib; }).gcp;
+  spotify-wayland = (import ../../../../packages/spotify/default.nix { inherit pkgs lib; }).spotify-wayland;
+  zed = (import ../../../../packages/zed/default.nix { inherit pkgs lib; }).zed;
 in
 {
-  environment.systemPackages = [
-    pkgs.sops
-    pkgs.age
-    pkgs.bat
-    pkgs.xdg-utils
-    pkgs.wirelesstools
-    pkgs.wget
-    pkgs.yq
-    pkgs.brightnessctl
-    pkgs.firefox
-    pkgs.git
-    pkgs.unzip
-    pkgs.zip
-    pkgs.polkit_gnome
-    pkgs.nix-prefetch-git
-    pkgs.blueman
-    pkgs.loupe
-    pkgs.celluloid
-    pkgs.wl-clipboard
-    pkgs.libnotify
-    pkgs.swappy
-    pkgs.fuzzel
-    pkgs.fastfetch
-    pkgs.obs-studio
-    gcp
-    spotify-wayland
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      sops
+      age
+      bat
+      xdg-utils
+      wirelesstools
+      wget
+      yq
+      brightnessctl
+      firefox
+      git
+      unzip
+      zip
+      polkit_gnome
+      nix-prefetch-git
+      blueman
+      loupe
+      celluloid
+      wl-clipboard
+      libnotify
+      swappy
+      fuzzel
+      fastfetch
+      obs-studio
+      gcp
+      spotify-wayland
+      zed
+    ];
+  };
 }

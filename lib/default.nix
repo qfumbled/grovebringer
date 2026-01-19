@@ -10,7 +10,6 @@ lib: pkgs: {
       isList
       isString
       last
-      baseNameOf
       ;
     inherit (lib.attrsets) zipAttrsWith isAttrs;
 
@@ -24,9 +23,8 @@ lib: pkgs: {
     readSubdirs =
       basePath:
       let
-        # Check if path exists first
         pathCheck = builtins.dirOf basePath;
-        isDirectory = 
+        isDirectory =
           if builtins.pathExists basePath
           then (builtins.readDir basePath) != null
           else false;
@@ -43,6 +41,34 @@ lib: pkgs: {
           dirPaths = map (d: basePath + "/${d}") dirs;
         in
         dirPaths;
+
+    importModules =
+      basePath:
+      if !builtins.pathExists basePath then
+        []
+      else
+        let
+          entries = builtins.readDir basePath;
+          nixFiles = lib.attrsets.filterAttrs (n: t:
+            t == "regular" && lib.hasSuffix ".nix" n && n != "default.nix"
+          ) entries;
+        in
+        map (f: basePath + "/${f}") (builtins.attrNames nixFiles);
+
+    mapModules =
+      basePath: fn:
+      if !builtins.pathExists basePath then
+        {}
+      else
+        let
+          dirs = readSubdirs basePath;
+        in
+        builtins.listToAttrs (
+          map (d: {
+            name = builtins.baseNameOf d;
+            value = fn d;
+          }) dirs
+        );
 
     recursiveMerge =
       attrList:
@@ -117,7 +143,7 @@ lib: pkgs: {
         |> builtins.readFile
         |> builtins.fromJSON;
 
-    readYAML = 
+    readYAML =
       path:
       if !builtins.pathExists path then
         builtins.throw "readYAML: File '${path}' does not exist"

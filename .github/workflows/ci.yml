@@ -26,6 +26,7 @@ jobs:
 
   build-config:
     needs: check-flake
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         host:
@@ -33,7 +34,6 @@ jobs:
           - aureliteiron
       fail-fast: false
     name: Build ${{ matrix.host }}
-    runs-on: ubuntu-latest
     steps:
       - name: Free Disk Space
         uses: easimon/maximize-build-space@master
