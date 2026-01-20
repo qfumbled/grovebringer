@@ -7,104 +7,92 @@
 let
   inherit (lib) mkIf mkEnableOption;
 
-  _ = lib.getExe;
+  inherit (pkgs)
+    brightnessctl
+    brillo
+    cliphist
+    dbus
+    glib
+    grim
+    gtk3
+    hyprpicker
+    libcanberra-gtk3
+    libnotify
+    pamixer
+    sassc
+    slurp
+    tesseract5
+    wf-recorder
+    wl-clipboard
+    wlr-randr
+    wtype
+    xorg
+    ydotool
+  ;
 
-  # OCR (Optical Character Recognition) utility
-  ocrScript =
-    let
-      inherit (pkgs)
-        grim
-        libnotify
-        slurp
-        tesseract5
-        wl-clipboard
-        ;
-    in
-    pkgs.writeShellScriptBin "wl-ocr" ''
-      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
-      ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
-    '';
+  ocrScript = pkgs.writeShellScriptBin "wl-ocr" ''
+    ${lib.getExe grim} -g "$(${lib.getExe slurp})" -t ppm - | ${tesseract5}/bin/tesseract - - | ${wl-clipboard}/bin/wl-copy
+    ${libnotify}/bin/notify-send "$(${wl-clipboard}/bin/wl-paste)"
+  '';
 
-  # Volume control utility
-  volumectl =
-    let
-      inherit (pkgs) libnotify pamixer libcanberra-gtk3;
-    in
-    pkgs.writeShellScriptBin "volumectl" ''
-      #!/usr/bin/env bash
-
-      case "$1" in
+  volumectl = pkgs.writeShellScriptBin "volumectl" ''
+    case "$1" in
       up)
-        ${_ pamixer} -i "$2"
+        ${pamixer}/bin/pamixer -i "$2"
         ;;
       down)
-        ${_ pamixer} -d "$2"
+        ${pamixer}/bin/pamixer -d "$2"
         ;;
       toggle-mute)
-        ${_ pamixer} -t
+        ${pamixer}/bin/pamixer -t
         ;;
-      esac
+    esac
 
-      volume_percentage="$(${_ pamixer} --get-volume)"
-      isMuted="$(${_ pamixer} --get-mute)"
+    volume_percentage="$(${pamixer}/bin/pamixer --get-volume)"
+    isMuted="$(${pamixer}/bin/pamixer --get-mute)"
 
-      if [ "$isMuted" = "true" ]; then
-        ${libnotify}/bin/notify-send --transient \
-          -u normal \
-          -a "VOLUMECTL" \
-          -i audio-volume-muted-symbolic \
-          "VOLUMECTL" "Volume Muted"
-      else
-        ${libnotify}/bin/notify-send --transient \
-          -u normal \
-          -a "VOLUMECTL" \
-          -h string:x-canonical-private-synchronous:volumectl \
-          -h int:value:"$volume_percentage" \
-          -i audio-volume-high-symbolic \
-          "VOLUMECTL" "Volume: $volume_percentage%"
+    if [ "$isMuted" = "true" ]; then
+      ${libnotify}/bin/notify-send --transient -u normal -a "VOLUMECTL" -i audio-volume-muted-symbolic "VOLUMECTL" "Volume Muted"
+    else
+      ${libnotify}/bin/notify-send --transient -u normal -a "VOLUMECTL" -h string:x-canonical-private-synchronous:volumectl -h int:value:"$volume_percentage" -i audio-volume-high-symbolic "VOLUMECTL" "Volume: $volume_percentage%"
+      ${libcanberra-gtk3}/bin/canberra-gtk-play -i audio-volume-change -d "volumectl"
+    fi
+  '';
 
-        ${libcanberra-gtk3}/bin/canberra-gtk-play -i audio-volume-change -d "volumectl"
-      fi
-    '';
-
-  # Brightness control utility
-  lightctl =
-    let
-      inherit (pkgs) libnotify brightnessctl;
-    in
-    pkgs.writeShellScriptBin "lightctl" ''
-      case "$1" in
+  lightctl = pkgs.writeShellScriptBin "lightctl" ''
+    case "$1" in
       up)
-        ${_ brightnessctl} -q s +"$2"%
+        ${brightnessctl}/bin/brightnessctl -q s +"$2"%
         ;;
       down)
-        ${_ brightnessctl} -q s "$2"%-
+        ${brightnessctl}/bin/brightnessctl -q s "$2"%-
         ;;
-      esac
+    esac
 
-      brightness_percentage=$((($(${_ brightnessctl} g) * 100) / $(${_ brightnessctl} m)))
-      ${libnotify}/bin/notify-send --transient \
-        -u normal \
-        -a "LIGHTCTL" \
-        -h string:x-canonical-private-synchronous:lightctl \
-        -h int:value:"$brightness_percentage" \
-        -i display-brightness-symbolic \
-        "LIGHTCTL" "Brightness: $brightness_percentage%"
-    '';
+    brightness_percentage=$((($(${brightnessctl}/bin/brightnessctl g) * 100) / $(${brightnessctl}/bin/brightnessctl m)))
+    ${libnotify}/bin/notify-send --transient -u normal -a "LIGHTCTL" -h string:x-canonical-private-synchronous:lightctl -h int:value:"$brightness_percentage" -i display-brightness-symbolic "LIGHTCTL" "Brightness: $brightness_percentage%"
+  '';
 in
 {
-  options.funkouna.desktop.hyprland = {
-    enable = mkEnableOption "Hyprland window manager";
+  options = {
+    funkouna = {
+      desktop = {
+        hyprland = {
+          enable = mkEnableOption "Hyprland window manager";
+        };
+      };
+    };
   };
 
   imports = [
     ./config
   ];
 
-  config = {
-    home = mkIf config.funkouna.desktop.hyprland.enable {
-      packages = with pkgs; [
+  config = mkIf config.funkouna.desktop.hyprland.enable {
+    home = {
+      packages = [
         brightnessctl
+        brillo
         cliphist
         dbus
         glib
@@ -116,16 +104,13 @@ in
         pamixer
         sassc
         slurp
+        tesseract5
         wf-recorder
         wl-clipboard
-        brillo
-        # wl-screenrec
-        wlr-randr
         wlr-randr
         wtype
-        ydotool
-        wlprop
         xorg.xprop
+        ydotool
 
         ocrScript
         volumectl
@@ -133,46 +118,42 @@ in
       ];
 
       sessionVariables = {
-        XDG_SESSION_DESKTOP = "Hyprland";
-        QT_QPA_PLATFORM = "wayland";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        SDL_VIDEODRIVER = "wayland";
         CLUTTER_BACKEND = "wayland";
         GDK_BACKEND = "wayland,x11";
-        XDG_SESSION_TYPE = "wayland";
         MOZ_ENABLE_WAYLAND = "1";
+        QT_QPA_PLATFORM = "wayland";
         QT_STYLE_OVERRIDE = lib.mkForce "kvantum";
-      };
-    };
-
-    wayland = {
-      windowManager = {
-        hyprland = mkIf config.funkouna.desktop.hyprland.enable {
-          xwayland = {
-            enable = true;
-          };
-          enable = true;
-          package = null;
-          portalPackage = null;
-          systemd = {
-            enable = false;
-            # extraCommands = lib.mkBefore [
-            #   "systemctl --user stop graphical-session.target"
-            #   "systemctl --user start hyprland-session.target"
-            # ];
-          };
-        };
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        SDL_VIDEODRIVER = "wayland";
+        XDG_SESSION_DESKTOP = "Hyprland";
+        XDG_SESSION_TYPE = "wayland";
       };
     };
 
     systemd = {
       user = {
         targets = {
-          tray = mkIf config.funkouna.desktop.hyprland.enable {
+          tray = {
             Unit = {
               Description = "Home Manager System Tray";
               Requires = [ "graphical-session-pre.target" ];
             };
+          };
+        };
+      };
+    };
+
+    wayland = {
+      windowManager = {
+        hyprland = {
+          enable = true;
+          package = null;
+          portalPackage = null;
+          systemd = {
+            enable = false;
+          };
+          xwayland = {
+            enable = true;
           };
         };
       };

@@ -1,12 +1,181 @@
 {
   lib ? { },
   pkgs,
-  ...
-}:
+  ... 
+}: 
 let
   funkounaLib = if lib ? funkouna then lib.funkouna else { };
   readSubdirs = if lib ? funkouna then lib.funkouna.readSubdirs else (dir: [ ]);
   packageDirs = readSubdirs ./.;
+
+  mkElectronWayland = {
+    package,
+    name ? package.pname or package.name,
+    extraFlags ? [],
+    extraEnv ? {},
+    enableGPU ? true,
+    enableVulkan ? false,
+    enableTouch ? false,
+    hideTitlebar ? false,
+    disableVsync ? false,
+  }:
+    let
+      baseFlags = [
+        "--enable-features=UseOzonePlatform,WaylandWindowDecorations"
+        "--ozone-platform=wayland"
+      ] ++ lib.optionals enableGPU [
+        "--enable-gpu-rasterization"
+        "--enable-zero-copy"
+      ] ++ lib.optionals enableVulkan [
+        "--enable-features=Vulkan"
+      ] ++ lib.optionals enableTouch [
+        "--touch-events=enabled"
+      ] ++ lib.optionals hideTitlebar [
+        "--enable-features=WaylandWindowDecorations"
+      ] ++ lib.optionals disableVsync [
+        "--disable-gpu-vsync"
+      ] ++ extraFlags;
+
+      baseEnv = {
+        NIXOS_OZONE_WL = "1";
+        GDK_BACKEND = "wayland,x11";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+      } // lib.optionalAttrs enableVulkan {
+        ELECTRON_ENABLE_VULKAN = "1";
+      } // extraEnv;
+    in
+    mkWrapper {
+      inherit package name;
+      arguments = baseFlags;
+      env = baseEnv;
+    };
+
+  mkChromiumWayland = {
+    package,
+    name ? package.pname or package.name,
+    extraFlags ? [],
+    extraEnv ? {},
+    userDataDir ? null,
+    enableGPU ? true,
+    enableVulkan ? false,
+    enableHardwareAccel ? true,
+    disableFeatures ? [],
+  }:
+    let
+      enabledFeatures = [
+        "UseOzonePlatform"
+        "WaylandWindowDecorations"
+        "VaapiVideoDecoder"
+        "VaapiVideoEncoder"
+      ] ++ lib.optionals enableVulkan [ "Vulkan" ];
+
+      baseFlags = [
+        "--ozone-platform=wayland"
+        "--enable-features=${lib.concatStringsSep "," enabledFeatures}"
+      ] ++ lib.optionals (disableFeatures != []) [
+        "--disable-features=${lib.concatStringsSep "," disableFeatures}"
+      ] ++ lib.optionals enableGPU [
+        "--enable-gpu-rasterization"
+        "--enable-zero-copy"
+      ] ++ lib.optionals enableHardwareAccel [
+        "--enable-accelerated-video-decode"
+        "--enable-accelerated-video-encode"
+      ] ++ lib.optionals (userDataDir != null) [
+        "--user-data-dir=${userDataDir}"
+      ] ++ extraFlags;
+
+      baseEnv = {
+        NIXOS_OZONE_WL = "1";
+      } // extraEnv;
+    in
+    mkWrapper {
+      inherit package name;
+      arguments = baseFlags;
+      env = baseEnv;
+    };
+
+  mkVSCodeWayland = {
+    package,
+    name ? package.pname or package.name,
+    extraFlags ? [],
+    extraEnv ? {},
+    enableGPU ? true,
+  }:
+    mkElectronWayland {
+      inherit package name extraEnv enableGPU;
+      extraFlags = [
+        "--enable-features=WaylandWindowDecorations"
+        "--ozone-platform-hint=auto"
+      ] ++ extraFlags;
+    };
+
+  mkChatAppWayland = {
+    package,
+    name ? package.pname or package.name,
+    extraFlags ? [],
+    extraEnv ? {},
+    enableIME ? true,
+  }:
+    mkElectronWayland {
+      inherit package name extraEnv;
+      extraFlags = lib.optionals enableIME [
+        "--enable-wayland-ime"
+      ] ++ extraFlags;
+    };
+
+  mkOverride = {
+    package,
+    override ? {},
+    overrideAttrs ? (old: {}),
+  }:
+    (package.override override).overrideAttrs overrideAttrs;
+
+  mkPatched = {
+    package,
+    patches ? [],
+    postPatch ? "",
+    prePatch ? "",
+  }:
+    package.overrideAttrs (old: {
+      patches = (old.patches or []) ++ patches;
+      postPatch = (old.postPatch or "") + postPatch;
+      prePatch = (old.prePatch or "") + prePatch;
+    });
+
+  mkVersioned = {
+    package,
+    version,
+    sha256,
+    fetchurl ? pkgs.fetchurl,
+  }:
+    package.overrideAttrs (old: {
+      inherit version;
+      src = fetchurl {
+        url = builtins.replaceStrings 
+          [ old.version or "0.0.0" ] 
+          [ version ]
+          (old.src.url or "");
+        inherit sha256;
+      };
+    });
+
+  mkAlias = {
+    name,
+    target,
+    args ? "",
+  }:
+    pkgs.writeShellScriptBin name ''
+      exec ${target} ${args} "$@"
+    '';
+
+  mkAliases = aliases:
+    lib.mapAttrs (name: target:
+      if builtins.isString target then
+        mkAlias { inherit name target; }
+      else
+        mkAlias { inherit name; inherit (target) target; args = target.args or ""; }
+    ) aliases;
 
   mkShellScript =
     {
@@ -20,41 +189,53 @@ let
     args@{
       name ? "",
       package ? null,
-      wrapperArgs ? "",
+      wrapperArgs ? [ ],
       script ? "",
       env ? { },
       preHook ? "",
       postHook ? "",
+      ...
     }:
-    let
-      wrapperScript =
-        if script != "" then
-          script
-        else
-          ''
-            #!/usr/bin/env bash
-            set -euo pipefail
-
-            ${preHook}
-
-            ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=\"${v}\"") env)}
-
-            ${lib.optionalString (package != null) ''
-              export PATH="${package}/bin:$PATH"
-              export MANPATH="${package}/share/man:$MANPATH"
-            ''}
-
-            ${
-              if package != null then
-                ''exec ${package}/bin/${if name != "" then name else (package.pname or package.name or "unknown")} ${wrapperArgs} "$@"''
-              else
-                ''${wrapperArgs} "$@"''
-            }
-
-            ${postHook}
-          '';
-    in
-    pkgs.writeShellScriptBin (if name != "" then name else "wrapper") wrapperScript;
+    if script != "" then
+      # This is a script runner. Use writeShellApplication.
+      pkgs.writeShellApplication {
+        inherit name;
+        runtimeInputs = lib.optional (package != null) package;
+        text = ''
+          #!/usr/bin/env bash
+          set -euo pipefail
+          ${preHook}
+          ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=${lib.escapeShellArg v}") env)}
+          ${script}
+        '';
+      }
+    else if package != null then
+      # This is a package wrapper. Delegate to the more robust mkWrapper.
+      mkWrapper ({
+        inherit name package preHook postHook;
+        arguments = wrapperArgs;
+        inherit env;
+      } // (builtins.removeAttrs args [
+        "name"
+        "package"
+        "wrapperArgs"
+        "env"
+        "preHook"
+        "postHook"
+      ]))
+    else
+      # This is a command runner with no package.
+      pkgs.writeShellApplication {
+        inherit name;
+        text = ''
+          #!/usr/bin/env bash
+          set -euo pipefail
+          ${preHook}
+          ${lib.concatStringsSep "\n" (lib.mapAttrsToList (k: v: "export ${k}=${lib.escapeShellArg v}") env)}
+          exec ${lib.escapeShellArgs wrapperArgs} "$@"
+          ${postHook}
+        '';
+      };
 
   mkPinnedPackage =
     {
@@ -136,12 +317,10 @@ let
         Description=${description}
         ${lib.optionalString (after != [ ]) "After=${lib.concatStringsSep " " after}"}
         ${lib.optionalString (wants != [ ]) "Wants=${lib.concatStringsSep " " wants}"}
-
         [Service]
         ExecStart=${exec}
         User=${user}
         Restart=on-failure
-
         [Install]
         WantedBy=multi-user.target
       '';
@@ -152,17 +331,21 @@ let
     {
       package,
       name ? package.pname or package.name or "wrapper",
-      binaryPath ? "$out/bin/${name}",
+      binaryPath ? null,
       arguments ? [ ],
       env ? { },
       preHook ? "",
       postHook ? "",
     }:
     let
+      actualBinaryPath = 
+        if binaryPath != null then binaryPath
+        else "$out/bin/${name}";
+      
       argFlags =
         if arguments != [ ] then "--add-flags \"${lib.concatStringsSep " " arguments}\"" else "";
       envFlags = lib.concatStringsSep " " (lib.mapAttrsToList (k: v: "--set ${k} \"${v}\"") env);
-      wrapperArgs = "${argFlags} ${envFlags}";
+      wrapperArgs = lib.concatStringsSep " " (lib.filter (s: s != "") [ argFlags envFlags ]);
     in
     pkgs.symlinkJoin {
       inherit (package) passthru;
@@ -170,15 +353,18 @@ let
       paths = [ package ];
       buildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
-        UNWRAPPED=${binaryPath}-unwrapped
-        WRAPPED=${binaryPath}
-        mv $WRAPPED $UNWRAPPED
-
-        makeWrapper $UNWRAPPED $WRAPPED ${wrapperArgs}
+        ${preHook}
+        UNWRAPPED=${actualBinaryPath}-unwrapped
+        WRAPPED=${actualBinaryPath}
+        if [ -e "$WRAPPED" ]; then
+          mv $WRAPPED $UNWRAPPED
+          makeWrapper $UNWRAPPED $WRAPPED ${wrapperArgs}
+        fi
+        ${postHook}
       '';
       meta = {
         mainProgram = name;
-      };
+      } // (package.meta or {});
     };
 
   mkShell =
@@ -194,7 +380,7 @@ let
 
   spotify-wayland = mkWrapper {
     package = pkgs.spotify;
-    name = "spotify-wayland";
+    name = "spotify";
     arguments = [
       "--enable-features=UseOzonePlatform"
       "--ozone-platform=wayland"
@@ -205,11 +391,24 @@ let
       QT_QPA_PLATFORM = "wayland";
     };
   };
+
 in
 {
   imports = packageDirs;
 
   inherit
+    mkElectronWayland
+    mkChromiumWayland
+    mkVSCodeWayland
+    mkChatAppWayland
+    
+    mkOverride
+    mkPatched
+    mkVersioned
+    
+    mkAlias
+    mkAliases
+    
     mkShellScript
     mkApplicationWrapper
     mkPinnedPackage
@@ -220,6 +419,7 @@ in
     mkService
     mkWrapper
     mkShell
+    
     spotify-wayland
     ;
 }

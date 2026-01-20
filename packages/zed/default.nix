@@ -7,23 +7,18 @@ let
   utils = import ../default.nix {
     inherit lib pkgs;
   };
-  inherit (utils) mkWrapper;
+  inherit (utils) mkWrapper mkAlias;
 
   zed-wrapper = mkWrapper {
     package = pkgs.zed-editor;
     name = "zeditor";
   };
 
-  zed = pkgs.symlinkJoin {
+  zed = mkAlias {
     name = "zed";
-    paths = [ zed-wrapper ];
-    postBuild = ''
-      ln -sf $out/bin/zeditor $out/bin/zed
-    '';
+    target = "${zed-wrapper}/bin/zeditor";
   };
 in
 {
-  name = "zed";
-
   inherit zed zed-wrapper;
 }

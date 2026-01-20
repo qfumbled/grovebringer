@@ -10,6 +10,7 @@
         settings = {
     exec-once = [
       "clipse -listen"
+      "noctalia-shell"
       "vicinae server"
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type text --watch cliphist store"

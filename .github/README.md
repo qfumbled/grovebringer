@@ -44,6 +44,9 @@ cd grovebringer
    - `flake.nix`: set your username on line 81
    - `hardware.nix`: edit for your hardware, or remove it and use `--impure` flag since is outside of the repo directory
 
+3. Edit locale:
+   - `grovebringer/modules/nixos/core/locale/default.nix`: set your timezone on line 3
+
 ### Build
 
 1. Build the system:

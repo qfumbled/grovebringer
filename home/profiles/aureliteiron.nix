@@ -2,22 +2,23 @@
   pkgs,
   ...
 }:
-
 {
   funkouna = {
+    browser = {
+      zen = {
+        enable = false;
+      };
+      firefox = {
+        enable = true;
+      };
+    };
     programs = {
-      browser = {
-        zen = {
-          enable = true;
-        }
-     firefox = {
-          enable = false;
-        };
+      noctalia = {
+        enable = false;
       };
       vicinae = {
         enable = false;
       };
-
       discord = {
         enable = true;
       };
@@ -26,7 +27,6 @@
       plasma = {
         enable = true;
       };
-
       hyprland = {
         enable = false;
       };
@@ -54,89 +54,88 @@
       NIXOS_OZONE_WL = "1";
     };
 
-    packages = with pkgs; [
-      app2unit
-      asciinema_3
-      bitwarden-desktop
-      bore-cli
-      circumflex
-      clipse
-      colordiff
-      deadnix
-      delta
-      doggo
-      eza
-      fd
-      feh
-      foot
-      fx
-      fzf
-      gcc
-      gh
-      git-absorb
-      gitmoji-cli
-      glab
-      glow
-      gnumake
-      go
-      gping
-      grimblast
-      gum
-      httpie
-      imagemagick
-      inotify-tools
-      jq
-      jqp
-      just
-      k9s
-      keybase
-      kubecolor
-      kubectl
-      kubectx
-      kubernetes-helm
-      light
-      magic-wormhole
-      material-symbols
-      mods
-      navi
-      nemo
-      networkmanagerapplet
-      nh
-      nix-fast-build
-      nix-inspect
-      nix-output-monitor
-      nix-search-tv
-      nix-update
-      nixfmt
-      onefetch
-      opencode
-      openssl
-      opkssh
-      pavucontrol
-      pgcli
-      pinentry-gnome3
-      playerctl
-      pre-commit
-      presenterm
-      python312Packages.gst-python
-      python312Packages.materialyoucolor
-      python312Packages.pillow
-      python312Packages.pip
-      python312Packages.pygobject3
-      python312Packages.setuptools
-      python312Packages.virtualenv
-      satty
-      starship
-      stern
-      syncthing
-      statix
-      tldr
-      up
-      vlc
-      wireplumber
-      xdotool
-      xwayland
-      foot
+    packages = [
+      pkgs.app2unit
+      pkgs.asciinema_3
+      pkgs.bitwarden-desktop
+      pkgs.bore-cli
+      pkgs.circumflex
+      pkgs.clipse
+      pkgs.colordiff
+      pkgs.deadnix
+      pkgs.delta
+      pkgs.doggo
+      pkgs.eza
+      pkgs.fd
+      pkgs.feh
+      pkgs.foot
+      pkgs.fx
+      pkgs.fzf
+      pkgs.gcc
+      pkgs.gh
+      pkgs.git-absorb
+      pkgs.gitmoji-cli
+      pkgs.glab
+      pkgs.glow
+      pkgs.gnumake
+      pkgs.go
+      pkgs.gping
+      pkgs.grimblast
+      pkgs.gum
+      pkgs.httpie
+      pkgs.imagemagick
+      pkgs.inotify-tools
+      pkgs.jq
+      pkgs.jqp
+      pkgs.just
+      pkgs.k9s
+      pkgs.keybase
+      pkgs.kubecolor
+      pkgs.kubectl
+      pkgs.kubectx
+      pkgs.kubernetes-helm
+      pkgs.light
+      pkgs.magic-wormhole
+      pkgs.material-symbols
+      pkgs.mods
+      pkgs.navi
+      pkgs.nemo
+      pkgs.networkmanagerapplet
+      pkgs.nh
+      pkgs.nix-fast-build
+      pkgs.nix-inspect
+      pkgs.nix-output-monitor
+      pkgs.nix-search-tv
+      pkgs.nix-update
+      pkgs.nixfmt-rfc-style
+      pkgs.onefetch
+      pkgs.opencode
+      pkgs.openssl
+      pkgs.openssh
+      pkgs.pavucontrol
+      pkgs.pgcli
+      pkgs.pinentry-gnome3
+      pkgs.playerctl
+      pkgs.pre-commit
+      pkgs.presenterm
+      pkgs.python312Packages.gst-python
+      pkgs.python312Packages.materialyoucolor
+      pkgs.python312Packages.pillow
+      pkgs.python312Packages.pip
+      pkgs.python312Packages.pygobject3
+      pkgs.python312Packages.setuptools
+      pkgs.python312Packages.virtualenv
+      pkgs.satty
+      pkgs.starship
+      pkgs.stern
+      pkgs.syncthing
+      pkgs.statix
+      pkgs.tldr
+      pkgs.up
+      pkgs.vlc
+      pkgs.wireplumber
+      pkgs.xdotool
+      pkgs.xwayland
     ];
   };
 }

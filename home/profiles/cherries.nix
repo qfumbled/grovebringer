@@ -13,6 +13,10 @@
       };
     };
     programs = {
+
+      noctalia = {
+        enable = true;
+      };
       vicinae = {
         enable = true;
       };
@@ -22,7 +26,7 @@
     };
     desktop = {
       plasma = {
-        enable = true;
+        enable = false;
       };
       hyprland = {
         enable = true;
@@ -51,6 +55,7 @@
     };
 
     packages = [
+      pkgs.python3
       pkgs.app2unit
       pkgs.asciinema_3
       pkgs.bitwarden-desktop

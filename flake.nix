@@ -94,7 +94,7 @@
                 }
 
                 systemConfig
-
+                inputs.nix-flatpak.nixosModules.nix-flatpak
                 inputs.home-manager.nixosModules.home-manager
                 inputs.impermanence.nixosModules.impermanence
                 inputs.agenix.nixosModules.default
@@ -109,6 +109,7 @@
 
                     sharedModules = [
                       ./modules/home
+                      inputs.noctalia.homeModules.default
                       inputs.zen-browser.homeModules.beta
                       inputs.nixcord.homeModules.nixcord
                       inputs.plasma-manager.homeModules.plasma-manager
@@ -221,6 +222,13 @@
       };
     };
 
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs = {
@@ -248,6 +256,13 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home-manager";
+      };
+    };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/";
+      inputs = {
+        # ...
       };
     };
 

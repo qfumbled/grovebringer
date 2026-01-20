@@ -11,8 +11,8 @@
       base16Scheme = ../../../../home/shared/colors/paradise.yaml;
 
       cursor = {
-        name = "phinger-cursors-light";
-        package = pkgs.phinger-cursors;
+        name = "Bibata-Modern-Ice";
+        package = pkgs.bibata-cursors;
         size = 20;
       };
 

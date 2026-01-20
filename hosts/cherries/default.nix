@@ -202,7 +202,7 @@ in
 
     programs = {
       plasma = {
-        enable = true;
+        enable = false;
       };
 
       spotify = {
@@ -210,7 +210,7 @@ in
       };
 
       minecraft = {
-        enable = true;
+        enable = false;
       };
 
       hyprland = {

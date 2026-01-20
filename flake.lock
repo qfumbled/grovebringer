@@ -420,6 +420,21 @@
         "type": "github"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1768656715,
+        "narHash": "sha256-Sbh037scxKFm7xL0ahgSCw+X2/5ZKeOwI2clqrYr9j4=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "123fe29340a5b8671367055b75a6e7c320d6f89a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "type": "github"
+      }
+    },
     "nixcord": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -486,6 +501,26 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768836456,
+        "narHash": "sha256-1DVnXltaxIvsPNDZdH9IX8gt6XBcjFMVZ+1/SLrkcxw=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "cc529e598388d9f40f7360619bc4b3375ff642bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
         "type": "github"
       }
     },
@@ -588,8 +623,10 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
+        "nix-flatpak": "nix-flatpak",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_2",
+        "noctalia": "noctalia",
         "nur": "nur",
         "plasma-manager": "plasma-manager",
         "pre-commit-hooks": "pre-commit-hooks",

@@ -1,4 +1,5 @@
 {
+  inputs,
   lib,
   pkgs,
   ...
@@ -11,6 +12,7 @@ in
 {
   environment = {
     systemPackages = with pkgs; [
+      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       sops
       age
       bat
@@ -30,7 +32,7 @@ in
       wl-clipboard
       libnotify
       swappy
-      fuzzel
+      swaybg
       fastfetch
       obs-studio
       gcp
