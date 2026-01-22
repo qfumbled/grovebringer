@@ -197,7 +197,6 @@ let
       ...
     }:
     if script != "" then
-      # This is a script runner. Use writeShellApplication.
       pkgs.writeShellApplication {
         inherit name;
         runtimeInputs = lib.optional (package != null) package;
@@ -336,6 +335,7 @@ let
       env ? { },
       preHook ? "",
       postHook ? "",
+      runScript ? "",
     }:
     let
       actualBinaryPath = 
@@ -345,7 +345,8 @@ let
       argFlags =
         if arguments != [ ] then "--add-flags \"${lib.concatStringsSep " " arguments}\"" else "";
       envFlags = lib.concatStringsSep " " (lib.mapAttrsToList (k: v: "--set ${k} \"${v}\"") env);
-      wrapperArgs = lib.concatStringsSep " " (lib.filter (s: s != "") [ argFlags envFlags ]);
+      runFlag = if runScript != "" then "--run ${lib.escapeShellArg runScript}" else "";
+      wrapperArgs = lib.concatStringsSep " " (lib.filter (s: s != "") [ argFlags envFlags runFlag ]);
     in
     pkgs.symlinkJoin {
       inherit (package) passthru;

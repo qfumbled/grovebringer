@@ -1,0 +1,18 @@
+scheme: "test"
+author: "kevin"
+base00: "f5f3ef"  # background
+base01: "e6e5e4"  # lighter background / UI elements
+base02: "cccbca"  # selection / highlights
+base03: "a0a0a0"  # comments / subtle text (was b3b2b1)
+base04: "999898"  # secondary text / inactive elements
+base05: "333333"  # default text (was 5c5c5c)
+base06: "444444"  # emphasis text (was 5c5c5c)
+base07: "222222"  # strong emphasis / headings (was 5c5c5c)
+base08: "c55a5a"  # red / errors (was b66467)
+base09: "b88757"  # orange / warnings
+base0A: "d6a65b"  # yellow / highlights (was same as orange)
+base0B: "76b05c"  # green / success
+base0C: "7d9ea7"  # cyan / info
+base0D: "5b7f87"  # blue / links (slightly teal)
+base0E: "9661cc"  # purple / metadata
+base0F: "aaa9a9"  # gray / deprecated / minor accents

@@ -150,6 +150,9 @@ in
     '';
   };
 
+  services.displayManager.ly.enable = false; # whenever im ready also convert into a module
+  programs.zsh.enable = true; # testing poacher
+
   systemd = {
     coredump = {
       extraConfig = ''
@@ -210,7 +213,7 @@ in
       };
 
       minecraft = {
-        enable = false;
+        enable = true;
       };
 
       hyprland = {

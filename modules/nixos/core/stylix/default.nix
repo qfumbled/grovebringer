@@ -8,7 +8,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/paradise.yaml;
+      base16Scheme = ../../../../home/shared/colors/vivi.yaml;
 
       cursor = {
         name = "Bibata-Modern-Ice";

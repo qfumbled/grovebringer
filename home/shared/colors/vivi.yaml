@@ -1,0 +1,18 @@
+scheme: "vivi"
+author: "vivifalls"
+base00: "000000"  # background
+base01: "191919"  # slightly lighter background / UI
+base02: "333333"  # selection / highlights (derived)
+base03: "080808"  # comments / subtle text
+base04: "bbbbbb"  # secondary text / inactive elements (derived)
+base05: "dddddd"  # default text
+base06: "eeeeee"  # emphasis text / lighter
+base07: "191919"  # lightest / headings (using WH)
+base08: "D65C5C"  # red / errors
+base09: "ffaa88"  # orange / warnings
+base0A: "789978"  # yellow / highlights
+base0B: "ffaa88"  # green / success (used same as G)
+base0C: "deeeed"  # cyan / info
+base0D: "7788aa"  # blue / links
+base0E: "708090"  # purple / metadata
+base0F: "bbbbbb"  # gray / minor accents

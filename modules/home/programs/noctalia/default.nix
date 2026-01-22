@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   username,
   ...
 }:
@@ -169,7 +168,7 @@ in
           };
 
           location = {
-            name = "Budapest, HU";
+            name = "Boston";
             weatherEnabled = true;
             weatherShowEffects = true;
             useFahrenheit = false;

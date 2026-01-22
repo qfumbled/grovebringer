@@ -6,9 +6,9 @@
 }:
 let
   gcp = (import ../../../../packages/gcp/default.nix { inherit pkgs lib; }).gcp;
-  spotify-wayland = (import ../../../../packages/spotify/default.nix { inherit pkgs lib; }).spotify-wayland;
   zed = (import ../../../../packages/zed/default.nix { inherit pkgs lib; }).zed;
-in
+  zsh = (import ../../../../packages/zsh/default.nix { inherit pkgs lib; }).zsh;
+  in
 {
   environment = {
     systemPackages = with pkgs; [
@@ -36,8 +36,8 @@ in
       fastfetch
       obs-studio
       gcp
-      spotify-wayland
       zed
+      zsh
     ];
   };
 }

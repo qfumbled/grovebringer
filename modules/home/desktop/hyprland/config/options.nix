@@ -1,5 +1,7 @@
 {
   lib,
+  pkgs,
+  username,
   ...
 }:
 
@@ -8,7 +10,8 @@
     windowManager = {
       hyprland = {
         settings = {
-    exec-once = [
+exec-once = [
+      "${pkgs.swaybg}/bin/swaybg -i /home/${username}/grovebringer/home/shared/walls/main3.jpg -m fill"
       "clipse -listen"
       "noctalia-shell"
       "vicinae server"
@@ -49,7 +52,7 @@
     };
 
     decoration = {
-      rounding = "6";
+      rounding = "0";
       inactive_opacity = "0.94";
 
       blur = {
