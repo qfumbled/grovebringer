@@ -32,7 +32,7 @@ let
 
     eval "$(zoxide init zsh)"
     eval "$(direnv hook zsh)"
-
+    source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     alias v="zed"
     alias :q="exit"
     alias cat="bat --paging=never"
@@ -144,6 +144,7 @@ let
     pkgs.onefetch
     pkgs.keychain
     pkgs.starship
+    pkgs.zsh-syntax-highlighting
   ] ++ extraDeps;
 
   path = lib.makeBinPath deps;
