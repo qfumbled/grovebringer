@@ -4,7 +4,6 @@
   ...
 }:
 let
-  funkounaLib = if lib ? funkouna then lib.funkouna else { };
   readSubdirs = if lib ? funkouna then lib.funkouna.readSubdirs else (dir: [ ]);
   packageDirs = readSubdirs ./.;
 
@@ -420,7 +419,5 @@ in
     mkService
     mkWrapper
     mkShell
-
-    spotify-wayland
     ;
 }

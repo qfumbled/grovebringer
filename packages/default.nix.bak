@@ -1,8 +1,8 @@
 {
   lib ? { },
   pkgs,
-  ...
-}:
+  ... 
+}: 
 let
   funkounaLib = if lib ? funkouna then lib.funkouna else { };
   readSubdirs = if lib ? funkouna then lib.funkouna.readSubdirs else (dir: [ ]);
@@ -152,8 +152,8 @@ let
     package.overrideAttrs (old: {
       inherit version;
       src = fetchurl {
-        url = builtins.replaceStrings
-          [ old.version or "0.0.0" ]
+        url = builtins.replaceStrings 
+          [ old.version or "0.0.0" ] 
           [ version ]
           (old.src.url or "");
         inherit sha256;
@@ -338,10 +338,10 @@ let
       runScript ? "",
     }:
     let
-      actualBinaryPath =
+      actualBinaryPath = 
         if binaryPath != null then binaryPath
         else "$out/bin/${name}";
-
+      
       argFlags =
         if arguments != [ ] then "--add-flags \"${lib.concatStringsSep " " arguments}\"" else "";
       envFlags = lib.concatStringsSep " " (lib.mapAttrsToList (k: v: "--set ${k} \"${v}\"") env);
@@ -379,6 +379,20 @@ let
       text = script;
     };
 
+  spotify-wayland = mkWrapper {
+    package = pkgs.spotify;
+    name = "spotify";
+    arguments = [
+      "--enable-features=UseOzonePlatform"
+      "--ozone-platform=wayland"
+    ];
+    env = {
+      NIXOS_OZONE_WL = "1";
+      GDK_BACKEND = "wayland";
+      QT_QPA_PLATFORM = "wayland";
+    };
+  };
+
 in
 {
   imports = packageDirs;
@@ -388,14 +402,14 @@ in
     mkChromiumWayland
     mkVSCodeWayland
     mkChatAppWayland
-
+    
     mkOverride
     mkPatched
     mkVersioned
-
+    
     mkAlias
     mkAliases
-
+    
     mkShellScript
     mkApplicationWrapper
     mkPinnedPackage
@@ -406,6 +420,7 @@ in
     mkService
     mkWrapper
     mkShell
-
+    
+    spotify-wayland
     ;
 }
