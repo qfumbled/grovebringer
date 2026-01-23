@@ -31,7 +31,7 @@ in
       plasma = {
         enable = true;
         workspace = {
-          wallpaper = toString (./../../../../home/shared/walls/plant.png);
+          wallpaper = toString (./../../../../home/shared/walls/main3.jpg);
           iconTheme = "Papirus-Dark";
           lookAndFeel = "org.kde.breezedark.desktop";
         };

@@ -45,7 +45,7 @@
         enable = true;
         style = {
           wallpapers = [
-            ../../../../home/shared/walls/plant.jpg
+            ../../../../home/shared/walls/main3.jpg
           ];
         };
         efiSupport = true;

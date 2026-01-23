@@ -6,8 +6,8 @@
 }:
 let
   gcp = (import ../../../../packages/gcp/default.nix { inherit pkgs lib; }).gcp;
-  zed = (import ../../../../packages/zed/default.nix { inherit pkgs lib; }).zed;
-  zsh = (import ../../../../packages/zsh/default.nix { inherit pkgs lib; }).zsh;
+  zed = (import ../../../../wrappers/zed/default.nix { inherit pkgs lib; }).zed;
+  zsh = (import ../../../../wrappers/zsh/default.nix { inherit pkgs lib; }).zsh;
   in
 {
   environment = {

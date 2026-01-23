@@ -23,13 +23,13 @@
           "adbusers"
           "plugdev"
         ];
-        shell = pkgs.fish;
+        shell = pkgs.zsh;
       };
     };
   };
 
   programs = {
-    fish = {
+    zsh = {
       enable = true;
     };
   };

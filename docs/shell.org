@@ -1,0 +1,3 @@
+for the shell i now use zsh instead of fish
+
+this is how i made the configuration so i made this wrapper configuration thing this tooked 21020199 times to get this working

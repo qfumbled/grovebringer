@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  extraZshrc ? "",
   extraDeps ? [],
   ...
 }:
@@ -32,8 +31,10 @@ let
 
     eval "$(zoxide init zsh)"
     eval "$(direnv hook zsh)"
+
     source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
     alias v="zed"
     alias :q="exit"
     alias cat="bat --paging=never"
