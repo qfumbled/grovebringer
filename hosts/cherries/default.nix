@@ -150,8 +150,8 @@ in
     '';
   };
 
-  services.displayManager.ly.enable = false; # whenever im ready also convert into a module
-  programs.zsh.enable = true; # testing poacher
+
+  services.displayManager.ly.enable = true;
 
   systemd = {
     coredump = {
@@ -199,7 +199,7 @@ in
       };
 
       sddm = {
-        enable = true;
+        enable = false;
       };
     };
 

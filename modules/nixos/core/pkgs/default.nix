@@ -14,6 +14,7 @@ let
     systemPackages = with pkgs; [
       inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
       sops
+      microfetch
       age
       bat
       xdg-utils

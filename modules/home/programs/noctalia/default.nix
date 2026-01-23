@@ -316,13 +316,13 @@ in
           };
 
           wallpaper = {
-            enabled = true;
+            enabled = false;
             overviewEnabled = false;
             directory = "/home/${username}/Pictures/Wallpapers";
-            recursiveSearch = true;
-            setWallpaperOnAllMonitors = true;
+            recursiveSearch = false;
+            setWallpaperOnAllMonitors = false;
             fillMode = "fill";
-            randomEnabled = true;
+            randomEnabled = false;
             wallpaperChangeMode = "random";
             randomIntervalSec = 3600;
             transitionDuration = 2000;
