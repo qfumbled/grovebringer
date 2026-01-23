@@ -1,3 +1,247 @@
-for the shell i now use zsh instead of fish
+#+TITLE: Shell
+#+AUTHOR: xander herrington
 
-this is how i made the configuration so i made this wrapper configuration thing this tooked 21020199 times to get this working
+* Configuration
+
+On the configuration I use zsh instead of fish now because I wanted to switch to zsh.
+
+This wrapper configuration thing took 21020199 times to get this working.
+
+* Original Source
+
+So I converted this code from https://codeberg.org/poacher/nix-dotfiles/src/commit/9de00e97dfb5424244034512ae9e005dab369788/pkgs/zsh
+
+** default.nix (original)
+
+#+BEGIN_SRC nix
+# default.nix
+
+{adios}: let
+  inherit (adios) types;
+in {
+  name = "zsh";
+
+  inputs = {
+    nixpkgs.path = "/nixpkgs";
+    mkWrapper.path = "/mkWrapper";
+  };
+
+  options.zshrc = {
+    type = types.string;
+    defaultFunc = {inputs}: inputs.nixpkgs.pkgs.callPackage ./zshrc.nix {};
+  };
+
+  options.extraZshrc = {
+    type = types.string;
+    default = "";
+  };
+
+  options.deps = {
+    type = types.listOf types.derivation;
+    defaultFunc = {inputs}:
+      with inputs.nixpkgs.pkgs; [
+        fzf
+        zoxide
+        direnv
+      ];
+  };
+
+  options.extraDeps = {
+    type = types.listOf types.derivation;
+    default = [];
+  };
+
+  impl = {
+    options,
+    inputs,
+  }: let
+    inherit (inputs.nixpkgs) pkgs lib;
+
+    zshrc = pkgs.writeTextFile {
+      name = ".zshrc";
+      text = options.zshrc + options.extraZshrc;
+      destination = "/.zshrc";
+      executable = true;
+    };
+    path = lib.makeBinPath (options.deps ++ options.extraDeps);
+  in
+    inputs.mkWrapper {
+      package = pkgs.zsh;
+      arguments = ["--set ZDOTDIR ${zshrc}" "--prefix PATH : \"${path}\""];
+    };
+}
+#+END_SRC
+
+** zshrc.nix (original)
+
+#+BEGIN_SRC nix
+{
+  zsh-autosuggestions,
+  zsh-syntax-highlighting,
+  zsh-completions,
+  nix-zsh-completions,
+  pure-prompt,
+  zsh-vi-mode,
+  zsh-fzf-tab,
+}: let
+  zcompdump = "~/.cache/zsh/.zcompdump";
+in
+  #zsh
+  ''
+    # history
+    HISTFILE=~/.histfile
+    HISTSIZE=5000
+    SAVEHIST=5000
+    HISTDUP=erase
+    setopt appendhistory
+    setopt sharehistory
+    setopt hist_ignore_space
+    setopt hist_ignore_all_dups
+    setopt hist_save_no_dups
+
+    # completions
+    fpath+=(${zsh-completions}/share/zsh/site-functions)
+    fpath+=(${nix-zsh-completions}/share/zsh/site-functions)
+    autoload -Uz compinit
+    compinit -d ${zcompdump} -C;
+
+    # prompt
+    fpath+=(${pure-prompt}/share/zsh/site-functions)
+    autoload -U promptinit; promptinit
+    prompt pure
+
+    # completion
+    zstyle ':completion:*' menu select
+    zstyle ':completion::complete:*' gain-privileges 1
+
+    # misc
+    unsetopt autocd beep notify
+    bindkey -v
+
+    # aliases
+    alias ls='ls --color'
+    rebuild() { nixos-rebuild $1 --file /home/poacher/nix-dotfiles --attr $HOST --sudo }
+
+    # plugins
+    eval "$(zoxide init zsh)"
+    eval "$(direnv hook zsh)"
+    source ${zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ${nix-zsh-completions}/share/zsh/plugins/nix/nix-zsh-completions.plugin.zsh
+    source ${zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ${zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+    source ${zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+  ''
+#+END_SRC
+
+* My Implementation
+
+And this is what I made with all of this:
+i think i did a good job on this one
+** wrappers/zsh/default.nix
+
+#+BEGIN_SRC nix
+{
+  pkgs,
+  lib,
+  extraDeps ? [],
+  extraZshrc ? "",
+  ...
+}:
+
+let
+  zshrc = pkgs.writeText "zshrc" ''
+    HISTFILE=$HOME/.zsh_history
+    HISTSIZE=5000
+    SAVEHIST=5000
+    setopt appendhistory sharehistory hist_ignore_space hist_ignore_all_dups hist_no_store no_hist_beep
+
+    autoload -Uz compinit
+    compinit -C -d ~/.cache/zsh/.zcompdump
+    zstyle ':completion:*' menu select
+    zstyle ':completion::complete:*' gain-privileges 1
+    zstyle ':completion:*' group-name ""
+
+    eval "$(starship init zsh)"
+    eval "$(zoxide init zsh)"
+    eval "$(direnv hook zsh)"
+
+    [[ -f ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    [[ -f ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
+      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+    alias ls="eza --icons"
+    alias l="eza --icons --tree"
+    alias cat="bat --paging=never"
+    alias grep="rg"
+    alias find="fd"
+    alias du="dust"
+    alias ps="procs"
+    alias hexdump="hexyl"
+    alias curl="xh"
+    alias sed="sd"
+
+    alias nrb-cherry='sudo nixos-rebuild switch --flake .#cherries'
+    alias nrb-fast-cherry='sudo nixos-rebuild switch --flake .#cherries --no-reexec'
+
+    export EDITOR=zed
+
+    if [[ -o interactive ]]; then
+      command -v systemd-detect-virt >/dev/null &&
+        [[ "$(systemd-detect-virt)" == "qemu" ]] &&
+        export QEMU=1
+
+      microfetch
+    fi
+
+    ${extraZshrc}
+  '';
+
+  zshrcDir = pkgs.runCommand "zsh-config-dir" {} ''
+    mkdir -p $out
+    ln -s ${zshrc} $out/.zshrc
+  '';
+
+  deps = [
+    pkgs.eza
+    pkgs.bat
+    pkgs.ripgrep
+    pkgs.fd
+    pkgs.dust
+    pkgs.procs
+    pkgs.hexyl
+    pkgs.xh
+    pkgs.sd
+    pkgs.broot
+    pkgs.atuin
+    pkgs.hyperfine
+    pkgs.tokei
+    pkgs.fzf
+    pkgs.zoxide
+    pkgs.direnv
+    pkgs.keychain
+    pkgs.starship
+    pkgs.zsh-autosuggestions
+    pkgs.zsh-syntax-highlighting
+  ] ++ extraDeps;
+
+  path = lib.makeBinPath deps;
+
+  zsh = pkgs.stdenv.mkDerivation {
+    pname = "zsh-wrapped";
+    version = "0.7";
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    dontUnpack = true;
+
+    installPhase = ''
+      mkdir -p $out/bin
+      makeWrapper ${pkgs.zsh}/bin/zsh $out/bin/zsh \
+        --set ZDOTDIR ${zshrcDir} \
+        --prefix PATH : ${path}
+    '';
+  };
+in
+{
+  inherit zsh;
+}
+#+END_SRC

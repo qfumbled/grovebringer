@@ -151,7 +151,10 @@ in
   };
 
 
-  services.displayManager.ly.enable = true;
+  services = {
+    displayManager.ly.enable = true;
+    fstrim.enable = true;
+  };
 
   systemd = {
     coredump = {
@@ -159,12 +162,6 @@ in
         Storage=none
         ProcessSizeMax=0
       '';
-    };
-  };
-
-  services = {
-    fstrim = {
-      enable = true;
     };
   };
 

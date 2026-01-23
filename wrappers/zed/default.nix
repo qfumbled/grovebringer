@@ -19,9 +19,8 @@ let
         case "$arg" in
           -h|--help)
             cat <<EOF
-Zed CLI Wrapper
+Zed Wrapped-Custom
 
-A thin CLI wrapper that launches the Zed editor.
 
 USAGE:
     zeditor [OPTIONS] [PATH[:LINE[:COL]]...]

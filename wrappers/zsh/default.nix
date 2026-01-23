@@ -15,6 +15,7 @@ let
 
     autoload -Uz compinit
     compinit -C -d ~/.cache/zsh/.zcompdump
+
     zstyle ':completion:*' menu select
     zstyle ':completion::complete:*' gain-privileges 1
     zstyle ':completion:*' group-name ""
@@ -55,6 +56,7 @@ let
     ${extraZshrc}
   '';
 
+
   zshrcDir = pkgs.runCommand "zsh-config-dir" {} ''
     mkdir -p $out
     ln -s ${zshrc} $out/.zshrc
@@ -85,17 +87,21 @@ let
 
   path = lib.makeBinPath deps;
 
+
   zsh = pkgs.stdenv.mkDerivation {
     pname = "zsh-wrapped";
-    version = "0.7";
+    version = "0.8";
+
     nativeBuildInputs = [ pkgs.makeWrapper ];
     dontUnpack = true;
 
     installPhase = ''
       mkdir -p $out/bin
+
       makeWrapper ${pkgs.zsh}/bin/zsh $out/bin/zsh \
         --set ZDOTDIR ${zshrcDir} \
-        --prefix PATH : ${path}
+        --prefix PATH : ${path} \
+        --run "if [[ \"$1\" == \"--help\" ]]; then exec ${pkgs.zsh}/bin/zsh --help; else exec ${pkgs.zsh}/bin/zsh \"\$@\"; fi"
     '';
   };
 in

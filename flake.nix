@@ -1,5 +1,5 @@
 {
-  description = " complex flake by qfumbled ";
+  description = " complex flake by fumbled ";
 
   outputs =
     inputs @ {
@@ -11,6 +11,7 @@
       systems = import inputs.systems;
 
       imports = [
+        # ...
       ];
 
       perSystem =
@@ -28,10 +29,6 @@
           devShells = {
             default = pkgs.mkShell {
               inherit (self.checks.${system}.pre-commit-check) shellHook;
-
-              buildInputs = with pkgs; [
-                inputs.agenix.packages.${system}.default
-              ];
             };
           };
 
@@ -97,7 +94,6 @@
                 inputs.nix-flatpak.nixosModules.nix-flatpak
                 inputs.home-manager.nixosModules.home-manager
                 inputs.impermanence.nixosModules.impermanence
-                inputs.agenix.nixosModules.default
                 inputs.stylix.nixosModules.stylix
 
                 ./modules/nixos
@@ -263,14 +259,6 @@
       url = "github:gmodena/nix-flatpak/";
       inputs = {
         # ...
-      };
-    };
-
-    agenix = {
-      url = "github:ryantm/agenix";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        systems.follows = "systems";
       };
     };
   };
