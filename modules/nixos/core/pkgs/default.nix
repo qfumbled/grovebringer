@@ -24,11 +24,6 @@ let
     (import ../../../../wrappers/spotify/default.nix {
       inherit pkgs lib;
     }).spotify;
-
-  obs =
-    import ../../../../wrappers/obs/default.nix {
-      inherit pkgs lib;
-    };
 in
 {
   environment.systemPackages = [
@@ -60,6 +55,5 @@ in
     zed
     zsh
     spotify
-    obs
   ];
 }
