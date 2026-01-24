@@ -9,6 +9,12 @@ let
     (import ../../../../packages/gcp/default.nix {
       inherit pkgs lib;
     }).gcp;
+   
+    njem =
+    (import ../../../../packages/njem/default.nix {
+      inherit pkgs lib;
+    }).njem;
+
 
   zed =
     (import ../../../../wrappers/zed/default.nix {
@@ -54,6 +60,7 @@ in
     gcp
     zed
     zsh
+    njem
     spotify
   ];
 }
