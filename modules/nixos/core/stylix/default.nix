@@ -9,6 +9,7 @@
     stylix = {
       enable = true;
       base16Scheme = ../../../../home/shared/colors/vivi.yaml;
+      polarity = "dark";
 
       cursor = {
         name = "Bibata-Modern-Ice";
