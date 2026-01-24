@@ -1,6 +1,5 @@
 {
   pkgs,
-  lib,
   ...
 }:
 
@@ -11,7 +10,7 @@ let
 
     declare -r VERSION="0.0.1"
     declare -r LOCKFILE="''${XDG_RUNTIME_DIR:-/tmp}/njem.lock"
-    
+
     # Auto-detect NJEM_DIR
     if [[ -n "''${NJEM_DIR:-}" ]]; then
       declare -r NJEM_DIR="$NJEM_DIR"
@@ -20,7 +19,7 @@ let
     else
       declare -r NJEM_DIR=$(pwd)
     fi
-    
+
     declare -r NJEM_HOST="''${NJEM_HOST:-$(hostname)}"
     declare -r NJEM_ROLE="''${NJEM_ROLE:-laptop}"
 
@@ -102,30 +101,30 @@ let
       shift
       local flake=$(get_flake)
       local cmd=(sudo nixos-rebuild "$action" --flake "$flake")
-      
+
       # Parse options - note: --fast implies --no-reexec
       local use_fast=false
       while [[ $# -gt 0 ]]; do
         case "$1" in
-          --fast) 
+          --fast)
             use_fast=true
             cmd+=("--fast" "--no-reexec")
             ;;
-          --no-reexec) 
+          --no-reexec)
             # Only add if not already added by --fast
             [[ "$use_fast" == false ]] && cmd+=("$1")
             ;;
           --verbose|--quiet|--show-trace|--impure|--recreate-lock-file|--refresh|--offline)
-            cmd+=("$1") 
+            cmd+=("$1")
             ;;
-          *) 
+          *)
             err "Unknown option: $1"
             exit 1
             ;;
         esac
         shift
       done
-      
+
       log "Running: ''${cmd[*]}"
       "''${cmd[@]}"
     }
@@ -152,19 +151,19 @@ let
 
     cmd_commit() {
       [[ "$NJEM_ROLE" == "server" ]] && { err "commit not available for server"; exit 1; }
-      
+
       local msg=""
       if [[ "$1" == "-m" ]]; then
         msg="$2"
         shift 2
       fi
-      
+
       cmd_switch "$@"
-      
+
       log "Fixing permissions..."
       find "$NJEM_DIR" -type f -name '*.nix' -exec chmod 600 {} + 2>/dev/null || true
       find "$NJEM_DIR" -type d -exec chmod 700 {} + 2>/dev/null || true
-      
+
       log "Committing..."
       in_dir git add -A
       if [[ -z "$msg" ]]; then

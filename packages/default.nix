@@ -3,11 +3,13 @@
   pkgs,
   ...
 }:
+
 let
   funkounaLib = if lib ? funkouna then lib.funkouna else { };
   readSubdirs = if lib ? funkouna then lib.funkouna.readSubdirs else (dir: [ ]);
   packageDirs = readSubdirs ./.;
 
+  # Electron wrapper for Wayland
   mkElectronWayland = {
     package,
     name ? package.pname or package.name,
@@ -119,9 +121,7 @@ let
   }:
     mkElectronWayland {
       inherit package name extraEnv;
-      extraFlags = lib.optionals enableIME [
-        "--enable-wayland-ime"
-      ] ++ extraFlags;
+      extraFlags = lib.optionals enableIME [ "--enable-wayland-ime" ] ++ extraFlags;
     };
 
   mkOverride = {
@@ -209,21 +209,12 @@ let
         '';
       }
     else if package != null then
-      # This is a package wrapper. Delegate to the more robust mkWrapper.
       mkWrapper ({
         inherit name package preHook postHook;
         arguments = wrapperArgs;
         inherit env;
-      } // (builtins.removeAttrs args [
-        "name"
-        "package"
-        "wrapperArgs"
-        "env"
-        "preHook"
-        "postHook"
-      ]))
+      } // (builtins.removeAttrs args [ "name" "package" "wrapperArgs" "env" "preHook" "postHook" ]))
     else
-      # This is a command runner with no package.
       pkgs.writeShellApplication {
         inherit name;
         text = ''
@@ -406,6 +397,5 @@ in
     mkService
     mkWrapper
     mkShell
-
     ;
 }
