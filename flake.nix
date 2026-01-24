@@ -134,9 +134,9 @@
         in
         {
           nixosConfigurations = {
-            cherries = mkSystem {
-              systemConfig = ./hosts/cherries;
-              userConfigs = ./home/profiles/cherries.nix;
+            jemflake = mkSystem {
+              systemConfig = ./hosts/jemflake;
+              userConfigs = ./home/profiles/jemflake.nix;
             };
 
             aureliteiron = mkSystem {

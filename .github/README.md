@@ -80,9 +80,9 @@ sudo nixos-rebuild test --flake .#<hostname>
 
 ## Screenshots
 
-### cherries (laptop)
+### jemflake (laptop)
 
-![](assets/1.png)
+![](assets/jemflake.png)
 
 ### chimera (desktop)
 

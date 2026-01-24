@@ -24,38 +24,42 @@ let
     (import ../../../../wrappers/spotify/default.nix {
       inherit pkgs lib;
     }).spotify;
+
+  obs =
+    import ../../../../wrappers/obs/default.nix {
+      inherit pkgs lib;
+    };
 in
 {
-  environment = {
-    systemPackages = [
-      inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-      pkgs.sops
-      pkgs.microfetch
-      pkgs.age
-      pkgs.bat
-      pkgs.xdg-utils
-      pkgs.wirelesstools
-      pkgs.wget
-      pkgs.yq
-      pkgs.brightnessctl
-      pkgs.git
-      pkgs.unzip
-      pkgs.zip
-      pkgs.polkit_gnome
-      pkgs.nix-prefetch-git
-      pkgs.blueman
-      pkgs.loupe
-      pkgs.celluloid
-      pkgs.wl-clipboard
-      pkgs.libnotify
-      pkgs.swappy
-      pkgs.swaybg
-      pkgs.fastfetch
-      pkgs.obs-studio
-      gcp
-      zed
-      zsh
-      spotify
-    ];
-  };
+  environment.systemPackages = [
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.sops
+    pkgs.microfetch
+    pkgs.age
+    pkgs.bat
+    pkgs.xdg-utils
+    pkgs.wirelesstools
+    pkgs.wget
+    pkgs.yq
+    pkgs.brightnessctl
+    pkgs.git
+    pkgs.unzip
+    pkgs.zip
+    pkgs.polkit_gnome
+    pkgs.nix-prefetch-git
+    pkgs.blueman
+    pkgs.loupe
+    pkgs.celluloid
+    pkgs.wl-clipboard
+    pkgs.libnotify
+    pkgs.swappy
+    pkgs.swaybg
+    pkgs.fastfetch
+    pkgs.obs-studio
+    gcp
+    zed
+    zsh
+    spotify
+    obs
+  ];
 }

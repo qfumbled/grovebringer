@@ -17,7 +17,7 @@ in
   ];
 
   networking = {
-    hostName = "cherries";
+    hostName = "jemflake";
   };
 
   security = {

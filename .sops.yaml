@@ -7,7 +7,9 @@ creation_rules:
     key_groups:
       - age:
           - *75cherries
+          - *cherries
   - path_regex: secrets/cherries/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *cherries
+          - *75cherries
