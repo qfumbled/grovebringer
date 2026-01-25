@@ -29,6 +29,8 @@ in
     };
   };
 
+  programs.mango.enable = true;
+
   boot = {
     kernelModules = [
       "i915"

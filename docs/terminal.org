@@ -1,0 +1,1 @@
+For the terminal emulator i use is wezterm 

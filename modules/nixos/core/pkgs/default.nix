@@ -9,12 +9,16 @@ let
     (import ../../../../packages/gcp/default.nix {
       inherit pkgs lib;
     }).gcp;
-   
-    njem =
+
+    neovim =
+      (import ../../../../wrappers/neovim/default.nix {
+        inherit pkgs lib;
+      }).neovim;
+
+  njem =
     (import ../../../../packages/njem/default.nix {
       inherit pkgs lib;
     }).njem;
-
 
   zed =
     (import ../../../../wrappers/zed/default.nix {
@@ -30,6 +34,17 @@ let
     (import ../../../../wrappers/spotify/default.nix {
       inherit pkgs lib;
     }).spotify;
+
+  wmenu =
+    (import ../../../../wrappers/wmenu/default.nix {
+      inherit pkgs lib;
+    }).wmenu;
+
+    wezterm =
+      (import ../../../../wrappers/wezterm/default.nix {
+        inherit pkgs lib;
+      }).wezterm;
+
 in
 {
   environment.systemPackages = [
@@ -62,5 +77,8 @@ in
     zsh
     njem
     spotify
+    wmenu
+    wezterm
+    neovim
   ];
 }

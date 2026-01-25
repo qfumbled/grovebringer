@@ -1,7 +1,9 @@
 {
   pkgs,
   lib,
-  extraDeps ? [],
+  extraDeps ? [
+    # ...
+  ],
   extraZshrc ? "",
   ...
 }:
@@ -29,19 +31,15 @@ let
     [[ -f ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
       source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-    alias ls="eza --icons"
-    alias l="eza --icons --tree"
-    alias cat="bat --paging=never"
+    alias ls="eza"
+    alias l="eza --tree"
+    alias cat="bat --paging=never --style=plain --color=never"
     alias grep="rg"
     alias find="fd"
     alias du="dust"
     alias ps="procs"
     alias hexdump="hexyl"
-    alias curl="xh"
     alias sed="sd"
-
-    alias nrb-cherry='sudo nixos-rebuild switch --flake .#cherries'
-    alias nrb-fast-cherry='sudo nixos-rebuild switch --flake .#cherries --no-reexec'
 
     export EDITOR=zed
 
@@ -70,7 +68,6 @@ let
     pkgs.dust
     pkgs.procs
     pkgs.hexyl
-    pkgs.xh
     pkgs.sd
     pkgs.broot
     pkgs.atuin

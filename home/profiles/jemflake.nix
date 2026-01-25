@@ -55,6 +55,7 @@
     };
 
     packages = [
+      pkgs._0xproto
       pkgs.python3
       pkgs.app2unit
       pkgs.asciinema_3

@@ -1,5 +1,6 @@
 {
-  lib ? { },
+  lib ? {
+  },
   pkgs,
   ...
 }:
@@ -10,8 +11,10 @@ let
   mkElectronWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
-    extraEnv ? {},
+    extraFlags ? [
+    ],
+    extraEnv ? {
+    },
     enableGPU ? true,
     enableVulkan ? false,
     enableTouch ? false,
@@ -53,13 +56,16 @@ let
   mkChromiumWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
-    extraEnv ? {},
+    extraFlags ? [
+    ],
+    extraEnv ? {
+    },
     userDataDir ? null,
     enableGPU ? true,
     enableVulkan ? false,
     enableHardwareAccel ? true,
-    disableFeatures ? [],
+    disableFeatures ? [
+    ],
   }:
     let
       enabledFeatures = [
@@ -97,8 +103,10 @@ let
   mkVSCodeWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
-    extraEnv ? {},
+    extraFlags ? [
+    ],
+    extraEnv ? {
+    },
     enableGPU ? true,
   }:
     mkElectronWayland {
@@ -112,8 +120,10 @@ let
   mkChatAppWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
-    extraEnv ? {},
+    extraFlags ? [
+    ],
+    extraEnv ? {
+    },
     enableIME ? true,
   }:
     mkElectronWayland {
@@ -125,14 +135,17 @@ let
 
   mkOverride = {
     package,
-    override ? {},
-    overrideAttrs ? (old: {}),
+    override ? {
+    },
+    overrideAttrs ? (old: {
+    }),
   }:
     (package.override override).overrideAttrs overrideAttrs;
 
   mkPatched = {
     package,
-    patches ? [],
+    patches ? [
+    ],
     postPatch ? "",
     prePatch ? "",
   }:
@@ -176,11 +189,12 @@ let
         mkAlias { inherit name; inherit (target) target; args = target.args or ""; }
     ) aliases;
 
-  mkShellScript =
+  mkShellScript = 
     {
       name,
       script,
-      runtimeInputs ? [ ],
+      runtimeInputs ? [
+      ],
     }:
     pkgs.writeShellScriptBin name script;
 
@@ -188,9 +202,11 @@ let
     args@{
       name ? "",
       package ? null,
-      wrapperArgs ? [ ],
+      wrapperArgs ? [
+      ],
       script ? "",
-      env ? { },
+      env ? {
+      },
       preHook ? "",
       postHook ? "",
       ...
@@ -209,7 +225,7 @@ let
       }
     else if package != null then
       # This is a package wrapper. Delegate to the more robust mkWrapper.
-      mkWrapper ({
+      mkWrapper ({ 
         inherit name package preHook postHook;
         arguments = wrapperArgs;
         inherit env;
@@ -240,7 +256,8 @@ let
       name,
       url,
       sha256,
-      buildInputs ? [ ],
+      buildInputs ? [
+      ],
     }:
     pkgs.fetchFromGitHub {
       inherit name url sha256;
@@ -249,8 +266,10 @@ let
   mkDevShell =
     {
       name,
-      packages ? [ ],
-      buildInputs ? [ ],
+      packages ? [
+      ],
+      buildInputs ? [
+      ],
       shellHook ? "",
     }:
     pkgs.mkShell {
@@ -265,7 +284,8 @@ let
       package,
       binaryName ? name,
       extraArgs ? "",
-      env ? { },
+      env ? {
+      },
     }:
     pkgs.symlinkJoin {
       inherit name;
@@ -282,7 +302,8 @@ let
     {
       name,
       scriptFile,
-      runtimeInputs ? [ ],
+      runtimeInputs ? [
+      ],
     }:
     pkgs.writeShellApplication {
       inherit name runtimeInputs;
@@ -305,8 +326,10 @@ let
       description,
       exec,
       user ? "root",
-      after ? [ ],
-      wants ? [ ],
+      after ? [
+      ],
+      wants ? [
+      ],
     }:
     pkgs.writeTextFile {
       name = "${name}.service";
@@ -330,8 +353,10 @@ let
       package,
       name ? package.pname or package.name or "wrapper",
       binaryPath ? null,
-      arguments ? [ ],
-      env ? { },
+      arguments ? [
+      ],
+      env ? {
+      },
       preHook ? "",
       postHook ? "",
       runScript ? "",
@@ -371,7 +396,8 @@ let
     {
       name,
       script,
-      runtimeInputs ? [ ],
+      runtimeInputs ? [
+      ],
     }:
     pkgs.writeShellApplication {
       inherit name runtimeInputs;

@@ -73,10 +73,12 @@ sudo nixos-rebuild test --flake .#<hostname>
 
 ## WIP
 
-- [x] cherries using wm
-- [ ] rename aureliteiron to chimera sounds cool !
-- [ ] disable firefox on all hosts (cherries,chimera) 
-- [x] 75% of the configuration should be using cherry-dialect
+- [] seperate stylix themes for each host (laptop, solarized  desktop,vivi)
+- [x] cherry-dialect consiste
+- [] host first configuration 
+- [] use hjem (not fully but 15%)
+- [] delete hyprland, foot, vicinae for good.
+- [] discord or oxicord?
 
 ## Screenshots
 
@@ -91,6 +93,5 @@ sudo nixos-rebuild test --flake .#<hostname>
 ## Credits
 
 - [elythh](https://github.com/elythh) - Structural inspiration and the main motivator
-- [astrid](https://github.com/eepy-goddess/astrid-flake) - 6% of the configuration
-- [alexpkgs](https://github.com/alexpkgs) - Previous configuration
 - [linuxmobile](https://github.com/linuxmobile) - Configuration references
+- [poacher](https://codeberg.org/poacher) - wrappers, etc

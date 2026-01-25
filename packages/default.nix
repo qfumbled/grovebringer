@@ -1,5 +1,7 @@
 {
-  lib ? { },
+  lib ? {
+    # ...
+  },
   pkgs,
   ...
 }:
@@ -13,7 +15,8 @@ let
   mkElectronWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
+    extraFlags ? [
+    ],
     extraEnv ? {},
     enableGPU ? true,
     enableVulkan ? false,
@@ -56,7 +59,8 @@ let
   mkChromiumWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
+    extraFlags ? [
+    ],
     extraEnv ? {},
     userDataDir ? null,
     enableGPU ? true,
@@ -100,7 +104,8 @@ let
   mkVSCodeWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
+    extraFlags ? [
+    ],
     extraEnv ? {},
     enableGPU ? true,
   }:
@@ -115,7 +120,8 @@ let
   mkChatAppWayland = {
     package,
     name ? package.pname or package.name,
-    extraFlags ? [],
+    extraFlags ? [
+    ],
     extraEnv ? {},
     enableIME ? true,
   }:
@@ -126,8 +132,12 @@ let
 
   mkOverride = {
     package,
-    override ? {},
-    overrideAttrs ? (old: {}),
+    override ? {
+      # ...
+    },
+    overrideAttrs ? (old: {
+      # ...
+    }),
   }:
     (package.override override).overrideAttrs overrideAttrs;
 

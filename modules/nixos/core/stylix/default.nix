@@ -8,7 +8,7 @@
   config = {
     stylix = {
       enable = true;
-      base16Scheme = ../../../../home/shared/colors/vivi.yaml;
+      base16Scheme = ../../../../home/shared/colors/solarized.yaml;
       polarity = "dark";
 
       cursor = {

@@ -95,6 +95,7 @@
                 inputs.home-manager.nixosModules.home-manager
                 inputs.impermanence.nixosModules.impermanence
                 inputs.stylix.nixosModules.stylix
+                inputs.mango.nixosModules.mango
 
                 ./modules/nixos
 
@@ -109,6 +110,7 @@
                       inputs.zen-browser.homeModules.beta
                       inputs.nixcord.homeModules.nixcord
                       inputs.plasma-manager.homeModules.plasma-manager
+                      inputs.mango.hmModules.mango
                     ];
 
                     extraSpecialArgs = {
@@ -166,6 +168,13 @@
       url = "github:numtide/flake-utils";
       inputs = {
         systems.follows = "systems";
+      };
+    };
+
+    mango = {
+      url = "github:DreamMaoMao/mango";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
       };
     };
 
