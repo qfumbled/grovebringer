@@ -12,7 +12,7 @@
     stateVersion = "25.11";
     sessionVariables = {
       EDITOR = "zed";
-      TERMINAL = "foot";
+      TERMINAL = "wezterm";
       BROWSER = "zen";
     };
   };

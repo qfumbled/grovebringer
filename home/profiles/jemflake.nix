@@ -17,9 +17,7 @@
       noctalia = {
         enable = true;
       };
-      vicinae = {
-        enable = true;
-      };
+
       discord = {
         enable = true;
       };
@@ -28,9 +26,7 @@
       plasma = {
         enable = false;
       };
-      hyprland = {
-        enable = true;
-      };
+
     };
   };
 
@@ -66,6 +62,8 @@
       pkgs.colordiff
       pkgs.onefetch
       pkgs.statix
+      pkgs.grim
+      pkgs.slurp
     ];
   };
 }

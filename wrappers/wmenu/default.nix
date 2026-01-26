@@ -13,7 +13,7 @@ let
   path = lib.makeBinPath deps;
 
   wmenu = pkgs.stdenv.mkDerivation {
-    pname = "wmenu-solarized";
+    pname = "wmenu-solarized-light";
     version = "1.0";
 
     nativeBuildInputs = [ pkgs.makeWrapper ];
@@ -26,10 +26,10 @@ let
         --prefix PATH : ${path} \
         --add-flags "\
           -f '0xProto 12' \
-          -N '002B36' \
-          -n '063C4A' \
-          -m '043643' \
-          -s '657B83' \
+          -N 'EEE8D5' \
+          -n '657B83' \
+          -m '586E75' \
+          -s '073642' \
           -S '93A1A1' \
           ${extraFlags} \
         "

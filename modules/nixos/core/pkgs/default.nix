@@ -10,11 +10,6 @@ let
       inherit pkgs lib;
     }).gcp;
 
-    neovim =
-      (import ../../../../wrappers/neovim/default.nix {
-        inherit pkgs lib;
-      }).neovim;
-
   njem =
     (import ../../../../packages/njem/default.nix {
       inherit pkgs lib;

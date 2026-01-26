@@ -54,6 +54,7 @@
         };
         maxGenerations = 15;
       };
+      timeout = 2;
     };
 
     plymouth = {
@@ -72,6 +73,13 @@
         environment = {
           TMPDIR = "/var/tmp";
         };
+      };
+    };
+
+    settings = {
+      Manager = {
+        DefaultTimeoutStopSec = "10s";
+        DefaultTimeoutStartSec = "10s";
       };
     };
   };

@@ -20,15 +20,15 @@ let
     config.font = wezterm.font_with_fallback { "0xProto", "monospace" }
     config.font_size = 12.0
     config.hide_tab_bar_if_only_one_tab = true
-    config.window_background_opacity = 0.9
+    config.window_background_opacity = 1.0
     config.window_close_confirmation = "NeverPrompt"
     config.enable_wayland = true
 
     config.window_padding = {
       left = 20,
       right = 20,
-      top = 15,
-      bottom = 15,
+      top = 20,
+      bottom = 20,
     }
 
     local solarized = {

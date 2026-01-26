@@ -16,9 +16,7 @@
       noctalia = {
         enable = false;
       };
-      vicinae = {
-        enable = false;
-      };
+
       discord = {
         enable = true;
       };
@@ -27,9 +25,7 @@
       plasma = {
         enable = true;
       };
-      hyprland = {
-        enable = false;
-      };
+
     };
   };
 
@@ -68,7 +64,7 @@
       pkgs.eza
       pkgs.fd
       pkgs.feh
-      pkgs.foot
+
       pkgs.fx
       pkgs.fzf
       pkgs.gcc
@@ -126,7 +122,6 @@
       pkgs.python312Packages.setuptools
       pkgs.python312Packages.virtualenv
       pkgs.satty
-      pkgs.starship
       pkgs.stern
       pkgs.syncthing
       pkgs.statix

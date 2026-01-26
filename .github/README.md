@@ -71,14 +71,22 @@ Test without switching:
 sudo nixos-rebuild test --flake .#<hostname>
 ```
 
+## Features
+
+- Flake
+- Modular
+- Uses Cherry
+
 ## WIP
 
-- [] seperate stylix themes for each host (laptop, solarized  desktop,vivi)
-- [x] cherry-dialect consiste
-- [] host first configuration 
-- [] use hjem (not fully but 15%)
-- [] delete hyprland, foot, vicinae for good.
-- [] discord or oxicord?
+- [x] Cherry-dialect consistency
+- [ ] Host-first configuration
+- [ ] Use hjem (partial integration ~15%)
+- [x] Delete hyprland, foot, vicinae
+- [ ] Disable zed?
+- [ ] Discord or oxicord?
+- [ ] ZRAM module testing
+- [ ] Neovim 
 
 ## Screenshots
 

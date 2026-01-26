@@ -38,7 +38,6 @@ in
       "i2c-dev"
       "efivarfs"
     ];
-    kernelPackages = lib.mkForce pkgs.linuxPackages_zen;
     extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];
@@ -215,9 +214,7 @@ in
         enable = true;
       };
 
-      hyprland = {
-        enable = true;
-      };
+
     };
 
     impermanence = {

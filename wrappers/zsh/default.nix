@@ -8,7 +8,10 @@
   ...
 }:
 
+
 let
+  pure-prompt = pkgs.pure-prompt;
+
   zshrc = pkgs.writeText "zshrc" ''
     HISTFILE=$HOME/.zsh_history
     HISTSIZE=5000
@@ -17,6 +20,14 @@ let
 
     autoload -Uz compinit
     compinit -C -d ~/.cache/zsh/.zcompdump
+    zstyle :prompt:pure:path color none
+        zstyle :prompt:pure:prompt:success color none
+        zstyle :prompt:pure:prompt:error color none
+        zstyle :prompt:pure:git:branch color none
+        zstyle :prompt:pure:git:dirty color none
+        zstyle :prompt:pure:git:action color none
+        zstyle :prompt:pure:user color none
+        zstyle :prompt:pure:host color none
 
     zstyle ':completion:*' menu select
     zstyle ':completion::complete:*' gain-privileges 1
@@ -25,6 +36,10 @@ let
     eval "$(starship init zsh)"
     eval "$(zoxide init zsh)"
     eval "$(direnv hook zsh)"
+
+    fpath+=(${pure-prompt}/share/zsh/site-functions)
+    autoload -U promptinit; promptinit
+    PURE_PROMPT_SYMBOL=">"
 
     [[ -f ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -80,6 +95,7 @@ let
     pkgs.starship
     pkgs.zsh-autosuggestions
     pkgs.zsh-syntax-highlighting
+    pkgs.pure-prompt
   ] ++ extraDeps;
 
   path = lib.makeBinPath deps;
