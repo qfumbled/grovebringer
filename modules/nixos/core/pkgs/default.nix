@@ -74,6 +74,5 @@ in
     spotify
     wmenu
     wezterm
-    neovim
   ];
 }
