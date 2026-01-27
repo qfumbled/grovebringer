@@ -31,54 +31,57 @@ let
       bottom = 20,
     }
 
+    -- Solarized Dark exact palette
     local solarized = {
-      base00 = "#fdf6e3",  -- background
-      base01 = "#eee8d5",  -- bg highlight
-      base02 = "#93a1a1",  -- comments / selection bg
-      base03 = "#839496",  -- body text / subtle
-      base04 = "#657b83",  -- foreground / default text
-      base05 = "#586e75",  -- emphasis / darker text
-      base06 = "#073642",  -- dark emphasis
-      base07 = "#002b36",  -- darkest / shadows
-      base08 = "#dc322f",  -- red / errors
-      base09 = "#cb4b16",  -- orange / warnings
-      base0A = "#b58900",  -- yellow / highlights
-      base0B = "#859900",  -- green / success
-      base0C = "#2aa198",  -- cyan / info
-      base0D = "#268bd2",  -- blue / links
-      base0E = "#6c71c4",  -- violet / keywords
-      base0F = "#d33682",  -- magenta / special
+      base00 = "#002B36",  -- background
+      base01 = "#063C4A",  -- alternative bg / UI elements
+      base02 = "#043643",  -- selection bg
+      base03 = "#657B83",  -- comments / subtle text
+      base04 = "#93A1A1",  -- secondary text
+      base05 = "#93A1A1",  -- default foreground
+      base06 = "#FDF6E3",  -- emphasis / lighter
+      base07 = "#FDF6E3",  -- brightest
+      base08 = "#DC322F",  -- red
+      base09 = "#B58900",  -- yellow / highlights
+      base0A = "#B58900",  -- yellow
+      base0B = "#859900",  -- green
+      base0C = "#2AA198",  -- cyan
+      base0D = "#268BD2",  -- blue
+      base0E = "#6C71C4",  -- magenta
+      base0F = "#6C71C4",  -- magenta variant
     }
 
     config.colors = {
-      foreground = solarized.base04,
+      foreground = solarized.base05,
       background = solarized.base00,
-      cursor_bg = solarized.base04,
+
+      cursor_bg = solarized.base05,
       cursor_fg = solarized.base00,
-      cursor_border = solarized.base04,
-      selection_fg = solarized.base06,
+      cursor_border = solarized.base05,
+
+      selection_fg = solarized.base05,
       selection_bg = solarized.base02,
 
       ansi = {
-        solarized.base02,  -- black (gray)
+        solarized.base03,  -- black
         solarized.base08,  -- red
         solarized.base0B,  -- green
         solarized.base0A,  -- yellow
         solarized.base0D,  -- blue
         solarized.base0E,  -- magenta
         solarized.base0C,  -- cyan
-        solarized.base04,  -- white (light gray)
+        solarized.base05,  -- white
       },
 
       brights = {
         solarized.base03,  -- bright black
         solarized.base08,  -- bright red
         solarized.base0B,  -- bright green
-        solarized.base09,  -- bright yellow (orange)
+        solarized.base09,  -- bright yellow
         solarized.base0D,  -- bright blue
         solarized.base0E,  -- bright magenta
         solarized.base0C,  -- bright cyan
-        solarized.base05,  -- bright white
+        solarized.base07,  -- bright white
       },
     }
 

@@ -10,6 +10,8 @@
 
 Flake written in cherry-dialect (my strict-clean Nix style).
 
+Also some cons on cherry-dialect you might need to format it maunally 
+
 ## Install
 
 ### Requirements

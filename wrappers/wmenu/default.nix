@@ -26,11 +26,11 @@ let
         --prefix PATH : ${path} \
         --add-flags "\
           -f '0xProto 12' \
-          -N 'EEE8D5' \
-          -n '657B83' \
-          -m '586E75' \
+          -N '002b36' \
+          -n '839496' \
+          -m '93a1a1' \
           -s '073642' \
-          -S '93A1A1' \
+          -S 'eee8d5' \
           ${extraFlags} \
         "
     '';

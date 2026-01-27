@@ -1,19 +1,19 @@
-scheme: "solarized-light"
+scheme: "solarized-dark"
 author: "Ethan Schoonover"
 
-base00: "fdf6e3"  # base3  - background
-base01: "eee8d5"  # base2  - bg highlight / status bars
-base02: "93a1a1"  # base1  - comments / secondary content
-base03: "839496"  # base0  - body text / subtle
-base04: "657b83"  # base00 - default text / fg
-base05: "586e75"  # base01 - emphasis / darker text
-base06: "073642"  # base02 - dark emphasis
-base07: "002b36"  # base03 - darkest / shadows
-base08: "dc322f"  # red    - errors / important
-base09: "cb4b16"  # orange - warnings / attention
-base0A: "b58900"  # yellow - highlights / constants
-base0B: "859900"  # green  - success / strings
-base0C: "2aa198"  # cyan   - info / support / links alt
-base0D: "268bd2"  # blue   - links / functions / focus
-base0E: "6c71c4"  # violet - keywords / metadata
-base0F: "d33682"  # magenta - special / accents
+base00: "002b36"  # background
+base01: "073642"  # bg highlight / status bars
+base02: "586e75"  # comments / secondary content
+base03: "657b83"  # body text / subtle
+base04: "839496"  # default text / fg
+base05: "93a1a1"  # emphasis / darker text
+base06: "eee8d5"  # light emphasis
+base07: "fdf6e3"  # lightest / shadows
+base08: "dc322f"  # red / errors / important
+base09: "cb4b16"  # orange / warnings / attention
+base0A: "b58900"  # yellow / highlights / constants
+base0B: "859900"  # green / success / strings
+base0C: "2aa198"  # cyan / info / links alt
+base0D: "268bd2"  # blue / links / functions / focus
+base0E: "6c71c4"  # violet / keywords / metadata
+base0F: "d33682"  # magenta / special / accents
