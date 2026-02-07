@@ -1,4 +1,4 @@
-# Mit hjem
+# im replacing flakes with npins !
 
 > [!WARNING]
 > use or fork at your own risk.
